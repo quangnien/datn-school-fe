@@ -15,8 +15,10 @@ import * as api from "../api/apiTeacher";
 
 export const getAllDepartment = () => async (dispatch) => {
   try {
+    debugger;
     const { data } = await api.getAllDepartment();
-    dispatch({ type: GET_ALL_DEPARTMENT, payload: data.retObj[0] });
+    // dispatch({ type: GET_ALL_DEPARTMENT, payload: data.retObj[0] });
+    dispatch({ type: GET_ALL_DEPARTMENT, payload: data.retObj });
   } catch (error) {
     console.log("Redux Error", error);
   }
@@ -43,7 +45,8 @@ export const getScoreCourse = (course) => async (dispatch) => {
 export const getAllKHN = () => async (dispatch) => {
   try {
     const { data } = await api.getAllKHN();
-    dispatch({ type: GET_ALL_KHN, payload: data.retObj[0] });
+    // dispatch({ type: GET_ALL_KHN, payload: data.retObj[0] });
+    dispatch({ type: GET_ALL_KHN, payload: data.retObj });
   } catch (error) {
     console.log("Redux Error", error);
   }

@@ -31,7 +31,11 @@ const modalStyles = {
 const Body = () => {
   const store = useSelector((state) => state);
   const departments = useSelector((state) => state.admin.allDepartment);
+  debugger;
+  if(departments != null){
+    
   departments.sort((a, b) => a.tenKhoa.charCodeAt(0) - b.tenKhoa.charCodeAt(0));
+  }
   const [selectedDepartment, setSelectedDepartment] = useState("");
   const [error, setError] = useState({});
 

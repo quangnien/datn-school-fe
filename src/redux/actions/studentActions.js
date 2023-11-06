@@ -35,7 +35,8 @@ export const getAllUnit = () => async (dispatch) => {
   try {
     const { data } = await api.getAllUnit();
     console.log("data", data);
-    dispatch({ type: GET_ALL_UNIT, payload: data.retObj[0] });
+    // dispatch({ type: GET_ALL_UNIT, payload: data.retObj[0] });
+    dispatch({ type: GET_ALL_UNIT, payload: data.retObj });
   } catch (error) {
     console.log("Redux Error", error);
   }
@@ -140,7 +141,8 @@ export const getAllTKBStudent = (maSv, tuan, maKeHoach) => async (dispatch) => {
 export const getAllKHN = () => async (dispatch) => {
   try {
     const { data } = await api.getAllKHN();
-    dispatch({ type: GET_ALL_KHN, payload: data.retObj[0] });
+    // dispatch({ type: GET_ALL_KHN, payload: data.retObj[0] });
+    dispatch({ type: GET_ALL_KHN, payload: data.retObj });
   } catch (error) {
     console.log("Redux Error", error);
   }

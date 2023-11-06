@@ -1,5 +1,6 @@
 import axios from "axios";
 
+// const APIV2 = axios.create({ baseURL: "http://localhost:9090/" });
 const APIV2 = axios.create({ baseURL: "http://localhost:8080/" });
 
 APIV2.interceptors.request.use((req) => {
@@ -31,6 +32,7 @@ export const updateScore = (updateScore) =>
   APIV2.put("/api/admin/diem", updateScore);
 
 export const getCourseTeacherKHM = (maGv, maKeHoach) =>
-  APIV2.post(`api/admin/dsLopTc/giangVien/${maGv}?maKeHoach=${maKeHoach}`);
+  // APIV2.post(`api/admin/dsLopTc/giangVien/${maGv}?maKeHoach=${maKeHoach}`);
+  APIV2.post(`api/admin/lopTc/giangVien/${maGv}?maKeHoach=${maKeHoach}`);
 export const getThongkebysomething = (data) =>
   APIV2.get("api/admin/diem/thong-ke", data);

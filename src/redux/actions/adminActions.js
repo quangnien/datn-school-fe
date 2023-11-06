@@ -54,7 +54,8 @@ import * as api from "../api";
 export const getAllDepartment = () => async (dispatch) => {
   try {
     const { data } = await api.getAllDepartment();
-    dispatch({ type: GET_ALL_DEPARTMENT, payload: data.retObj[0] });
+    // dispatch({ type: GET_ALL_DEPARTMENT, payload: data.retObj[0] });
+    dispatch({ type: GET_ALL_DEPARTMENT, payload: data.retObj });
   } catch (error) {
     console.log("Redux Error", error);
   }
@@ -62,8 +63,8 @@ export const getAllDepartment = () => async (dispatch) => {
 export const getAllTeacher = (redata) => async (dispatch) => {
   try {
     const { data } = await api.getAllTeacher(redata);
-
-    dispatch({ type: GET_ALL_TEACHER, payload: data.retObj[0] });
+    // dispatch({ type: GET_ALL_TEACHER, payload: data.retObj[0] });
+    dispatch({ type: GET_ALL_TEACHER, payload: data.retObj });
   } catch (error) {
     console.log("Redux Error", error);
   }
@@ -71,7 +72,8 @@ export const getAllTeacher = (redata) => async (dispatch) => {
 export const getAllUnit = () => async (dispatch) => {
   try {
     const { data } = await api.getAllUnit();
-    dispatch({ type: GET_ALL_UNIT, payload: data.retObj[0] });
+    // dispatch({ type: GET_ALL_UNIT, payload: data.retObj[0] });
+    dispatch({ type: GET_ALL_UNIT, payload: data.retObj });
   } catch (error) {
     console.log("Redux Error", error);
   }
@@ -80,7 +82,6 @@ export const getAllUnit = () => async (dispatch) => {
 export const getAllSubject = () => async (dispatch) => {
   try {
     const { data } = await api.getAllSubject();
-
     dispatch({ type: GET_ALL_SUBJECT, payload: data.retObj });
   } catch (error) {
     console.log("Redux Error", error);
@@ -89,7 +90,8 @@ export const getAllSubject = () => async (dispatch) => {
 export const getAllStudent = () => async (dispatch) => {
   try {
     const { data } = await api.getAllStudent();
-    dispatch({ type: GET_ALL_STUDENT, payload: data.retObj[0] });
+    // dispatch({ type: GET_ALL_STUDENT, payload: data.retObj[0] });
+    dispatch({ type: GET_ALL_STUDENT, payload: data.retObj });
   } catch (error) {
     console.log("Redux Error", error);
   }
@@ -97,7 +99,9 @@ export const getAllStudent = () => async (dispatch) => {
 export const getAllCourse = () => async (dispatch) => {
   try {
     const { data } = await api.getAllCourse();
-    dispatch({ type: GET_ALL_COURSE, payload: data.retObj[0] });
+    // dispatch({ type: GET_ALL_COURSE, payload: data.retObj[0] });
+    dispatch({ type: GET_ALL_COURSE, payload: data.retObj });
+
   } catch (error) {
     console.log("Redux Error", error);
   }
@@ -106,7 +110,8 @@ export const getAllCourse = () => async (dispatch) => {
 export const getAllCourseDetail = () => async (dispatch) => {
   try {
     const { data } = await api.getAllCourseDetail();
-    dispatch({ type: GET_ALL_COURSE_DETAIL, payload: data.retObj[0] });
+    // dispatch({ type: GET_ALL_COURSE_DETAIL, payload: data.retObj[0] });
+    dispatch({ type: GET_ALL_COURSE_DETAIL, payload: data.retObj });
   } catch (error) {
     console.log("Redux Error", error);
   }
@@ -115,7 +120,8 @@ export const getAllCourseDetail = () => async (dispatch) => {
 export const getAllKHN = () => async (dispatch) => {
   try {
     const { data } = await api.getAllKHN();
-    dispatch({ type: GET_ALL_KHN, payload: data.retObj[0] });
+    // dispatch({ type: GET_ALL_KHN, payload: data.retObj[0] });
+    dispatch({ type: GET_ALL_KHN, payload: data.retObj });
   } catch (error) {
     console.log("Redux Error", error);
   }
@@ -123,6 +129,8 @@ export const getAllKHN = () => async (dispatch) => {
 // Add
 export const addDepartment = (formData) => async (dispatch) => {
   try {
+    console.log(formData);
+    debugger;
     const { data } = await api.addDepartment(formData);
     if (data.status === "success") {
       toast.success("Thêm khoa mới thành công!");

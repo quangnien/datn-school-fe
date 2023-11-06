@@ -1,6 +1,7 @@
 import { API } from "../config/config";
 
-export const userLogin = (formData) => API.post("/api/auth/signin", formData);
+// export const userLogin = (formData) => API.post("/api/auth/signin", formData);
+export const userLogin = (formData) => API.post("/sys/auth/signin", formData);
 // 1. Khoa
 export const getAllDepartment = () => API.get("/api/admin/khoa");
 export const addDepartment = (department) =>
@@ -8,7 +9,7 @@ export const addDepartment = (department) =>
 export const updateDepartment = (updateDepartment) =>
   API.put("/api/admin/khoa", updateDepartment);
 export const deleteDepartment = (data) =>
-  API.delete("api/admin/khoa", { data });
+  API.delete("/api/admin/khoa", { data });
 
 //2. teacher
 
@@ -56,21 +57,29 @@ export const deleteStudent = (data) =>
   API.delete("api/admin/sinhVien", { data });
 
 //lớp tín chỉ
-export const addCourse = (course) => API.post("/api/admin/dsLopTc", course);
-export const getAllCourse = () => API.get("/api/admin/dsLopTc");
+// export const addCourse = (course) => API.post("/api/admin/dsLopTc", course);
+export const addCourse = (course) => API.post("/api/admin/lopTc", course);
+// export const getAllCourse = () => API.get("/api/admin/dsLopTc");
+export const getAllCourse = () => API.get("/api/admin/lopTc");
 export const updateCourse = (updateCourse) =>
-  API.put("/api/admin/dsLopTc", updateCourse);
-export const deleteCourse = (data) => API.delete("api/admin/dsLopTc", { data });
+  // API.put("/api/admin/dsLopTc", updateCourse);
+  API.put("/api/admin/lopTc", updateCourse);
+// export const deleteCourse = (data) => API.delete("api/admin/dsLopTc", { data });
+export const deleteCourse = (data) => API.delete("api/admin/lopTc", { data });
 // không truyền gì hết sẽ lấy ra lớp tín chỉ của kỳ mới nhất
 export const getCourseUnit = (unit) =>
-  API.get(`/api/admin/dsLopTc/lop/${unit}`, unit);
+  // API.get(`/api/admin/dsLopTc/lop/${unit}`, unit);
+  API.get(`/api/admin/lopTc/lop/${unit}`, unit);
 
 export const getAllCoursebysomething = (data) =>
-  API.get("api/admin/dsLopTc", data);
+  // API.get("api/admin/dsLopTc", data);
+  API.get("api/admin/lopTc", data);
 
-export const getAllCoursebyMKH = (data) => API.get("api/admin/dsLopTc", data);
+// export const getAllCoursebyMKH = (data) => API.get("api/admin/dsLopTc", data);
+export const getAllCoursebyMKH = (data) => API.get("api/admin/lopTc", data);
 export const getAllCoursebyUnitMKH = (data) =>
-  API.get("api/admin/dsLopTc", data);
+  // API.get("api/admin/dsLopTc", data);
+  API.get("api/admin/lopTc", data);
 
 //Điểm
 export const getScoreCourse = (course) =>

@@ -4,6 +4,7 @@ import * as api from "../api";
 
 export const userLogin = (formData, navigate) => async (dispatch) => {
   try {
+    // console.log("CALL API LOGIN!")
     const { data } = await api.userLogin(formData);
 
     if (data.status === "success") {

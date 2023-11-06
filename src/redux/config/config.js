@@ -1,6 +1,7 @@
 import axios from "axios";
 
-export const API = axios.create({ baseURL: "http://localhost:9090/" });
+//export const API = axios.create({ baseURL: "http://localhost:9090/" });
+export const API = axios.create({ baseURL: "http://localhost:8080/" });
 
 API.interceptors.request.use((req) => {
   if (localStorage.getItem("adminUser")) {
