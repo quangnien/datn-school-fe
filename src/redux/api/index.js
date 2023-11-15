@@ -115,3 +115,19 @@ export const getThongkebysomething = (data) =>
 export const getAllKHN = () => API.get("/api/admin/keHoachNam");
 // môn học tiên quyết
 export const getMhtq = () => API.get("/api/admin/mhtq");
+
+// Menu
+export const getAllMenu = () => API.get("/api/admin/menu");
+export const addMenu = (menu) => API.post("/api/admin/menu", menu);
+export const updateMenu = (updateMenu) =>
+  API.put("/api/admin/menu", updateMenu);
+export const deleteMenu = (data) => API.delete("/api/admin/menu", { data });
+
+// role
+
+// môn học
+export const getAllRole = () => API.get("/api/admin/role");
+export const addRole = (tole) => API.post("/api/admin/role", tole);
+export const updateRole = (updateRole) =>
+  API.put("/api/admin/role", updateRole);
+export const deleteRole = (data) => API.delete("api/admin/role", { data });

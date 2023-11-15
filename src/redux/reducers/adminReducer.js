@@ -1,60 +1,68 @@
 import {
-  ADD_COURSE,
   ADD_COURSE_DETAIL,
+  ADD_COURSE,
   ADD_DEPARTMENT,
   ADD_STUDENT,
   ADD_SUBJECT,
   ADD_TEACHER,
   ADD_UNIT,
+  ADMIN_LOGOUT,
+  CLEAR_THONGKES,
   DELETE_COURSE,
+  DELETE_COURSEDETAIL,
   DELETE_DANGKYMON,
   DELETE_DEPARTMENT,
   DELETE_STUDENT,
   DELETE_SUBJECT,
   DELETE_TEACHER,
   DELETE_UNIT,
-  GET_ALL_COURSE,
+  GET_ALL_COURSE_BY_MKH,
+  GET_ALL_COURSE_BY_UNIMKH,
   GET_ALL_COURSE_DETAIL,
+  GET_ALL_COURSE,
   GET_ALL_DEPARTMENT,
+  GET_ALL_KHN,
+  GET_ALL_MHTQ,
   GET_ALL_STUDENT,
   GET_ALL_SUBJECT,
   GET_ALL_TEACHER,
   GET_ALL_TKB,
   GET_ALL_UNIT,
+  GET_COURSE_BY_KEHOACHNAM,
+  GET_COURSE_BY_SOMETHING,
   GET_COURSE_UNIT,
+  GET_COURSEDETAIL_COURSE,
   GET_SCORE_COURSE,
   GET_STUDENT_BY_ID,
   GET_STUDENT_UNIT,
+  GET_SUBJECT_DEPARTMENT,
   GET_TEACHER_DEPARTMENT,
+  GET_THONGKE_BY_SOMETHING,
   GET_UNIT_DEPARTMENT,
-  ADMIN_LOGOUT,
+  RESET_COURSEDETAILS,
+  RESET_COURSES,
+  RESET_SCORES,
+  RESET_STUDENTS,
+  RESET_SUBJECTS,
+  RESET_TEACHERS,
+  RESET_UNITS,
   UPDATE_COURSE,
+  UPDATE_COURSEDETAIL,
   UPDATE_DEPARTMENT,
+  UPDATE_PASSWORD,
   UPDATE_SCORE,
   UPDATE_STUDENT,
   UPDATE_SUBJECT,
   UPDATE_TEACHER,
   UPDATE_UNIT,
-  UPDATE_PASSWORD,
-  GET_SUBJECT_DEPARTMENT,
-  GET_COURSE_BY_KEHOACHNAM,
-  GET_THONGKE_BY_SOMETHING,
-  GET_COURSE_BY_SOMETHING,
-  GET_ALL_COURSE_BY_MKH,
-  GET_ALL_COURSE_BY_UNIMKH,
-  GET_COURSEDETAIL_COURSE,
-  UPDATE_COURSEDETAIL,
-  DELETE_COURSEDETAIL,
-  CLEAR_THONGKES,
-  RESET_STUDENTS,
-  RESET_TEACHERS,
-  RESET_SUBJECTS,
-  RESET_COURSEDETAILS,
-  GET_ALL_KHN,
-  RESET_COURSES,
-  RESET_SCORES,
-  RESET_UNITS,
-  GET_ALL_MHTQ,
+  GET_ALL_MENU,
+  ADD_MENU,
+  DELETE_MENU,
+  UPDATE_MENU,
+  GET_ALL_ROLE,
+  ADD_ROLE,
+  UPDATE_ROLE,
+  DELETE_ROLE,
 } from "../actionTypes";
 
 const initialState = {
@@ -62,8 +70,10 @@ const initialState = {
 
   // edit
   updatedDepartment: false,
+  updatedMenu: false,
   updatedUnit: false,
   updatedSubject: false,
+  updatedRole: false,
   updatedStudent: false,
   updatedTeacher: false,
   updatedCourse: false,
@@ -74,18 +84,23 @@ const initialState = {
 
   // add
   departmentAdded: false,
+  menuAdded: false,
   teacherAdded: false,
   studentAdded: false,
   subjectAdded: false,
+  roleAdded: false,
   coursedetailAdded: false,
   //getll
   allTeacher: [],
   allSubject: [],
+  allRole: [],
   allStudent: [],
   allDepartment: [],
   allCourseDetail: [],
   allTKB: [],
   allKHN: [],
+  allMenu: [],
+
   //getbyidby~
   students: [],
   teachers: [],
@@ -100,10 +115,12 @@ const initialState = {
 
   //delete
   departmentDeleted: false,
+  menuDeleted: false,
   unitDeleted: false,
   teacherDeleted: false,
   studentDeleted: false,
   subjectDeleted: false,
+  roleDeleted: false,
   courseDeleted: false,
   dangkymonDeleted: false,
   coursedetailDeleted: false,
@@ -120,15 +137,30 @@ const adminReducer = (state = initialState, action) => {
         ...state,
         allDepartment: action.payload,
       };
+    case GET_ALL_MENU:
+      return {
+        ...state,
+        allMenu: action.payload,
+      };
     case ADD_DEPARTMENT:
       return {
         ...state,
         departmentAdded: action.payload,
       };
+    case ADD_MENU:
+      return {
+        ...state,
+        menuAdded: action.payload,
+      };
     case DELETE_DEPARTMENT:
       return {
         ...state,
         departmentDeleted: action.payload,
+      };
+    case DELETE_MENU:
+      return {
+        ...state,
+        menuDeleted: action.payload,
       };
     case GET_TEACHER_DEPARTMENT:
       return {
@@ -167,15 +199,26 @@ const adminReducer = (state = initialState, action) => {
         ...state,
         allSubject: action.payload,
       };
+    case GET_ALL_ROLE:
+      return {
+        ...state,
+        allRole: action.payload,
+      };
     case ADD_STUDENT:
       return {
         ...state,
         studentAdded: action.payload,
       };
+
     case ADD_SUBJECT:
       return {
         ...state,
         subjectAdded: action.payload,
+      };
+    case ADD_ROLE:
+      return {
+        ...state,
+        roleAdded: action.payload,
       };
     case ADD_COURSE:
       return {
@@ -186,6 +229,11 @@ const adminReducer = (state = initialState, action) => {
       return {
         ...state,
         updatedDepartment: action.payload,
+      };
+    case UPDATE_MENU:
+      return {
+        ...state,
+        updatedMenu: action.payload,
       };
     case GET_UNIT_DEPARTMENT:
       return {
@@ -221,6 +269,11 @@ const adminReducer = (state = initialState, action) => {
       return {
         ...state,
         updatedSubject: action.payload,
+      };
+    case UPDATE_ROLE:
+      return {
+        ...state,
+        updatedRole: action.payload,
       };
     case UPDATE_STUDENT:
       return {
@@ -283,6 +336,11 @@ const adminReducer = (state = initialState, action) => {
       return {
         ...state,
         subjectDeleted: action.payload,
+      };
+    case DELETE_ROLE:
+      return {
+        ...state,
+        roleDeleted: action.payload,
       };
     case DELETE_DANGKYMON:
       return {

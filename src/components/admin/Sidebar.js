@@ -117,6 +117,17 @@ const Sidebar = () => {
         </div>
         <div className="" style={{ marginTop: 0 }}>
           <NavLink
+            to="/admin/getmenuall"
+            className={({ isActive }) =>
+              isActive ? isActiveStyle : isNotActiveStyle
+            }
+          >
+            <MenuBookIcon className="" />
+            <h1 className="font-normal">Môn học</h1>
+          </NavLink>
+        </div>
+        <div className="" style={{ marginTop: 0 }}>
+          <NavLink
             to="/admin/thongke"
             className={({ isActive }) =>
               isActive ? isActiveStyle : isNotActiveStyle

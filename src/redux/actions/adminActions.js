@@ -47,6 +47,14 @@ import {
   DELETE_COURSEDETAIL,
   GET_ALL_KHN,
   GET_ALL_MHTQ,
+  GET_ALL_MENU,
+  ADD_MENU,
+  UPDATE_MENU,
+  DELETE_MENU,
+  ADD_ROLE,
+  UPDATE_ROLE,
+  DELETE_ROLE,
+  GET_ALL_ROLE,
 } from "../actionTypes";
 import * as api from "../api";
 
@@ -87,6 +95,14 @@ export const getAllSubject = () => async (dispatch) => {
     console.log("Redux Error", error);
   }
 };
+export const getAllRole = () => async (dispatch) => {
+  try {
+    const { data } = await api.getAllRole();
+    dispatch({ type: GET_ALL_ROLE, payload: data.retObj });
+  } catch (error) {
+    console.log("Redux Error", error);
+  }
+};
 export const getAllStudent = () => async (dispatch) => {
   try {
     const { data } = await api.getAllStudent();
@@ -101,7 +117,6 @@ export const getAllCourse = () => async (dispatch) => {
     const { data } = await api.getAllCourse();
     // dispatch({ type: GET_ALL_COURSE, payload: data.retObj[0] });
     dispatch({ type: GET_ALL_COURSE, payload: data.retObj });
-
   } catch (error) {
     console.log("Redux Error", error);
   }
@@ -126,6 +141,16 @@ export const getAllKHN = () => async (dispatch) => {
     console.log("Redux Error", error);
   }
 };
+
+export const getAllMenu = () => async (dispatch) => {
+  try {
+    const { data } = await api.getAllMenu();
+    dispatch({ type: GET_ALL_MENU, payload: data.retObj });
+  } catch (error) {
+    console.log("Redux Error", error);
+  }
+};
+
 // Add
 export const addDepartment = (formData) => async (dispatch) => {
   try {
@@ -150,6 +175,31 @@ export const addDepartment = (formData) => async (dispatch) => {
     }
   }
 };
+
+export const addMenu = (formData) => async (dispatch) => {
+  try {
+    console.log(formData);
+    debugger;
+    const { data } = await api.addMenu(formData);
+    if (data.status === "success") {
+      toast.success("Thêm menu mới thành công!");
+      dispatch({ type: ADD_MENU, payload: true });
+    } else {
+      dispatch({ type: SET_ERRORS, payload: data });
+    }
+  } catch (error) {
+    if (
+      error.response &&
+      error.response.data &&
+      error.response.data.status === "error"
+    ) {
+      dispatch({ type: SET_ERRORS, payload: error.response.data });
+    } else {
+      console.log("Unknown error occurred");
+    }
+  }
+};
+
 export const addTeacher = (formData) => async (dispatch) => {
   try {
     const { data } = await api.addTeacher(formData);
@@ -213,12 +263,35 @@ export const addStudent = (formData) => async (dispatch) => {
     }
   }
 };
+
 export const addSubject = (formData) => async (dispatch) => {
   try {
     const { data } = await api.addSubject(formData);
     if (data.status === "success") {
       toast.success("Thêm môn học mới thành công!");
       dispatch({ type: ADD_SUBJECT, payload: true });
+    } else {
+      dispatch({ type: SET_ERRORS, payload: data });
+    }
+  } catch (error) {
+    if (
+      error.response &&
+      error.response.data &&
+      error.response.data.status === "error"
+    ) {
+      dispatch({ type: SET_ERRORS, payload: error.response.data });
+    } else {
+      console.log("Unknown error occurred");
+    }
+  }
+};
+
+export const addRole = (formData) => async (dispatch) => {
+  try {
+    const { data } = await api.addRole(formData);
+    if (data.status === "success") {
+      toast.success("Thêm role mới thành công!");
+      dispatch({ type: ADD_ROLE, payload: true });
     } else {
       dispatch({ type: SET_ERRORS, payload: data });
     }
@@ -293,6 +366,22 @@ export const updateDepartment = (formData) => async (dispatch) => {
     dispatch({ type: SET_ERRORS, payload: error.response.data });
   }
 };
+
+export const updateMenu = (formData) => async (dispatch) => {
+  try {
+    const { data } = await api.updateMenu(formData);
+    if (data.status === "success") {
+      toast.success("Chỉnh sửa menu thành công!");
+      dispatch({ type: UPDATE_MENU, payload: true });
+    } else {
+      toast.error("Chỉnh sửa menu không thành công!");
+      dispatch({ type: SET_ERRORS, payload: data });
+    }
+  } catch (error) {
+    dispatch({ type: SET_ERRORS, payload: error.response.data });
+  }
+};
+
 export const updateUnit = (formData) => async (dispatch) => {
   try {
     const { data } = await api.updateUnit(formData);
@@ -315,6 +404,21 @@ export const updateSubject = (formData) => async (dispatch) => {
       dispatch({ type: UPDATE_SUBJECT, payload: true });
     } else {
       toast.error("Chỉnh sửa môn học không thành công!");
+      dispatch({ type: SET_ERRORS, payload: data });
+    }
+  } catch (error) {
+    dispatch({ type: SET_ERRORS, payload: error.response.data });
+  }
+};
+
+export const updateRole = (formData) => async (dispatch) => {
+  try {
+    const { data } = await api.updateRole(formData);
+    if (data.status === "success") {
+      toast.success("Chỉnh sửa role thành công!");
+      dispatch({ type: UPDATE_ROLE, payload: true });
+    } else {
+      toast.error("Chỉnh sửa role không thành công!");
       dispatch({ type: SET_ERRORS, payload: data });
     }
   } catch (error) {
@@ -420,8 +524,22 @@ export const deleteDepartment = (formData) => async (dispatch) => {
       dispatch({ type: SET_ERRORS, payload: "Xóa Khoa không Thành công" });
     }
   } catch (error) {
-    // console.log("vô đây nè");
     dispatch({ type: SET_ERRORS, payload: "Xóa Khoa không Thành công" });
+  }
+};
+
+export const deleteMenu = (formData) => async (dispatch) => {
+  try {
+    const { data } = await api.deleteMenu(formData);
+    if (data.status === "success" && data.retObj.length > 0) {
+      toast.success("Xóa menu thành công!");
+      dispatch({ type: DELETE_MENU, payload: true });
+    } else {
+      toast.error("Xóa menu này không thành không!");
+      dispatch({ type: SET_ERRORS, payload: "Xóa menu không Thành công" });
+    }
+  } catch (error) {
+    dispatch({ type: SET_ERRORS, payload: "Xóa menu không Thành công" });
   }
 };
 
@@ -508,6 +626,7 @@ export const deleteCourseDetail = (formData) => async (dispatch) => {
     });
   }
 };
+
 export const deleteSubject = (formData) => async (dispatch) => {
   try {
     const { data } = await api.deleteSubject(formData);
@@ -522,6 +641,22 @@ export const deleteSubject = (formData) => async (dispatch) => {
     dispatch({ type: SET_ERRORS, payload: "Xóa Môn học không Thành công" });
   }
 };
+
+export const deleteRole = (formData) => async (dispatch) => {
+  try {
+    const { data } = await api.deleteRole(formData);
+    if (data.status === "success" && data.retObj.length > 0) {
+      toast.success("Xóa role thành công!");
+      dispatch({ type: DELETE_ROLE, payload: true });
+    } else {
+      toast.error("Xóa role này không thành không!");
+      dispatch({ type: SET_ERRORS, payload: "Xóa role không thành công" });
+    }
+  } catch (error) {
+    dispatch({ type: SET_ERRORS, payload: "Xóa role không Thành công" });
+  }
+};
+
 export const deleteDangkymon = (formData) => async (dispatch) => {
   try {
     const { data } = await api.deleteDangkymon(formData);
@@ -599,7 +734,6 @@ export const getAllCoursebyUnitMKH = (requestData) => async (dispatch) => {
 
     dispatch({ type: GET_ALL_COURSE_BY_UNIMKH, payload: data });
   } catch (error) {
-    // console.log("vô đây");
     dispatch({ type: SET_ERRORS, payload: error.response.data });
   }
 };
@@ -628,7 +762,6 @@ export const getCoursebyKeHoachNam = (requestData) => async (dispatch) => {
     console.log("data", data);
     dispatch({ type: GET_COURSE_BY_KEHOACHNAM, payload: data.retObj });
   } catch (error) {
-
     dispatch({ type: SET_ERRORS, payload: error.response.data });
   }
 };

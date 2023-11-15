@@ -33,6 +33,10 @@ import TeacherUpw from "./components/teacher/updatepassword/TeacherUpw";
 import ThoiKhoaBieu from "./components/student/tkb/ThoiKhoaBieu";
 import ThongKe from "./components/admin/thongke/ThongKe";
 import UpdatePassWord from "./components/admin/updatepassword/UpdatePassWord";
+import GetMenuList from "./components/admin/getMenuAll/GetMenuList";
+import AddMenu from "./components/admin/addMenu/AddMenu";
+import GetRoleList from "./components/admin/getAllRole/GetRoleList";
+import AddRole from "./components/admin/addRole/AddRole";
 
 const App = () => {
   return (
@@ -78,6 +82,14 @@ const App = () => {
       <Route path="/admin/thongke" element={<ThongKe />} />
       <Route path="admin/updatepassword" element={<UpdatePassWord />} />
       <Route path="/admin/thongkedetail/:maLopTc" element={<CourseThongKe />} />
+
+      {/* Menu */}
+      <Route path="/admin/getmenuall" element={<GetMenuList />} />
+      <Route path="/admin/addMenu" element={<AddMenu />} />
+
+      {/* role */}
+      <Route path="/admin/getroleall" element={<GetRoleList />} />
+      <Route path="/admin/addRole" element={<AddRole />} />
     </Routes>
   );
 };
