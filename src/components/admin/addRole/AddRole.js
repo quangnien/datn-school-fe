@@ -8,7 +8,7 @@ import Sidebar from "../Sidebar";
 const AddRole = () => {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getAllMenu);
+    dispatch(getAllMenu());
   }, [dispatch]);
 
   return (

@@ -123,7 +123,29 @@ const Sidebar = () => {
             }
           >
             <MenuBookIcon className="" />
-            <h1 className="font-normal">Môn học</h1>
+            <h1 className="font-normal">Menu</h1>
+          </NavLink>
+        </div>
+        <div className="" style={{ marginTop: 0 }}>
+          <NavLink
+            to="/admin/getroleall"
+            className={({ isActive }) =>
+              isActive ? isActiveStyle : isNotActiveStyle
+            }
+          >
+            <MenuBookIcon className="" />
+            <h1 className="font-normal">Role</h1>
+          </NavLink>
+        </div>
+        <div className="" style={{ marginTop: 0 }}>
+          <NavLink
+            to="/admin/getuserall"
+            className={({ isActive }) =>
+              isActive ? isActiveStyle : isNotActiveStyle
+            }
+          >
+            <MenuBookIcon className="" />
+            <h1 className="font-normal">Users</h1>
           </NavLink>
         </div>
         <div className="" style={{ marginTop: 0 }}>

@@ -8,6 +8,8 @@ export const ADD_SUBJECT = "ADD_SUBJECT";
 export const ADD_TEACHER = "ADD_TEACHER";
 export const ADD_UNIT = "ADD_UNIT";
 export const ADD_ROLE = "ADD_ROLE";
+export const ADD_USER = "ADD_USER";
+
 
 export const ADMIN_LOGOUT = "ADMIN_LOGOUT";
 export const CLEAR_THONGKES = "CLEAR_THONGKES";
@@ -22,6 +24,8 @@ export const DELETE_TEACHER = "DELETE_TEACHER";
 export const DELETE_UNIT = "DELETE_UNIT";
 export const DELETE_MENU = "DELETE_MENU";
 export const DELETE_ROLE = "DELETE_ROLE";
+export const DELETE_USER = "DELETE_USER";
+
 
 export const GET_ALL_ADMIN = "GET_ALL_ADMIN";
 export const GET_ALL_COURSE = "GET_ALL_COURSE";
@@ -33,6 +37,8 @@ export const GET_ALL_DSLOPTC_SV = "GET_ALL_DSLOPTC_SV";
 export const GET_ALL_KHN = "GET_ALL_KHN";
 export const GET_ALL_MENU = "GET_ALL_MENU";
 export const GET_ALL_ROLE = "GET_ALL_ROLE";
+export const GET_ALL_USER = "GET_ALL_USER";
+
 
 export const GET_ALL_MHTQ = "GET_ALL_MHTQ";
 export const GET_ALL_SCORE_STUDENT = "GET_ALL_SCORE_STUDENT";
@@ -92,3 +98,5 @@ export const UPDATE_STUDENT = "UPDATE_STUDENT";
 export const UPDATE_SUBJECT = "UPDATE_SUBJECT";
 export const UPDATE_TEACHER = "UPDATE_TEACHER";
 export const UPDATE_UNIT = "UPDATE_UNIT";
+export const UPDATE_USER = "UPDATE_USER";
+

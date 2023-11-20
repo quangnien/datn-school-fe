@@ -37,6 +37,8 @@ import GetMenuList from "./components/admin/getMenuAll/GetMenuList";
 import AddMenu from "./components/admin/addMenu/AddMenu";
 import GetRoleList from "./components/admin/getAllRole/GetRoleList";
 import AddRole from "./components/admin/addRole/AddRole";
+import AddUser from "./components/admin/addUser/AddUser";
+import GetUserList from "./components/admin/getAllUser/GetUserList";
 
 const App = () => {
   return (
@@ -90,6 +92,9 @@ const App = () => {
       {/* role */}
       <Route path="/admin/getroleall" element={<GetRoleList />} />
       <Route path="/admin/addRole" element={<AddRole />} />
+      {/* user */}
+      <Route path="/admin/getuserall" element={<GetUserList />} />
+      <Route path="/admin/addUser" element={<AddUser />} />
     </Routes>
   );
 };

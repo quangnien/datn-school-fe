@@ -55,6 +55,10 @@ import {
   UPDATE_ROLE,
   DELETE_ROLE,
   GET_ALL_ROLE,
+  GET_ALL_USER,
+  ADD_USER,
+  UPDATE_USER,
+  DELETE_USER,
 } from "../actionTypes";
 import * as api from "../api";
 
@@ -103,6 +107,16 @@ export const getAllRole = () => async (dispatch) => {
     console.log("Redux Error", error);
   }
 };
+
+export const getAllUser = () => async (dispatch) => {
+  try {
+    const { data } = await api.getAllUser();
+    dispatch({ type: GET_ALL_USER, payload: data.retObj });
+  } catch (error) {
+    console.log("Redux Error", error);
+  }
+};
+
 export const getAllStudent = () => async (dispatch) => {
   try {
     const { data } = await api.getAllStudent();
@@ -307,6 +321,28 @@ export const addRole = (formData) => async (dispatch) => {
     }
   }
 };
+
+export const addUser = (formData) => async (dispatch) => {
+  try {
+    const { data } = await api.addUser(formData);
+    if (data.status === "success") {
+      toast.success("Thêm user mới thành công!");
+      dispatch({ type: ADD_USER, payload: true });
+    } else {
+      dispatch({ type: SET_ERRORS, payload: data });
+    }
+  } catch (error) {
+    if (
+      error.response &&
+      error.response.data &&
+      error.response.data.status === "error"
+    ) {
+      dispatch({ type: SET_ERRORS, payload: error.response.data });
+    } else {
+      console.log("Unknown error occurred");
+    }
+  }
+};
 export const addCourse = (formData) => async (dispatch) => {
   try {
     const { data } = await api.addCourse(formData);
@@ -419,6 +455,21 @@ export const updateRole = (formData) => async (dispatch) => {
       dispatch({ type: UPDATE_ROLE, payload: true });
     } else {
       toast.error("Chỉnh sửa role không thành công!");
+      dispatch({ type: SET_ERRORS, payload: data });
+    }
+  } catch (error) {
+    dispatch({ type: SET_ERRORS, payload: error.response.data });
+  }
+};
+
+export const updateUser = (formData) => async (dispatch) => {
+  try {
+    const { data } = await api.updateUser(formData);
+    if (data.status === "success") {
+      toast.success("Chỉnh sửa user thành công!");
+      dispatch({ type: UPDATE_USER, payload: true });
+    } else {
+      toast.error("Chỉnh sửa user không thành công!");
       dispatch({ type: SET_ERRORS, payload: data });
     }
   } catch (error) {
@@ -542,7 +593,20 @@ export const deleteMenu = (formData) => async (dispatch) => {
     dispatch({ type: SET_ERRORS, payload: "Xóa menu không Thành công" });
   }
 };
-
+export const deleteUser = (formData) => async (dispatch) => {
+  try {
+    const { data } = await api.deleteUser(formData);
+    if (data.status === "success" && data.retObj.length > 0) {
+      toast.success("Xóa user thành công!");
+      dispatch({ type: DELETE_USER, payload: true });
+    } else {
+      toast.error("Xóa user này không thành không!");
+      dispatch({ type: SET_ERRORS, payload: "Xóa user không Thành công" });
+    }
+  } catch (error) {
+    dispatch({ type: SET_ERRORS, payload: "Xóa user không Thành công" });
+  }
+};
 export const deleteUnit = (formData) => async (dispatch) => {
   try {
     const { data } = await api.deleteUnit(formData);

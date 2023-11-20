@@ -1,26 +1,19 @@
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import * as classes from "../../../utils/styles";
-import MenuItem from "@mui/material/MenuItem";
 import React, { useEffect, useState } from "react";
 import ReactModal from "react-modal";
-import ReactPaginate from "react-paginate";
-import Select from "@mui/material/Select";
 import Spinner from "../../../utils/Spinner";
 import Swal from "sweetalert2";
 import {
   deleteRole,
-  deleteSubject,
   getAllRole,
-  getSubjectDepartment,
-  updateSubject,
+  updateRole,
 } from "../../../redux/actions/adminActions";
 import {
   DELETE_ROLE,
-  DELETE_SUBJECT,
   SET_ERRORS,
   UPDATE_ROLE,
-  UPDATE_SUBJECT,
 } from "../../../redux/actionTypes";
 import ReactSelect from "react-select";
 
@@ -45,11 +38,7 @@ const Body = () => {
   const [loading, setLoading] = useState(false);
   const store = useSelector((state) => state);
 
-  // paging
-  const [pageCount, setPageCount] = useState(0);
-  const [itemOffset, setItemOffset] = useState(0);
-  const [nextPage, setNextPage] = useState(0);
-  const itemsPerPage = 12;
+
 
   useEffect(() => {
     if (Object.keys(store.errors).length !== 0) {
@@ -60,6 +49,7 @@ const Body = () => {
 
   const menus = useSelector((state) => state.admin.allMenu);
   const roles = useSelector((state) => state.admin.allRole);
+  console.log("roles", roles)
 
   // tien quyet
   const initialMenus = menus;
@@ -135,7 +125,7 @@ const Body = () => {
     } else {
       updatedValue.menuCodeList = selectedRole.menuCodeList;
     }
-    dispatch(updateSubject({ ...selectedRole, ...updatedValue }));
+    dispatch(updateRole({ ...selectedRole, ...updatedValue }));
     dispatch({ type: UPDATE_ROLE, payload: false });
   };
 
@@ -143,6 +133,8 @@ const Body = () => {
     if (!store.admin.updatedRole) return;
     setError({});
     closeModal();
+    dispatch(getAllRole());
+
   }, [dispatch, store.errors, store.admin.updatedRole]);
   const handleModalError = () => {
     setError({});
@@ -240,7 +232,7 @@ const Body = () => {
             )}
           </div>
 
-          {search && !loading && roles?.length !== 0 && (
+          { !loading && roles?.length !== 0 && (
             <div className="overflow-auto max-h-[450px]">
               <table className="w-full table-auto">
                 <thead className="bg-[#E1EEEE] items-center top-0 sticky ">
@@ -336,7 +328,7 @@ const Body = () => {
                 <div className={classes.WrapInputLabel}>
                   <h1 className={classes.LabelStyle}>Tên Role :</h1>
                   <input
-                    placeholder={selectedSubject?.roleName}
+                    placeholder={selectedRole?.roleName}
                     className={classes.InputStyle}
                     type="text"
                     value={value.roleName}
@@ -377,7 +369,7 @@ const Body = () => {
                 <button className={classes.adminFormSubmitButton} type="submit">
                   Lưu
                 </button>
-                <Link to="/admin/allrole" className="btn btn-primary">
+                <Link to="/admin/getroleall" className="btn btn-primary">
                   <button
                     className={classes.adminFormClearButton}
                     type="button"

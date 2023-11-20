@@ -124,10 +124,15 @@ export const updateMenu = (updateMenu) =>
 export const deleteMenu = (data) => API.delete("/api/admin/menu", { data });
 
 // role
-
-// môn học
 export const getAllRole = () => API.get("/api/admin/role");
 export const addRole = (tole) => API.post("/api/admin/role", tole);
 export const updateRole = (updateRole) =>
   API.put("/api/admin/role", updateRole);
 export const deleteRole = (data) => API.delete("api/admin/role", { data });
+
+// user
+export const getAllUser = () => API.get("/api/admin/user");
+export const addUser = (user) => API.post("/api/admin/user", user);
+export const updateUser = (updateUser) =>
+  API.put("/api/admin/user", updateUser);
+export const deleteUser = (data) => API.delete("api/admin/user", { data });

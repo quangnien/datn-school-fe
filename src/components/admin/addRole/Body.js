@@ -1,7 +1,6 @@
-import { ADD_ROLE, ADD_SUBJECT, SET_ERRORS } from "../../../redux/actionTypes";
-import { addRole, addSubject } from "../../../redux/actions/adminActions";
+import { ADD_ROLE, SET_ERRORS } from "../../../redux/actionTypes";
+import { addRole } from "../../../redux/actions/adminActions";
 import { Link } from "react-router-dom";
-import { MenuItem, Select } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import * as classes from "../../../utils/styles";
 import AddIcon from "@mui/icons-material/Add";
@@ -15,6 +14,10 @@ const Body = () => {
   const [error, setError] = useState({});
 
   const store = useSelector((state) => state);
+  //
+  // useEffect(() => {
+  //   dispatch(getAllMenu);
+  // }, []);
   // code new
   const menus = useSelector((state) => state.admin.allMenu);
 
@@ -126,6 +129,7 @@ const Body = () => {
                   options={menuOptions}
                   value={selectedOptions}
                   onChange={(selectedOptions) => {
+                    console.log("selectedOptions",selectedOptions)
                     setSelectedOptions(selectedOptions);
                     const selectedValues = selectedOptions.map(
                       (option) => option.value

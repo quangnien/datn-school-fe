@@ -1,18 +1,16 @@
+import {  getAllRole } from "../../../redux/actions/adminActions";
+import { useDispatch } from "react-redux";
 import Body from "./Body";
 import Header from "../Header";
-import React from "react";
+import React, { useEffect } from "react";
 import Sidebar from "../Sidebar";
-import { useDispatch } from "react-redux";
-import {  getAllMenu, getAllRole } from "../../../redux/actions/adminActions";
-import { useEffect } from "react";
 
-const GetRoleList = () => {
+const AddUser = () => {
   const dispatch = useDispatch();
-
   useEffect(() => {
-    dispatch(getAllMenu());
     dispatch(getAllRole());
   }, [dispatch]);
+
   return (
     <div className="bg-[#d6d9e0] h-screen flex items-center ">
       <div className="flex bg-[#f4f6fa] w-full h-full overflow-y-hidden">
@@ -26,4 +24,4 @@ const GetRoleList = () => {
   );
 };
 
-export default GetRoleList;
+export default AddUser;

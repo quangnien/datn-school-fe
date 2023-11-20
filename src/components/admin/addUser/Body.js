@@ -1,36 +1,52 @@
-import { ADD_STUDENT, SET_ERRORS } from "../../../redux/actionTypes";
-import { addStudent } from "../../../redux/actions/adminActions";
-import { Avatar } from "@mui/material";
+import { ADD_ROLE, ADD_USER, SET_ERRORS } from "../../../redux/actionTypes";
+import { addRole, addUnit, addUser } from "../../../redux/actions/adminActions";
 import { Link } from "react-router-dom";
-import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import * as classes from "../../../utils/styles";
 import AddIcon from "@mui/icons-material/Add";
-import ImageUpload from "../../util/img/ImageUpload";
-import MenuItem from "@mui/material/MenuItem";
 import React, { useEffect, useState } from "react";
-import Select from "@mui/material/Select";
 import Spinner from "../../../utils/Spinner";
+import ReactSelect from "react-select";
+import Select from "@mui/material/Select";
+import { Avatar, MenuItem } from "@mui/material";
+import ImageUpload from "../../util/img/ImageUpload";
+import { toast } from "react-toastify";
 
 const Body = () => {
   const dispatch = useDispatch();
-  const store = useSelector((state) => state);
-  const units = useSelector((state) => state.admin.allUnit);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState({});
+
+  const store = useSelector((state) => state);
+ 
+  // code new
+  const roles = useSelector((state) => state.admin.allRole);
+
+  const roleOptions = roles?.map((menu) => ({
+    value: menu.roleCode,
+    label: menu.roleName,
+  }));
+
+  const [selectedOptions, setSelectedOptions] = useState([]);
+
+  //-------
   const [value, setValue] = useState({
-    maSv: "",
+    username: "",
+    password: "",
+
     ho: "",
     ten: "",
     phai: "",
     ngaySinh: "",
     noiSinh: "",
     diaChi: "",
+    trangThai: "1",
     sdt: "",
     email: "",
-    maLop: "",
-    maKhoa: "",
-    hinhAnh: "",
+    roleCodeList: []
+
+
+  
   });
 
   useEffect(() => {
@@ -50,75 +66,91 @@ const Body = () => {
   const handleUploadError = () => {
     toast.error("Thêm ảnh không thành công!");
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setError({});
     setLoading(true);
-
-    dispatch(addStudent(value));
+    dispatch(addUser(value));
   };
 
   useEffect(() => {
-    if (store.errors || store.admin.studentAdded) {
+    if (store.errors || store.admin.userAdded) {
       setLoading(false);
-      if (store.admin.studentAdded) {
+      if (store.admin.userAdded) {
         setValue({
-          maSv: "",
-          ho: "",
-          ten: "",
-          phai: "",
-          ngaySinh: "",
-          noiSinh: "",
-          diaChi: "",
-          sdt: "",
-          email: "",
-          maLop: "",
-          maKhoa: "",
-          hinhAnh: "",
+            username: "",
+            password: "",
+            ho: "",
+            ten: "",
+            phai: "",
+            ngaySinh: "",
+            noiSinh: "",
+            diaChi: "",
+            trangThai: "1",
+            sdt: "",
+            email: "",
+            roleCodeList: ""
+        
         });
+        setSelectedOptions([]);
         dispatch({ type: SET_ERRORS, payload: {} });
-        dispatch({ type: ADD_STUDENT, payload: false });
+        dispatch({ type: ADD_USER, payload: false });
       }
     } else {
       setLoading(true);
     }
-  }, [store.errors, store.admin.studentAdded]);
+  }, [store.errors, store.admin.userAdded]);
 
   useEffect(() => {
     dispatch({ type: SET_ERRORS, payload: {} });
   }, []);
 
   return (
-    <div className="flex-[0.8] mt-1 mx-5 item-center">
+    <div className="flex-[0.8] mt-3 mx-5 item-center">
       <div className="space-y-5">
         <div className="flex items-center space-x-2 text-gray-400">
           <AddIcon />
-          <h1>Thêm sinh viên</h1>
+          <h1>Thêm user</h1>
         </div>
-        <Link to="/admin/student" className="btn btn-primary">
-          <button className="mt-2 px-4 py-2  font-bold text-white rounded bg-[#157572] mr-14 hover:bg-[#04605E] focus:outline-none focus:shadow-outline">
+        <Link to="/admin/getuserall" className="btn btn-[#157572] inline-block">
+          <button className="block px-4 py-2  font-bold text-white rounded bg-[#157572]  hover:bg-[#04605E] focus:outline-none focus:shadow-outline">
             Quay lại
           </button>
         </Link>
-        <div className={classes.Form1}>
+        <div className="flex flex-col bg-white rounded-xl">
           <form
-            className="w-full min-h-[300px] py-8 px-7 text-center bg-[#fff] border rounded-md  shadow-md mx-auto"
+            className="w-full min-h-[300px] py-7 px-7 text-center bg-[#fff] border rounded-md  shadow-md mx-auto"
             onSubmit={handleSubmit}
           >
-            <div className={classes.FormItem}>
+           <div className={classes.FormItem}>
               <div className={classes.WrapInputLabel}>
-                <h1 className={classes.LabelStyle}>Mã Sinh Viên *:</h1>
+                <h1 className={classes.LabelStyle}>UserName *:</h1>
 
                 <input
-                  placeholder="Mã Sinh Viên"
+                  placeholder="UserName"
                   required
                   className={classes.InputStyle}
                   type="text"
-                  value={value.maSv}
-                  onChange={(e) => setValue({ ...value, maSv: e.target.value })}
+                  value={value.username}
+                  onChange={(e) => setValue({ ...value, username: e.target.value })}
                 />
               </div>
               <div className={classes.WrapInputLabel}>
+                <h1 className={classes.LabelStyle}>PassWord *:</h1>
+
+                <input
+                  placeholder="PassWord"
+                  required
+                  className={classes.InputStyle}
+                  type="text"
+                  value={value.password}
+                  onChange={(e) => setValue({ ...value, password: e.target.value })}
+                />
+              </div>
+
+              <div className={classes.WrapInputLabel}>
+
                 <h1 className={classes.LabelStyle}>Họ *:</h1>
 
                 <input
@@ -168,27 +200,7 @@ const Body = () => {
                   }
                 />
               </div>
-              <div className={classes.WrapInputLabel}>
-                <h1 className={classes.LabelStyle}>Lớp *:</h1>
-                <Select
-                  required
-                  displayEmpty
-                  sx={{ height: 36 }}
-                  inputProps={{ "aria-label": "Without label" }}
-                  value={value.maLop}
-                  onChange={(e) =>
-                    setValue({ ...value, maLop: e.target.value })
-                  }
-                  className={`${classes.InputStyle} hover:focus:border-none `}
-                >
-                  <MenuItem value="">None</MenuItem>
-                  {units?.map((dp, idx) => (
-                    <MenuItem key={idx} value={dp.maLop}>
-                      {dp.tenLop}
-                    </MenuItem>
-                  ))}
-                </Select>
-              </div>
+              
               <div className={classes.WrapInputLabel}>
                 <h1 className={classes.LabelStyle}>Giới tính *:</h1>
                 <Select
@@ -248,6 +260,28 @@ const Body = () => {
                   onChange={(e) => setValue({ ...value, sdt: e.target.value })}
                 />
               </div>
+              <div className={classes.WrapInputLabel}>
+                <h1 className={classes.LabelStyle}>Chọn Menu *:</h1>
+                <ReactSelect
+                  isMulti
+                  displayEmpty
+                  name="values"
+                  options={roleOptions}
+                  value={selectedOptions}
+                  onChange={(selectedOptions) => {
+                    console.log("selectedOptions",selectedOptions)
+                    setSelectedOptions(selectedOptions);
+                    const selectedValues = selectedOptions.map(
+                      (option) => option.value
+                    );
+                    setValue((prevValue) => ({
+                      ...prevValue,
+                      roleCodeList: [...selectedValues],
+                    }));
+                  }}
+                  classNamePrefix="select"
+                />
+              </div>
             </div>
 
             <div className="flex items-center gap-x-6">
@@ -267,52 +301,49 @@ const Body = () => {
                 />
               </div>
             </div>
-            
-            {/* button */}
-            <div className="flex gap-x-10">
-              <div className={classes.WrapButton}>
-                <button className={classes.adminFormSubmitButton} type="submit">
-                  Gửi
-                </button>
-                <button
-                  onClick={() => {
-                    setValue({
-                      maSv: "",
-                      ho: "",
-                      ten: "",
-                      phai: "",
-                      ngaySinh: "",
-                      noiSinh: "",
-                      diaChi: "",
-                      sdt: "",
-                      email: "",
-                      maLop: "",
-                      maKhoa: "",
-                      hinhAnh: "",
-                    });
-                    setError({});
-                  }}
-                  className={classes.adminFormClearButton}
-                  type="button"
-                >
-                  Xóa
-                </button>
-              </div>
 
-              <div className={classes.loadingAndError}>
-                {loading && (
-                  <Spinner
-                    message="Đang thêm sinh viên...."
-                    height={30}
-                    width={150}
-                    color="#157572"
-                    messageColor="157572"
-                  />
-                )}
-                {error.message ? (
-                  <p className="text-red-500">{error.message}</p>
-                ) : null}
-              </div>
+            <div className={classes.adminFormButton}>
+              <button className={classes.adminFormSubmitButton} type="submit">
+                Gửi
+              </button>
+              <button
+                onClick={() => {
+                  setValue({
+                    username: "",
+                    password: "",
+                    ho: "",
+                    ten: "",
+                    phai: "",
+                    ngaySinh: "",
+                    noiSinh: "",
+                    diaChi: "",
+                    trangThai: "1",
+                    sdt: "",
+                    email: "",
+                    roleCodeList: []
+                  });
+                  setError({});
+                  setSelectedOptions([]);
+                }}
+                className={classes.adminFormClearButton}
+                type="button"
+              >
+                Xóa
+              </button>
+            </div>
+            <div className={classes.loadingAndError}>
+              {loading && (
+                <Spinner
+                  message="Đang role..."
+                  height={30}
+                  width={150}
+                  color="#157572"
+                  messageColor="157572"
+                />
+              )}
+              {error.message ? (
+                <p className="text-red-500">{error.message}</p>
+              ) : null}
             </div>
           </form>
         </div>

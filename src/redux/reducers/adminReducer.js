@@ -63,6 +63,9 @@ import {
   ADD_ROLE,
   UPDATE_ROLE,
   DELETE_ROLE,
+  GET_ALL_USER,
+  ADD_USER,
+  UPDATE_USER,
 } from "../actionTypes";
 
 const initialState = {
@@ -74,6 +77,8 @@ const initialState = {
   updatedUnit: false,
   updatedSubject: false,
   updatedRole: false,
+  updatedUser: false,
+
   updatedStudent: false,
   updatedTeacher: false,
   updatedCourse: false,
@@ -89,11 +94,14 @@ const initialState = {
   studentAdded: false,
   subjectAdded: false,
   roleAdded: false,
+  userAdded: false,
+
   coursedetailAdded: false,
   //getll
   allTeacher: [],
   allSubject: [],
   allRole: [],
+  allUser: [],
   allStudent: [],
   allDepartment: [],
   allCourseDetail: [],
@@ -121,6 +129,7 @@ const initialState = {
   studentDeleted: false,
   subjectDeleted: false,
   roleDeleted: false,
+  userDeleted: false,
   courseDeleted: false,
   dangkymonDeleted: false,
   coursedetailDeleted: false,
@@ -204,6 +213,11 @@ const adminReducer = (state = initialState, action) => {
         ...state,
         allRole: action.payload,
       };
+      case GET_ALL_USER:
+      return {
+        ...state,
+        allUser: action.payload,
+      };
     case ADD_STUDENT:
       return {
         ...state,
@@ -219,6 +233,11 @@ const adminReducer = (state = initialState, action) => {
       return {
         ...state,
         roleAdded: action.payload,
+      };
+      case ADD_USER:
+      return {
+        ...state,
+        userAdded: action.payload,
       };
     case ADD_COURSE:
       return {
@@ -264,6 +283,11 @@ const adminReducer = (state = initialState, action) => {
       return {
         ...state,
         updatedUnit: action.payload,
+      };
+      case UPDATE_USER:
+      return {
+        ...state,
+        updatedUser: action.payload,
       };
     case UPDATE_SUBJECT:
       return {

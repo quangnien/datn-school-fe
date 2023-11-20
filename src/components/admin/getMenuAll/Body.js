@@ -3,19 +3,15 @@ import ReactModal from "react-modal";
 import { useSelector, useDispatch } from "react-redux";
 import {
   deleteMenu,
-  getAllDepartment,
   getAllMenu,
   updateDepartment,
 } from "../../../redux/actions/adminActions";
 import { Link } from "react-router-dom";
-import { deleteDepartment } from "../../../redux/actions/adminActions";
 import * as classes from "../../../utils/styles";
 import Swal from "sweetalert2";
 import {
-  DELETE_DEPARTMENT,
   DELETE_MENU,
   SET_ERRORS,
-  UPDATE_DEPARTMENT,
   UPDATE_MENU,
 } from "../../../redux/actionTypes";
 
@@ -35,7 +31,7 @@ const modalStyles = {
 const Body = () => {
   const store = useSelector((state) => state);
   const menus = useSelector((state) => state.admin.allMenu);
-  debugger;
+  // debugger;
   if (menus != null) {
     menus.sort((a, b) => a.menuName.charCodeAt(0) - b.menuName.charCodeAt(0));
   }
@@ -146,7 +142,7 @@ const Body = () => {
   return (
     <div className="flex-[0.8] mt-3 mx-5 item-center">
       <div className="flex mt-4">
-        <Link to="/admin/adddepartment" className="btn btn-primary">
+        <Link to="/admin/addMenu" className="btn btn-primary">
           <button
             className="items-center gap-[9px] mr-4 w-[88px] h-[53px] hover:bg-[#04605E] block py-2 font-bold text-white rounded-lg px-4 
            bg-[#157572] focus:outline-none focus:shadow-outline "
