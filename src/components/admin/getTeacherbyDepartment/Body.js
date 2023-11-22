@@ -570,7 +570,7 @@ const Body = () => {
 
                 <div className="flex flex-col gap-y-5">
                   <h1 className="pb-2 text-sm font-medium text-left">
-                    Hình ảnh sinh viên:
+                    Hình ảnh:
                   </h1>
                   <ImageUpload
                     onUploadSuccess={handleUploadSuccess}

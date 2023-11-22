@@ -5,6 +5,7 @@ import {
   deleteMenu,
   getAllMenu,
   updateDepartment,
+  updateMenu,
 } from "../../../redux/actions/adminActions";
 import { Link } from "react-router-dom";
 import * as classes from "../../../utils/styles";
@@ -84,7 +85,7 @@ const Body = () => {
       updatedValue.menuName = selectedMenu.menuName;
     }
 
-    dispatch(updateDepartment({ ...selectedMenu, ...updatedValue }));
+    dispatch(updateMenu({ ...selectedMenu, ...updatedValue }));
     dispatch({ type: UPDATE_MENU, payload: false });
   };
 
@@ -185,7 +186,7 @@ const Body = () => {
                   className="justify-center item-center hover:bg-[#EEF5F5]"
                   key={idx}
                 >
-                  <td className="px-4 py-1 border">
+                  <td className="px-4 py-1 text-center border">
                     <input
                       onChange={handleInputChange}
                       checked={checkedValue.includes(dep.id)}
@@ -195,10 +196,10 @@ const Body = () => {
                     />
                   </td>
                   <td className="px-4 py-1 text-center border ">{idx + 1}</td>
-                  <td className="px-4 py-1 text-center border">
+                  <td className="px-4 py-1 text-left border">
                     {dep.menuCode}
                   </td>
-                  <td className="px-4 py-1 text-center border">
+                  <td className="px-4 py-1 text-left border">
                     {dep.menuName}
                   </td>
 

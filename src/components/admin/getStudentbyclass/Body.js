@@ -15,7 +15,9 @@ import Spinner from "../../../utils/Spinner";
 import Swal from "sweetalert2";
 import {
   deleteStudent,
+  exportStudent,
   getStudentUnit,
+  importStudent,
   updateStudent,
 } from "../../../redux/actions/adminActions";
 import {
@@ -291,6 +293,25 @@ const Body = () => {
     setNextPage(event.selected + 1 - 1);
   };
 
+// handle import
+const [file, setFile] = useState(null);
+
+  const handleFileChange = (event) => {
+    setFile(event.target.files[0]);
+  };
+  const handleImportFile = async (event) => {
+    event.preventDefault();
+    const formData = new FormData();
+    formData.append("file", file);
+    dispatch(importStudent(formData));
+  };
+
+  const handleExport = (e) => {
+    e.preventDefault();
+
+    dispatch(exportStudent(UnitId));
+  };
+
   return (
     <div className="flex-[0.8] mt-3 mx-5 item-center">
       <div className="flex mt-4">
@@ -354,6 +375,33 @@ const Body = () => {
         </form>
       </div>
 
+      <div className="flex mx-5 mt-3 item-center gap-x-3">
+        <form onSubmit={handleImportFile}>
+          <div className="flex gap-x-1">
+            <input
+              type="file"
+              onChange={handleFileChange}
+              className="w-[200px] m-auto"
+            />
+            <button
+              className="relative mt-2 items-center gap-[9px] mr-4 w-[140px] h-[53px] hover:bg-[#04605E] block py-2 font-bold text-white rounded-lg px-4 
+           bg-[#157572] focus:outline-none focus:shadow-outline "
+              type="submit"
+            >
+              Gửi File
+            </button>
+          </div>
+        </form>
+        <button
+          className="relative mt-2 items-center gap-[9px] mr-4 w-[140px] h-[53px] hover:bg-[#04605E] block py-2 font-bold text-white rounded-lg px-4 
+           bg-[#157572] focus:outline-none focus:shadow-outline "
+          onClick={handleExport}
+        >
+          
+          Download file
+        </button>
+        
+      </div>
       <div className="w-full  min-h-[427px]">
         <div className="col-span-3">
           <div className={classes.loadingAndError}>
@@ -611,7 +659,7 @@ const Body = () => {
 
                 <div className="flex flex-col gap-y-5">
                   <h1 className="pb-2 text-sm font-medium text-left">
-                    Hình ảnh sinh viên:
+                    Hình ảnh:
                   </h1>
                   <ImageUpload
                     onUploadSuccess={handleUploadSuccess}

@@ -56,6 +56,17 @@ export const getStudentById = (id) => API.get(`/api/admin/sinhVien/${id}`, id);
 export const deleteStudent = (data) =>
   API.delete("api/admin/sinhVien", { data });
 
+
+// import by excel
+export const importStudent = (data) =>
+  API.post("api/admin/sinhVien/import", data);
+
+// export
+export const exportStudent = (unit) =>
+  API.get(`/api/admin/sinhVien/export/${unit}`, {
+    responseType: "blob",
+  }); 
+  
 //lớp tín chỉ
 // export const addCourse = (course) => API.post("/api/admin/dsLopTc", course);
 export const addCourse = (course) => API.post("/api/admin/lopTc", course);

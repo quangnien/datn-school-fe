@@ -228,7 +228,7 @@ const Body = () => {
             )}
 
             {roles?.length === 0 && (
-              <p className="text-2xl font-bold text-red-500">Chưa có role</p>
+              <p className="text-2xl font-bold text-red-500"></p>
             )}
           </div>
 

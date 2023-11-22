@@ -15,7 +15,7 @@ import * as api from "../api/apiTeacher";
 
 export const getAllDepartment = () => async (dispatch) => {
   try {
-    debugger;
+    // debugger;
     const { data } = await api.getAllDepartment();
     // dispatch({ type: GET_ALL_DEPARTMENT, payload: data.retObj[0] });
     dispatch({ type: GET_ALL_DEPARTMENT, payload: data.retObj });

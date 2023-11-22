@@ -16,7 +16,7 @@ const Body = () => {
 
   const store = useSelector((state) => state);
   const departments = useSelector((state) => state.admin.allDepartment);
-  debugger;
+  // debugger;
   if(departments != null){
     departments?.sort(
       (a, b) => a.tenKhoa.charCodeAt(0) - b.tenKhoa.charCodeAt(0)

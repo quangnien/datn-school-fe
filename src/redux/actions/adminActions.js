@@ -1,4 +1,6 @@
 import { toast } from "react-toastify";
+import * as FileSaver from "file-saver";
+
 import {
   ADD_COURSE_DETAIL,
   ADD_COURSE,
@@ -59,6 +61,8 @@ import {
   ADD_USER,
   UPDATE_USER,
   DELETE_USER,
+  IMPORT_STUDENTS,
+  EXPORT_STUDENTS,
 } from "../actionTypes";
 import * as api from "../api";
 
@@ -169,7 +173,7 @@ export const getAllMenu = () => async (dispatch) => {
 export const addDepartment = (formData) => async (dispatch) => {
   try {
     console.log(formData);
-    debugger;
+    // debugger;
     const { data } = await api.addDepartment(formData);
     if (data.status === "success") {
       toast.success("Thêm khoa mới thành công!");
@@ -193,7 +197,7 @@ export const addDepartment = (formData) => async (dispatch) => {
 export const addMenu = (formData) => async (dispatch) => {
   try {
     console.log(formData);
-    debugger;
+    // debugger;
     const { data } = await api.addMenu(formData);
     if (data.status === "success") {
       toast.success("Thêm menu mới thành công!");
@@ -868,5 +872,37 @@ export const getMhtq = () => async (dispatch) => {
     dispatch({ type: GET_ALL_MHTQ, payload: data.retObj });
   } catch (error) {
     console.log("Redux Error", error);
+  }
+};
+
+// import students
+export const importStudent = (formData) => async (dispatch) => {
+  try {
+    const { data } = await api.importStudent(formData);
+
+    if (data.status === "success") {
+      toast.success("import file students thành công!");
+      dispatch({ type: IMPORT_STUDENTS, payload: true });
+    } else {
+      dispatch({ type: SET_ERRORS, payload: data });
+      toast.error("import file students không thành công!");
+    }
+  } catch (error) {
+    dispatch({ type: SET_ERRORS, payload: error.response.data });
+  }
+};
+
+
+export const exportStudent = (unit) => async (dispatch) => {
+  try {
+    const response = await api.exportStudent(unit);
+    const fileData = new Blob([response.data], {
+      type: "application/octet-stream",
+    });
+    FileSaver.saveAs(fileData, "response.xls");
+
+    dispatch({ type: EXPORT_STUDENTS, payload: response.data });
+  } catch (error) {
+    dispatch({ type: SET_ERRORS, payload: "Lỗi xuất file dữ liệu" });
   }
 };

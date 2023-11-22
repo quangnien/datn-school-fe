@@ -58,7 +58,6 @@ const Body = () => {
 
   const roles = useSelector((state) => state.admin.allRole);
   const users = useSelector((state) => state.admin.allUser);
-  console.log("roles", users)
 
   const initialUses = roles;
   const roleOptions = initialUses?.map((sub) => ({
@@ -84,6 +83,7 @@ const Body = () => {
   // giá trị 
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [selectedUser, setSelectedUser] = useState("");
+  
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [value, setValue] = useState({
     username: "",
@@ -97,11 +97,12 @@ const Body = () => {
     trangThai: "1",
     sdt: "",
     email: "",
-    roleCodeList: [],
+    roleCodeList: [], 
     id: "",
 
   });
 
+  // console.log("value",value)
   const handleEditClick = (user) => {
     setSelectedUser(user);
     setIsModalOpen(true);
@@ -121,6 +122,7 @@ const Body = () => {
     roleCodeList: [],
 
     });
+
     setSelectedOptions(
       (user.roleCodeList || []).map((value, index) => ({
         value: value,
@@ -128,6 +130,7 @@ const Body = () => {
       }))
     );
   };
+
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -145,6 +148,7 @@ const Body = () => {
     toast.error("load image error!");
   };
 
+  console.log("selectedUser",selectedUser?.roleCodeList)
   const handleFormSubmit = (e) => {
     e.preventDefault();
 
@@ -207,7 +211,7 @@ const Body = () => {
 
     
 
-    if (value.roleCodeList !== "") {
+    if (value.roleCodeList.length > 0) {
       updatedValue.roleCodeList = value.roleCodeList;
     } else {
       updatedValue.roleCodeList = selectedUser.roleCodeList;
@@ -315,7 +319,7 @@ const Body = () => {
             )}
 
             {users?.length === 0 && (
-              <p className="text-2xl font-bold text-red-500">loading ...</p>
+              <p className="text-2xl font-bold text-red-500"></p>
             )}
           </div>
 
@@ -666,7 +670,7 @@ const Body = () => {
 
                 <div className="flex flex-col gap-y-5">
                   <h1 className="pb-2 text-sm font-medium text-left">
-                    Hình ảnh sinh viên:
+                    Hình ảnh:
                   </h1>
                   <ImageUpload
                     onUploadSuccess={handleUploadSuccess}

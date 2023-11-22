@@ -66,6 +66,8 @@ import {
   GET_ALL_USER,
   ADD_USER,
   UPDATE_USER,
+  IMPORT_STUDENTS,
+  EXPORT_STUDENTS,
 } from "../actionTypes";
 
 const initialState = {
@@ -133,6 +135,9 @@ const initialState = {
   courseDeleted: false,
   dangkymonDeleted: false,
   coursedetailDeleted: false,
+  importStudents: false,
+  exportStudents: false,
+
 };
 
 const adminReducer = (state = initialState, action) => {
@@ -480,6 +485,17 @@ const adminReducer = (state = initialState, action) => {
         ...state,
         allMhtq: action.payload,
       };
+
+      case IMPORT_STUDENTS:
+        return {
+          ...state,
+          importStudents: action.payload,
+        };
+        case EXPORT_STUDENTS:
+          return {
+            ...state,
+            exportStudents: action.payload,
+          };    
     default:
       return state;
   }

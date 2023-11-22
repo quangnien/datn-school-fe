@@ -100,3 +100,6 @@ export const UPDATE_TEACHER = "UPDATE_TEACHER";
 export const UPDATE_UNIT = "UPDATE_UNIT";
 export const UPDATE_USER = "UPDATE_USER";
 
+export const IMPORT_STUDENTS = "IMPORT_STUDENTS";
+export const EXPORT_STUDENTS = "EXPORT_STUDENTS";
+

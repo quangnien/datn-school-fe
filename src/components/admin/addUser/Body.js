@@ -137,13 +137,13 @@ const Body = () => {
                 />
               </div>
               <div className={classes.WrapInputLabel}>
-                <h1 className={classes.LabelStyle}>PassWord *:</h1>
+                <h1 className={classes.LabelStyle}>Password *:</h1>
 
                 <input
                   placeholder="PassWord"
                   required
                   className={classes.InputStyle}
-                  type="text"
+                  type="password"
                   value={value.password}
                   onChange={(e) => setValue({ ...value, password: e.target.value })}
                 />
@@ -293,7 +293,7 @@ const Body = () => {
               </div>
               <div className="flex flex-col gap-y-5">
                 <h1 className="pb-2 text-sm font-medium text-left">
-                  Hình ảnh sinh viên:
+                  Hình ảnh:
                 </h1>
                 <ImageUpload
                   onUploadSuccess={handleUploadSuccess}
