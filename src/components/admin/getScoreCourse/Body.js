@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { SET_ERRORS, UPDATE_SCORE } from "../../../redux/actionTypes";
 import { useDispatch, useSelector } from "react-redux";
 import * as classes from "../../../utils/styles";
@@ -464,6 +463,7 @@ const Body = () => {
                     className={classes.InputStyle}
                     type="number"
                     value={value.gk}
+                    
                     onChange={(e) =>
                       setValue({
                         ...value,

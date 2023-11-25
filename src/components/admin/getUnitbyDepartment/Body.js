@@ -256,7 +256,7 @@ const Body = () => {
             )}
             {units?.length === 0 && (
               <p className="text-2xl font-bold text-red-500">
-                Khoa chưa có lớp
+                Chuyên Ngành chưa có lớp
               </p>
             )}
           </div>

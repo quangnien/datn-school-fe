@@ -383,6 +383,8 @@ const Body = () => {
                     className={classes.InputStyle}
                     type="number"
                     value={value.cc}
+                    min={0}
+                    max={10}
                     onChange={(e) =>
                       setValue({
                         ...value,
@@ -399,6 +401,8 @@ const Body = () => {
                     className={classes.InputStyle}
                     type="number"
                     value={value.gk}
+                    min={0}
+                    max={10}
                     onChange={(e) =>
                       setValue({
                         ...value,
@@ -414,6 +418,8 @@ const Body = () => {
                     className={classes.InputStyle}
                     type="number"
                     value={value.ck}
+                    min={0}
+                    max={10}
                     onChange={(e) =>
                       setValue({
                         ...value,

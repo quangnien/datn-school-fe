@@ -45,6 +45,8 @@ const Body = () => {
   const [error, setError] = useState({});
   const [search, setSearch] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [inputType, setInputType] = useState("text");
+
   const store = useSelector((state) => state);
 
 
@@ -501,16 +503,16 @@ const Body = () => {
                     type="text"
                   />
                 </div>
-                <div className={classes.WrapInputLabel}>
+                {/* <div className={classes.WrapInputLabel}>
                   <h1 className={classes.LabelStyle}> Mật khẩu:</h1>
                   <input
                     placeholder={selectedUser.password}
                     className={classes.InputStyle}
                     type="text"
-                    value={value.ho}
+                    value={value.password}
                     onChange={(e) => setValue({ ...value, password: e.target.value })}
                   />
-                </div>
+                </div> */}
                 <div className={classes.WrapInputLabel}>
                   <h1 className={classes.LabelStyle}> Họ:</h1>
                   <input
@@ -553,7 +555,7 @@ const Body = () => {
                   </Select>
                 </div>
 
-                {/* <div className={classes.WrapInputLabel}>
+               <div className={classes.WrapInputLabel}>
                   <h1 className={classes.LabelStyle}>Ngày Sinh :</h1>
 
                   <input
@@ -570,7 +572,7 @@ const Body = () => {
                     onFocus={() => setInputType("date")}
                     onBlur={() => setInputType("text")}
                   />
-                </div> */}
+                </div> 
 
                 <div className={classes.WrapInputLabel}>
                   <h1 className={classes.LabelStyle}>Nơi Sinh :</h1>
