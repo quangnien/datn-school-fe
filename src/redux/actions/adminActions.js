@@ -63,6 +63,7 @@ import {
   DELETE_USER,
   IMPORT_STUDENTS,
   EXPORT_STUDENTS,
+  GET_CURRENT_USER,
 } from "../actionTypes";
 import * as api from "../api";
 
@@ -904,5 +905,15 @@ export const exportStudent = (unit) => async (dispatch) => {
     dispatch({ type: EXPORT_STUDENTS, payload: response.data });
   } catch (error) {
     dispatch({ type: SET_ERRORS, payload: "Lỗi xuất file dữ liệu" });
+  }
+};
+
+// GET CURR
+export const getCurrentUser = () => async (dispatch) => {
+  try {
+    const { data } = await api.getCurrentUser();
+    dispatch({ type: GET_CURRENT_USER, payload: data.menuCodeList });
+  } catch (error) {
+    console.log("Redux Error", error);
   }
 };

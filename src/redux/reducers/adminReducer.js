@@ -68,6 +68,7 @@ import {
   UPDATE_USER,
   IMPORT_STUDENTS,
   EXPORT_STUDENTS,
+  GET_CURRENT_USER,
 } from "../actionTypes";
 
 const initialState = {
@@ -122,6 +123,9 @@ const initialState = {
   thongkes: [],
   coursedetails: [],
   allMhtq: [],
+  currentUser: [],
+
+
 
   //delete
   departmentDeleted: false,
@@ -495,6 +499,11 @@ const adminReducer = (state = initialState, action) => {
           return {
             ...state,
             exportStudents: action.payload,
+          }; 
+        case GET_CURRENT_USER:
+          return {
+            ...state,
+            currentUser: action.payload,
           };    
     default:
       return state;

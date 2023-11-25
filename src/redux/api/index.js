@@ -59,7 +59,7 @@ export const deleteStudent = (data) =>
 
 // import by excel
 export const importStudent = (data) =>
-  API.post("api/admin/sinhVien/import", data);
+  API.post("api/admin/sinhVien/import/", data);
 
 // export
 export const exportStudent = (unit) =>
@@ -147,3 +147,4 @@ export const addUser = (user) => API.post("/api/admin/user", user);
 export const updateUser = (updateUser) =>
   API.put("/api/admin/user", updateUser);
 export const deleteUser = (data) => API.delete("api/admin/user", { data });
+export const getCurrentUser = () => API.get("api/admin/user/current");

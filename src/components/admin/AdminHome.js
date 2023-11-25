@@ -10,6 +10,7 @@ import {
   getAllSubject,
   getAllTeacher,
   getAllUnit,
+  getCurrentUser,
 } from "../../redux/actions/adminActions";
 
 const AdminHome = () => {
@@ -29,6 +30,8 @@ const AdminHome = () => {
         },
       })
     );
+    dispatch(getCurrentUser());
+
     dispatch(getAllDepartment());
     dispatch(getAllCourse());
     dispatch(getAllSubject());

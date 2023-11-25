@@ -19,7 +19,7 @@ const Body = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState({});
   const [value, setValue] = useState({
-    maSv: "",
+    // maSv: "",
     ho: "",
     ten: "",
     phai: "",
@@ -106,7 +106,7 @@ const Body = () => {
             onSubmit={handleSubmit}
           >
             <div className={classes.FormItem}>
-              <div className={classes.WrapInputLabel}>
+              {/* <div className={classes.WrapInputLabel}>
                 <h1 className={classes.LabelStyle}>Mã Sinh Viên *:</h1>
 
                 <input
@@ -117,7 +117,7 @@ const Body = () => {
                   value={value.maSv}
                   onChange={(e) => setValue({ ...value, maSv: e.target.value })}
                 />
-              </div>
+              </div> */}
               <div className={classes.WrapInputLabel}>
                 <h1 className={classes.LabelStyle}>Họ *:</h1>
 

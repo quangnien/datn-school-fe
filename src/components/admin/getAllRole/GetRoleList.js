@@ -3,13 +3,15 @@ import Header from "../Header";
 import React from "react";
 import Sidebar from "../Sidebar";
 import { useDispatch } from "react-redux";
-import {  getAllMenu, getAllRole } from "../../../redux/actions/adminActions";
+import {  getAllMenu, getAllRole, getCurrentUser } from "../../../redux/actions/adminActions";
 import { useEffect } from "react";
 
 const GetRoleList = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    dispatch(getCurrentUser());
+  
     dispatch(getAllMenu());
     dispatch(getAllRole());
   }, [dispatch]);

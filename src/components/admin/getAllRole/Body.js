@@ -16,6 +16,7 @@ import {
   UPDATE_ROLE,
 } from "../../../redux/actionTypes";
 import ReactSelect from "react-select";
+import { getCurrentUser } from "../../../redux/api";
 
 // http://localhost:9090/api/admin/monHoc/khoa/CNTT?page=0&size=3
 
@@ -49,7 +50,6 @@ const Body = () => {
 
   const menus = useSelector((state) => state.admin.allMenu);
   const roles = useSelector((state) => state.admin.allRole);
-  console.log("roles", roles)
 
   // tien quyet
   const initialMenus = menus;
@@ -133,9 +133,12 @@ const Body = () => {
     if (!store.admin.updatedRole) return;
     setError({});
     closeModal();
-    dispatch(getAllRole());
+    dispatch(getAllRole())
+    
 
   }, [dispatch, store.errors, store.admin.updatedRole]);
+
+
   const handleModalError = () => {
     setError({});
     closeModal();

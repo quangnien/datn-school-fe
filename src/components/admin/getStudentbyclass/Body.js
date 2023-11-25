@@ -384,21 +384,20 @@ const [file, setFile] = useState(null);
               className="w-[200px] m-auto"
             />
             <button
-              className="relative mt-2 items-center gap-[9px] mr-4 w-[140px] h-[53px] hover:bg-[#04605E] block py-2 font-bold text-white rounded-lg px-4 
+              className="relative mt-2 items-center gap-[9px] mr-4 w-[180px] h-[53px] hover:bg-[#04605E] block py-2 font-bold text-white rounded-lg px-4 
            bg-[#157572] focus:outline-none focus:shadow-outline "
               type="submit"
             >
-              Gửi File
+              Upload Template
             </button>
           </div>
         </form>
         <button
-          className="relative mt-2 items-center gap-[9px] mr-4 w-[140px] h-[53px] hover:bg-[#04605E] block py-2 font-bold text-white rounded-lg px-4 
+          className="relative mt-2 items-center gap-[9px] mr-4 w-[200px] h-[53px] hover:bg-[#04605E] block py-2 font-bold text-white rounded-lg px-4 
            bg-[#157572] focus:outline-none focus:shadow-outline "
           onClick={handleExport}
         >
-          
-          Download file
+          Download Template
         </button>
         
       </div>
