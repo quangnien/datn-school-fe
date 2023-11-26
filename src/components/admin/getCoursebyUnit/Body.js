@@ -413,7 +413,7 @@ const Body = () => {
                       key={idx}
                     >
                       {valueUnitMKH?.maKeHoach === "MKH1" && (
-                        <td className="px-4 py-2 border">
+                        <td className="px-4 py-2 border text-center">
                           <input
                             onChange={handleInputChange}
                             checked={checkedValue.includes(course.id)}
@@ -423,13 +423,13 @@ const Body = () => {
                           />
                         </td>
                       )}
-                      <td className="px-4 py-2 border">{idx + 1}</td>
-                      <td className="px-4 py-2 border">{course.maLopTc}</td>
-                      <td className="px-4 py-2 border">{course.tenMh}</td>
-                      <td className="px-4 py-2 border">{course.tenGv}</td>
+                      <td className="px-4 py-2 border text-center">{idx + 1}</td>
+                      <td className="px-4 py-2 border text-left">{course.maLopTc}</td>
+                      <td className="px-4 py-2 border text-left">{course.tenMh}</td>
+                      <td className="px-4 py-2 border text-left">{course.tenGv}</td>
 
-                      <td className="px-4 py-2 border">{course.soLuong}</td>
-                      <td className="px-4 py-2 border">{course.soLuongCon}</td>
+                      <td className="px-4 py-2 border text-center">{course.soLuong}</td>
+                      <td className="px-4 py-2 border text-center">{course.soLuongCon}</td>
 
                       <td className="px-4 py-2 border">
                         <div className="flex items-center justify-center h-full gap-x-1">

@@ -339,12 +339,12 @@ const Body = () => {
                       className="justify-center item-center hover:bg-[#EEF5F5]"
                       key={idx}
                     >
-                      <td className="px-4 py-1 border">{idx + 1}</td>
-                      <td className="px-4 py-1 border">{course.maLopTc}</td>
-                      <td className="px-4 py-1 border">{course.soLuong}</td>
-                      <td className="px-4 py-1 border">{course.soLuongCon}</td>
-                      <td className="px-4 py-1 border">{course.tenMh}</td>
-                      <td className="px-4 py-1 border">{course.tenGv}</td>
+                      <td className="px-4 py-1 border text-center">{idx + 1}</td>
+                      <td className="px-4 py-1 border text-left">{course.maLopTc}</td>
+                      <td className="px-4 py-1 border text-center">{course.soLuong}</td>
+                      <td className="px-4 py-1 border text-center">{course.soLuongCon}</td>
+                      <td className="px-4 py-1 border text-left">{course.tenMh}</td>
+                      <td className="px-4 py-1 border text-left">{course.tenGv}</td>
 
                       <td className="items-center justify-center px-4 py-1 mr-0 border">
                         <button

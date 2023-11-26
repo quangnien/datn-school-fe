@@ -197,7 +197,7 @@ const Body = () => {
                   className="justify-center item-center hover:bg-[#EEF5F5]"
                   key={idx}
                 >
-                  <td className="px-4 py-1 border">
+                  <td className="px-4 py-1 border text-center">
                     <input
                       onChange={handleInputChange}
                       checked={checkedValue.includes(dep.id)}
@@ -207,8 +207,8 @@ const Body = () => {
                     />
                   </td>
                   <td className="px-4 py-1 text-center border ">{idx + 1}</td>
-                  <td className="px-4 py-1 text-center border">{dep.maKhoa}</td>
-                  <td className="px-4 py-1 text-center border">
+                  <td className="px-4 py-1 text-left border">{dep.maKhoa}</td>
+                  <td className="px-4 py-1 text-left border">
                     {dep.tenKhoa}
                   </td>
                   {/* <td className="px-4 py-1 border">{dep.sdt}</td> */}

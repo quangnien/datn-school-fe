@@ -266,7 +266,7 @@ const Body = () => {
                     className="justify-center item-center hover:bg-[#EEF5F5]"
                     key={idx}
                   >
-                    <td className="px-4 py-1 borde " style={{ width: "15px" }}>
+                    <td className="px-4 py-1 borde text-center" style={{ width: "15px" }}>
                       <input
                         onChange={handleInputChange}
                         checked={
@@ -281,22 +281,22 @@ const Body = () => {
                       />
                     </td>
 
-                    <td className="px-4 py-1 border">{idx + 1}</td>
-                    <td className="px-4 py-1 border">{course.maMh}</td>
-                    <td className="px-4 py-1 border" style={{ width: "300px" }}>
+                    <td className="px-4 py-1 border text-center">{idx + 1}</td>
+                    <td className="px-4 py-1 border text-left">{course.maMh}</td>
+                    <td className="px-4 py-1 border text-left" style={{ width: "300px" }}>
                       {course.tenMh}
                     </td>
-                    <td className="px-4 py-1 border">{course.soTc}</td>
+                    <td className="px-4 py-1 border text-center">{course.soTc}</td>
                     <td
                       className="px-4 py-1 border "
                       style={{ width: "150px" }}
                     >
                       {course.maLop}
                     </td>
-                    <td className="px-4 py-1 border">{course.maLopTc}</td>
-                    <td className="px-4 py-1 border">{course.soLuong}</td>
-                    <td className="px-4 py-1 border">{course.soLuongCon}</td>
-                    <td className="px-4 py-1 border" style={{ width: "200px" }}>
+                    <td className="px-4 py-1 border text-left">{course.maLopTc}</td>
+                    <td className="px-4 py-1 border text-center">{course.soLuong}</td>
+                    <td className="px-4 py-1 border text-center">{course.soLuongCon}</td>
+                    <td className="px-4 py-1 border text-left" style={{ width: "200px" }}>
                       {course.tenGv}
                     </td>
                   </tr>
@@ -376,30 +376,30 @@ bg-[#157572] focus:outline-none focus:shadow-outline"
                 <tbody className="">
                   {coursesdkmeds?.map((coursesdkmed, idx) => (
                     <tr
-                      className="justify-center item-center hover:bg-[#EEF5F5]"
+                      className="justify-center item-center hover:bg-[#EEF5F5] text-center"
                       key={idx}
                     >
-                      <td className="px-4 py-1 border">{idx + 1}</td>
-                      <td className="px-4 py-1 border">{coursesdkmed.maMh}</td>
+                      <td className="px-4 py-1 border text-center">{idx + 1}</td>
+                      <td className="px-4 py-1 border text-left">{coursesdkmed.maMh}</td>
                       <td
-                        className="px-4 py-1 border"
+                        className="px-4 py-1 border text-left"
                         style={{ width: "300px" }}
                       >
                         {coursesdkmed.tenMh}
                       </td>
-                      <td className="px-4 py-1 border">{coursesdkmed.soTc}</td>
+                      <td className="px-4 py-1 border text-center">{coursesdkmed.soTc}</td>
                       <td
-                        className="px-4 py-1 border "
+                        className="px-4 py-1 border text-left"
                         style={{ width: "150px" }}
                       >
                         {coursesdkmed.maLop}
                       </td>
-                      <td className="px-4 py-1 border">
+                      <td className="px-4 py-1 border text-left">
                         {coursesdkmed.maLopTc}
                       </td>
-                      <td className="px-4 py-1 border">{coursesdkmed.tenGv}</td>
+                      <td className="px-4 py-1 border text-left">{coursesdkmed.tenGv}</td>
                       <td
-                        className="px-4 py-1 border "
+                        className="px-4 py-1 border text-center"
                         style={{ width: "15px" }}
                       >
                         <input
