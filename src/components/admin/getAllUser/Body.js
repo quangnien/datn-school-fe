@@ -101,7 +101,7 @@ const Body = () => {
     email: "",
     roleCodeList: [], 
     id: "",
-
+    hinhAnh: ""
   });
 
   // console.log("value",value)
@@ -160,11 +160,12 @@ const Body = () => {
     } else {
       updatedValue.username = selectedUser.username;
     }
-    if (value.password !== "") {
-      updatedValue.password = value.password;
-    } else {
-      updatedValue.password = selectedUser.username;
-    }
+    // TODO: non update pw
+    // if (value.password !== "") {
+    //   updatedValue.password = value.password;
+    // } else {
+    //   updatedValue.password = selectedUser.password;
+    // }
     if (value.ho !== "") {
       updatedValue.ho = value.ho;
     } else {
@@ -210,8 +211,11 @@ const Body = () => {
     } else {
       updatedValue.email = selectedUser.email;
     }
-
-    
+    if (value.hinhAnh !== "") {
+      updatedValue.hinhAnh = value.hinhAnh;
+    } else {
+      updatedValue.hinhAnh = selectedUser.hinhAnh;
+    }
 
     if (value.roleCodeList.length > 0) {
       updatedValue.roleCodeList = value.roleCodeList;
@@ -336,6 +340,7 @@ const Body = () => {
                     <th className="px-4 py-1">Họ</th>
                     <th className="px-4 py-1">Tên</th>
                     <th className="px-4 py-1">Email</th>
+                    <th className="px-4 py-1">Role List</th>
                     <th className="px-4 py-1" style={{ width: "170px" }}>
                       Hành động
                     </th>
@@ -367,13 +372,13 @@ const Body = () => {
                       </td>
                       <td
                         className="px-4 py-1 border text-left"
-                        style={{ width: "300px" }}
+                        style={{ width: "150px" }}
                       >
                         {sub.ten}
                       </td>
                       <td
                         className="px-4 py-1 border text-left"
-                        style={{ width: "300px" }}
+                        style={{ width: "200px" }}
                       >
                         {sub.email}
                       </td>
@@ -382,6 +387,12 @@ const Body = () => {
                           <div>{item}</div>
                         ))}
                       </td> */}
+
+                      <td className="px-4 py-1 border text-left">
+                        {sub.roleNameList?.map((item) => (
+                          <div>{item}</div>
+                        ))}
+                      </td>
 
                       <td className="px-4 py-1 border">
                         <div

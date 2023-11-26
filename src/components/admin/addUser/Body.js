@@ -261,7 +261,7 @@ const Body = () => {
                 />
               </div>
               <div className={classes.WrapInputLabel}>
-                <h1 className={classes.LabelStyle}>Chọn Menu *:</h1>
+                <h1 className={classes.LabelStyle}>Chọn Role *:</h1>
                 <ReactSelect
                   isMulti
                   displayEmpty

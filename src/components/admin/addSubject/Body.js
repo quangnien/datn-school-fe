@@ -16,6 +16,7 @@ const Body = () => {
 
   const store = useSelector((state) => state);
   const departments = useSelector((state) => state.admin.allDepartment);
+
   // debugger;
   if(departments != null){
     departments?.sort(
@@ -31,7 +32,6 @@ const Body = () => {
     value: sub.maMh,
     label: sub.tenMh,
   }));
-  console.log("mhtqOptions", mhtqOptions);
   const [selectedOptions, setSelectedOptions] = useState([]);
 
   const [value, setValue] = useState({
@@ -76,7 +76,7 @@ const Body = () => {
           soTietLt: "",
           soTietTh: "",
           maKhoa: "",
-          maMHTQList: "",
+          maMHTQList: [],
         });
         setSelectedOptions([]);
         dispatch({ type: SET_ERRORS, payload: {} });
@@ -92,7 +92,9 @@ const Body = () => {
   }, []);
 
   const updatePercentCk = (percentCc, percentGk) => {
-    const percentCk = 100 - percentCc - percentGk;
+
+    const test = 100 - percentCc - percentGk;
+    const percentCk = test.toString()
     setValue({ ...value, percentCk });
   };
 

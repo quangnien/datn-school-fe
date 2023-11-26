@@ -27,7 +27,7 @@ const Body = () => {
     maLop: "",
     soLuong: "",
     soLuongCon: "",
-    maKeHoach: "MKH1",
+    maKeHoach: "",
   });
 
   useEffect(() => {

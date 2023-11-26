@@ -23,7 +23,6 @@ const Sidebar = () => {
         dispatch(getCurrentUser());
     }, []);
     const users = useSelector((state) => state.admin.currentUser);
-    console.log("users data", users);
 
     return (
         <div className="flex-[0.2] w-[268px] h-full">

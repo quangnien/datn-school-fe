@@ -11,8 +11,6 @@ import {
   getAllCoursebyMKH,
 } from "../../../redux/actions/adminActions";
 
-// http://localhost:9090/api/admin/dsLopTc?maLop=D19CQCNPM01-N
-// thêm lớp tín chỉ thì nó đã thêm theo kỳ mới nhất rồi nên k cần phải xét thêm điều kiện linh tinh nữa
 
 const Body = () => {
   const dispatch = useDispatch();
@@ -82,7 +80,7 @@ const Body = () => {
           thu: "",
           soTiet: "",
           phong: "",
-          maLopTc: "",
+          maLopTc: value?.maLopTc,
           timeBd: "",
           timeKt: "",
         });

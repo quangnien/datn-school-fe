@@ -58,8 +58,8 @@ export const deleteStudent = (data) =>
 
 
 // import by excel
-export const importStudent = (data) =>
-  API.post("api/admin/sinhVien/import/", data);
+export const importStudent = (data, unit) =>
+  API.post(`api/admin/sinhVien/import/${unit}`, data);
 
 // export
 export const exportStudent = (unit) =>

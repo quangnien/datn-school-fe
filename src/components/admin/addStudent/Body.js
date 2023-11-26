@@ -27,7 +27,7 @@ const Body = () => {
     noiSinh: "",
     diaChi: "",
     sdt: "",
-    email: "",
+    // email: "",
     maLop: "",
     maKhoa: "",
     hinhAnh: "",
@@ -63,7 +63,7 @@ const Body = () => {
       setLoading(false);
       if (store.admin.studentAdded) {
         setValue({
-          maSv: "",
+          // maSv: "",
           ho: "",
           ten: "",
           phai: "",
@@ -71,7 +71,7 @@ const Body = () => {
           noiSinh: "",
           diaChi: "",
           sdt: "",
-          email: "",
+          // email: "",
           maLop: "",
           maKhoa: "",
           hinhAnh: "",
@@ -154,7 +154,7 @@ const Body = () => {
                   }
                 />
               </div>
-              <div className={classes.WrapInputLabel}>
+              {/* <div className={classes.WrapInputLabel}>
                 <h1 className={classes.LabelStyle}>Email *:</h1>
 
                 <input
@@ -167,7 +167,7 @@ const Body = () => {
                     setValue({ ...value, email: e.target.value })
                   }
                 />
-              </div>
+              </div> */}
               <div className={classes.WrapInputLabel}>
                 <h1 className={classes.LabelStyle}>Lớp *:</h1>
                 <Select
@@ -277,7 +277,7 @@ const Body = () => {
                 <button
                   onClick={() => {
                     setValue({
-                      maSv: "",
+                      // maSv: "",
                       ho: "",
                       ten: "",
                       phai: "",
@@ -285,7 +285,7 @@ const Body = () => {
                       noiSinh: "",
                       diaChi: "",
                       sdt: "",
-                      email: "",
+                      // email: "",
                       maLop: "",
                       maKhoa: "",
                       hinhAnh: "",

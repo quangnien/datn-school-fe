@@ -877,9 +877,9 @@ export const getMhtq = () => async (dispatch) => {
 };
 
 // import students
-export const importStudent = (formData) => async (dispatch) => {
+export const importStudent = (formData, unit) => async (dispatch) => {
   try {
-    const { data } = await api.importStudent(formData);
+    const { data } = await api.importStudent(formData, unit);
 
     if (data.status === "success") {
       toast.success("import file students thành công!");
@@ -900,7 +900,7 @@ export const exportStudent = (unit) => async (dispatch) => {
     const fileData = new Blob([response.data], {
       type: "application/octet-stream",
     });
-    FileSaver.saveAs(fileData, "response.xls");
+    FileSaver.saveAs(fileData, "template_add_students.xls");
 
     dispatch({ type: EXPORT_STUDENTS, payload: response.data });
   } catch (error) {

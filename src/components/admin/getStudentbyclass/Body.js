@@ -69,12 +69,10 @@ const Body = () => {
     };
 
     const students = useSelector((state) => state.admin.students.retObj);
-    console.log("student", students);
 
-    const studentSort = students && students?.sort((a, b) => a.maSv.localeCompare(b.maSv));
-    console.log("studentSort", studentSort);
-    // students &&
-    // students?.sort((a, b) => a.maSv.localeCompare(b.maSv));
+    // const studentSort = students && students?.sort((a, b) => a.maSv.localeCompare(b.maSv));
+    // // students &&
+    // // students?.sort((a, b) => a.maSv.localeCompare(b.maSv));
     const dataPagine = useSelector((state) => state.admin.students);
 
     useEffect(() => {
@@ -294,7 +292,7 @@ const Body = () => {
         event.preventDefault();
         const formData = new FormData();
         formData.append("file", file);
-        dispatch(importStudent(formData));
+        dispatch(importStudent(formData,UnitId));
     };
 
     const handleExport = (e) => {
@@ -357,7 +355,7 @@ const Body = () => {
                     </form>
                 </div>
 
-                {students?.length > 0 && (
+                 {unit  && (
                     <div className="flex mx-5 mt-3 item-center gap-x-3 items-center ">
                         <form onSubmit={handleImportFile}>
                             <div className="flex gap-x-1">
@@ -379,7 +377,7 @@ const Body = () => {
                             Download Template
                         </button>
                     </div>
-                )}
+                  )} 
             </div>
 
             <div className="w-full  min-h-[427px]">
@@ -409,7 +407,7 @@ const Body = () => {
                                     </tr>
                                 </thead>
                                 <tbody className="">
-                                    {studentSort?.map((student, idx) => (
+                                    {students?.map((student, idx) => (
                                         <tr className="justify-center item-center hover:bg-[#EEF5F5]" key={idx}>
                                             <td className="px-4 py-1 border text-center">
                                                 <input
