@@ -64,6 +64,11 @@ import {
   IMPORT_STUDENTS,
   EXPORT_STUDENTS,
   GET_CURRENT_USER,
+  ADD_CMMNCD,
+  GET_ALL_CMMNCD,
+  GET_ALL_CMMNCDSV,
+  GET_ALL_CMMNCDGV,
+  UPDATE_CMMNCD,
 } from "../actionTypes";
 import * as api from "../api";
 
@@ -170,6 +175,35 @@ export const getAllMenu = () => async (dispatch) => {
   }
 };
 
+export const getAllCmmnCd = () => async (dispatch) => {
+  try {
+    const { data } = await api.getAllCmmnCd();
+    console.log("runing")
+    dispatch({ type: GET_ALL_CMMNCD, payload: data.retObj });
+  } catch (error) {
+    console.log("Redux Error", error);
+  }
+};
+
+export const getAllCmmnCdSv = () => async (dispatch) => {
+  try {
+    const { data } = await api.getAllCmmnCdSv();
+    dispatch({ type: GET_ALL_CMMNCDSV, payload: data.retObj });
+  } catch (error) {
+    console.log("Redux Error", error);
+  }
+};
+
+export const getAllCmmnCdGv = () => async (dispatch) => {
+  try {
+    const { data } = await api.getAllCmmnCdGv();
+    console.log("data",data)
+    dispatch({ type: GET_ALL_CMMNCDGV, payload: data.retObj });
+  } catch (error) {
+    console.log("Redux Error", error);
+  }
+};
+
 // Add
 export const addDepartment = (formData) => async (dispatch) => {
   try {
@@ -203,6 +237,30 @@ export const addMenu = (formData) => async (dispatch) => {
     if (data.status === "success") {
       toast.success("Thêm menu mới thành công!");
       dispatch({ type: ADD_MENU, payload: true });
+    } else {
+      dispatch({ type: SET_ERRORS, payload: data });
+    }
+  } catch (error) {
+    if (
+      error.response &&
+      error.response.data &&
+      error.response.data.status === "error"
+    ) {
+      dispatch({ type: SET_ERRORS, payload: error.response.data });
+    } else {
+      console.log("Unknown error occurred");
+    }
+  }
+};
+
+export const addCmmnCd = (formData) => async (dispatch) => {
+  try {
+    console.log(formData);
+    // debugger;
+    const { data } = await api.addCmmnCd(formData);
+    if (data.status === "success") {
+      toast.success("Thêm Common Code mới thành công!");
+      dispatch({ type: ADD_CMMNCD, payload: true });
     } else {
       dispatch({ type: SET_ERRORS, payload: data });
     }
@@ -422,6 +480,22 @@ export const updateMenu = (formData) => async (dispatch) => {
     dispatch({ type: SET_ERRORS, payload: error.response.data });
   }
 };
+
+export const updateCmmnCd = (formData) => async (dispatch) => {
+  try {
+    const { data } = await api.updateCmmnCd(formData);
+    if (data.status === "success") {
+      toast.success("Chỉnh sửa Common Code thành công!");
+      dispatch({ type: UPDATE_CMMNCD, payload: true });
+    } else {
+      toast.error("Chỉnh sửa Common Code không thành công!");
+      dispatch({ type: SET_ERRORS, payload: data });
+    }
+  } catch (error) {
+    dispatch({ type: SET_ERRORS, payload: error.response.data });
+  }
+};
+
 
 export const updateUnit = (formData) => async (dispatch) => {
   try {

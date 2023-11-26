@@ -46,6 +46,8 @@ const Body = () => {
 
   const store = useSelector((state) => state);
   const departments = useSelector((state) => state.admin.allDepartment);
+  const cmmnCds = useSelector((state) => state.admin.allCmmnCdGv);
+  console.log("cmmnCds",cmmnCds)
   departments?.sort(
     (a, b) => a.tenKhoa.charCodeAt(0) - b.tenKhoa.charCodeAt(0)
   );
@@ -115,6 +117,7 @@ const Body = () => {
     email: "",
     maKhoa: "",
     hinhAnh: "",
+    maStatus: "",
   });
 
   const openModal = () => {
@@ -150,6 +153,7 @@ const Body = () => {
       email: teacher.email,
       maKhoa: "",
       hinhAnh: "",
+      maStatus: "",
     });
   };
 
@@ -191,6 +195,11 @@ const Body = () => {
       updatedValue.hinhAnh = value.hinhAnh;
     } else {
       updatedValue.hinhAnh = selectedTeacher.hinhAnh;
+    }
+    if (value.maStatus !== "") {
+      updatedValue.maStatus = value.maStatus;
+    } else {
+      updatedValue.maStatus = selectedTeacher.maStatus;
     }
 
     dispatch(updateTeacher({ ...selectedTeacher, ...updatedValue }));
@@ -290,7 +299,7 @@ const Body = () => {
             Thêm
           </button>
         </Link>
-        {teachers && (
+        {/* {teachers && (
           <button
             onClick={dltSubject}
             className={
@@ -303,7 +312,7 @@ const Body = () => {
           >
             Xóa
           </button>
-        )}
+        )} */}
       </div>
 
       <div className="items-center my-8 mt-2 mb-2 rounded-lg">
@@ -554,6 +563,30 @@ const Body = () => {
                     {departments?.map((dp, idx) => (
                       <MenuItem key={idx} value={dp.maKhoa}>
                         {dp.tenKhoa}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </div>
+
+                <div className={classes.WrapInputLabel}>
+                  <h1 className={classes.LabelStyle}>Trạng thái :</h1>
+                  <Select
+                    required
+                    displayEmpty
+                    sx={{
+                      height: 36,
+                      outline: "none",
+                    }}
+                    inputProps={{ "aria-label": "Without label" }}
+                    value={value.maStatus || selectedTeacher.maStatus}
+                    onChange={(e) =>
+                      setValue({ ...value, maStatus: e.target.value })
+                    }
+                    className={`${classes.InputStyle} hover:focus:border-none `}
+                  >
+                    {cmmnCds?.map((dp, idx) => (
+                      <MenuItem key={idx} value={dp.maCd}>
+                        {dp.tenCd}
                       </MenuItem>
                     ))}
                   </Select>

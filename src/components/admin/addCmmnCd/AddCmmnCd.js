@@ -1,16 +1,9 @@
-import { getAllCmmnCd, getAllCmmnCdSv, getAllUnit } from "../../../redux/actions/adminActions";
-import { useDispatch } from "react-redux";
 import Body from "./Body";
 import Header from "../Header";
-import React, { useEffect } from "react";
+import React from "react";
 import Sidebar from "../Sidebar";
 
-const GetStudentList = () => {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getAllUnit());
-    dispatch(getAllCmmnCdSv());
-  }, [dispatch]);
+const AddCmmnCd = () => {
   return (
     <div className="bg-[#d6d9e0] h-screen flex items-center ">
       <div className="flex bg-[#f4f6fa] w-full h-full overflow-y-hidden">
@@ -24,4 +17,4 @@ const GetStudentList = () => {
   );
 };
 
-export default GetStudentList;
+export default AddCmmnCd;

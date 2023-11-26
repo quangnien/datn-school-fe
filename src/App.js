@@ -39,6 +39,8 @@ import GetRoleList from "./components/admin/getAllRole/GetRoleList";
 import AddRole from "./components/admin/addRole/AddRole";
 import AddUser from "./components/admin/addUser/AddUser";
 import GetUserList from "./components/admin/getAllUser/GetUserList";
+import GetCmmnCdList from "./components/admin/getCmmnCdAll/GetMenuList";
+import AddCmmnCd from "./components/admin/addCmmnCd/AddCmmnCd";
 
 const App = () => {
   return (
@@ -95,6 +97,12 @@ const App = () => {
       {/* user */}
       <Route path="/admin/getuserall" element={<GetUserList />} />
       <Route path="/admin/addUser" element={<AddUser />} />
+
+      {/*  */}
+      {/* Common Code */}
+      <Route path="/admin/getcmmncdall" element={<GetCmmnCdList />} />
+      <Route path="/admin/addCmmnCd" element={<AddCmmnCd />} />
+
     </Routes>
   );
 };

@@ -1,4 +1,4 @@
-import { getAllDepartment } from "../../../redux/actions/adminActions";
+import { getAllCmmnCdGv, getAllDepartment } from "../../../redux/actions/adminActions";
 import { useDispatch } from "react-redux";
 import Body from "./Body";
 import Header from "../Header";
@@ -9,6 +9,8 @@ const GetTeacherList = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getAllDepartment());
+    dispatch(getAllCmmnCdGv());
+
   }, [dispatch]);
   return (
     <div className="bg-[#d6d9e0] h-screen flex items-center ">

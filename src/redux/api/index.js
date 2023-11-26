@@ -148,3 +148,12 @@ export const updateUser = (updateUser) =>
   API.put("/api/admin/user", updateUser);
 export const deleteUser = (data) => API.delete("api/admin/user", { data });
 export const getCurrentUser = () => API.get("api/admin/user/current");
+
+
+export const getAllCmmnCd = () => API.get("/api/admin/cmmnCd");
+export const getAllCmmnCdSv = () => API.get("/api/admin/cmmnCd/sv");
+export const getAllCmmnCdGv = () => API.get("/api/admin/cmmnCd/gv");
+export const addCmmnCd = (cmmnCd) => API.post("/api/admin/cmmnCd", cmmnCd);
+export const updateCmmnCd = (updateCmmnCd) =>
+  API.put("/api/admin/cmmnCd", updateCmmnCd);
+// export const deleteCmmnCd = (data) => API.delete("/api/admin/menu", { data });

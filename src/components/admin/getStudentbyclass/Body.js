@@ -35,6 +35,8 @@ const Body = () => {
     const [loading, setLoading] = useState(false);
     const [inputType, setInputType] = useState("text");
     const units = useSelector((state) => state.admin.allUnit);
+    const cmmnCds = useSelector((state) => state.admin.allCmmnCdSv);
+    console.log("cmmnCds",cmmnCds)
     units?.sort((a, b) => a.tenLop.charCodeAt(0) - b.tenLop.charCodeAt(0));
 
     // paging
@@ -110,6 +112,7 @@ const Body = () => {
         email: "",
         maLop: "",
         hinhAnh: "",
+        maStatus: "",
     });
 
     const openModal = () => {
@@ -147,6 +150,7 @@ const Body = () => {
             email: student.email,
             maLop: "",
             hinhAnh: "",
+            maStatus: "",
         });
     };
     const handleFormSubmit = (e) => {
@@ -192,6 +196,11 @@ const Body = () => {
             updatedValue.maLop = value.maLop;
         } else {
             updatedValue.maLop = selectedStudent.maLop;
+        }
+        if (value.maStatus !== "") {
+            updatedValue.maStatus = value.maStatus;
+        } else {
+            updatedValue.maStatus = selectedStudent.maStatus;
         }
         if (value.hinhAnh !== "") {
             updatedValue.hinhAnh = value.hinhAnh;
@@ -313,7 +322,7 @@ const Body = () => {
                     </button>
                 </Link>
 
-                {students && (
+                {/* {students && (
                     <button
                         onClick={dltSubject}
                         className={
@@ -324,7 +333,7 @@ const Body = () => {
                     >
                         Xóa
                     </button>
-                )}
+                )} */}
             </div>
 
             <div className="flex justify-between">
@@ -569,6 +578,27 @@ const Body = () => {
                                         {units?.map((dp, idx) => (
                                             <MenuItem key={idx} value={dp.maLop}>
                                                 {dp.tenLop}
+                                            </MenuItem>
+                                        ))}
+                                    </Select>
+                                </div>
+                                <div className={classes.WrapInputLabel}>
+                                    <h1 className={classes.LabelStyle}>Trạng thái :</h1>
+                                    <Select
+                                        required
+                                        displayEmpty
+                                        sx={{
+                                            height: 36,
+                                            outline: "none",
+                                        }}
+                                        inputProps={{ "aria-label": "Without label" }}
+                                        value={value.maStatus || selectedStudent.maStatus}
+                                        onChange={(e) => setValue({ ...value, maStatus: e.target.value })}
+                                        className={`${classes.InputStyle} hover:focus:border-none `}
+                                    >
+                                        {cmmnCds?.map((dp, idx) => (
+                                            <MenuItem key={idx} value={dp.maCd}>
+                                                {dp.tenCd}
                                             </MenuItem>
                                         ))}
                                     </Select>

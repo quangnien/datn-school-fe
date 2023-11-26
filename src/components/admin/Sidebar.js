@@ -23,7 +23,7 @@ const Sidebar = () => {
         dispatch(getCurrentUser());
     }, []);
     const users = useSelector((state) => state.admin.currentUser);
-
+    console.log("users : ", users)
     return (
         <div className="flex-[0.2] w-[268px] h-full">
             <div className="ml-1  pt-4 space-y-8  h-full bg-[#04605E]">
@@ -120,6 +120,15 @@ const Sidebar = () => {
                         <NavLink to="/admin/getuserall" className={({ isActive }) => (isActive ? isActiveStyle : isNotActiveStyle)}>
                             <MenuBookIcon className="" />
                             <h1 className="font-normal">Users</h1>
+                        </NavLink>
+                    )}
+                </div>
+                <div className="" style={{ marginTop: 0 }}>
+                
+                    {users[users.indexOf('MENU_CMMNCD')] && (
+                        <NavLink to="/admin/getcmmncdall" className={({ isActive }) => (isActive ? isActiveStyle : isNotActiveStyle)}>
+                            <MenuBookIcon className="" />
+                            <h1 className="font-normal">Common Code</h1>
                         </NavLink>
                     )}
                 </div>

@@ -69,6 +69,11 @@ import {
   IMPORT_STUDENTS,
   EXPORT_STUDENTS,
   GET_CURRENT_USER,
+  ADD_CMMNCD,
+  UPDATE_CMMNCD,
+  GET_ALL_CMMNCD,
+  GET_ALL_CMMNCDSV,
+  GET_ALL_CMMNCDGV,
 } from "../actionTypes";
 
 const initialState = {
@@ -77,6 +82,8 @@ const initialState = {
   // edit
   updatedDepartment: false,
   updatedMenu: false,
+  updatedCmmnCd: false,
+
   updatedUnit: false,
   updatedSubject: false,
   updatedRole: false,
@@ -93,6 +100,8 @@ const initialState = {
   // add
   departmentAdded: false,
   menuAdded: false,
+  cmmnCdAdded: false,
+
   teacherAdded: false,
   studentAdded: false,
   subjectAdded: false,
@@ -111,6 +120,12 @@ const initialState = {
   allTKB: [],
   allKHN: [],
   allMenu: [],
+  allCmmnCd: [],
+  allCmmnCdSv: [],
+  allCmmnCdGv: [],
+
+
+
 
   //getbyidby~
   students: [],
@@ -160,6 +175,22 @@ const adminReducer = (state = initialState, action) => {
         ...state,
         allMenu: action.payload,
       };
+    case GET_ALL_CMMNCD:
+      return {
+        ...state,
+        allCmmnCd: action.payload,
+      };
+    case GET_ALL_CMMNCDSV:
+      return {
+        ...state,
+        allCmmnCdSv: action.payload,
+      };
+    case GET_ALL_CMMNCDGV:
+      return {
+        ...state,
+        allCmmnCdGv: action.payload,
+      };
+      
     case ADD_DEPARTMENT:
       return {
         ...state,
@@ -170,6 +201,11 @@ const adminReducer = (state = initialState, action) => {
         ...state,
         menuAdded: action.payload,
       };
+    case ADD_CMMNCD:
+        return {
+          ...state,
+          cmmnCdAdded: action.payload,
+        };
     case DELETE_DEPARTMENT:
       return {
         ...state,
@@ -180,6 +216,11 @@ const adminReducer = (state = initialState, action) => {
         ...state,
         menuDeleted: action.payload,
       };
+    // case DELETE_CMMNCD:
+    //   return {
+    //     ...state,
+    //     cmmnCdDeleted: action.payload,
+    //   };
     case GET_TEACHER_DEPARTMENT:
       return {
         ...state,
@@ -263,6 +304,11 @@ const adminReducer = (state = initialState, action) => {
         ...state,
         updatedMenu: action.payload,
       };
+    case UPDATE_CMMNCD:
+        return {
+          ...state,
+          updatedCmmnCd: action.payload,
+        };
     case GET_UNIT_DEPARTMENT:
       return {
         ...state,
