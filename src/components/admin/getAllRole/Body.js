@@ -8,6 +8,7 @@ import Swal from "sweetalert2";
 import {
   deleteRole,
   getAllRole,
+  getCurrentUser,
   updateRole,
 } from "../../../redux/actions/adminActions";
 import {
@@ -16,9 +17,7 @@ import {
   UPDATE_ROLE,
 } from "../../../redux/actionTypes";
 import ReactSelect from "react-select";
-import { getCurrentUser } from "../../../redux/api";
 
-// http://localhost:9090/api/admin/monHoc/khoa/CNTT?page=0&size=3
 
 const modalStyles = {
   content: {
@@ -35,7 +34,6 @@ const modalStyles = {
 const Body = () => {
   const dispatch = useDispatch();
   const [error, setError] = useState({});
-  const [search, setSearch] = useState(false);
   const [loading, setLoading] = useState(false);
   const store = useSelector((state) => state);
 
@@ -133,7 +131,9 @@ const Body = () => {
     if (!store.admin.updatedRole) return;
     setError({});
     closeModal();
-    dispatch(getAllRole())
+    dispatch(getAllRole());
+    dispatch(getCurrentUser());
+
     
 
   }, [dispatch, store.errors, store.admin.updatedRole]);
