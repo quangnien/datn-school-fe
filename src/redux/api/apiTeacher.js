@@ -36,3 +36,14 @@ export const getCourseTeacherKHM = (maGv, maKeHoach) =>
   APIV2.post(`api/admin/lopTc/giangVien/${maGv}?maKeHoach=${maKeHoach}`);
 export const getThongkebysomething = (data) =>
   APIV2.get("api/admin/diem/thong-ke", data);
+
+
+// import diem by excel (maLopTc)
+export const importDiem = (data, maLopTc) =>
+APIV2.post(`/api/admin/diem/import/${maLopTc}`, data);
+
+// export diem by excel (maLopTc)
+export const exportDiem = (maLopTc) =>
+APIV2.get(`/api/admin/diem/export/${maLopTc}`, {
+  responseType: "blob",
+}); 

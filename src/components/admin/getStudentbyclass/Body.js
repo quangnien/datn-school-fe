@@ -7,14 +7,14 @@ import * as classes from "../../../utils/styles";
 import DetailStudent from "../DetailStudent/DetailStudent";
 import ImageUpload from "../../util/img/ImageUpload";
 import MenuItem from "@mui/material/MenuItem";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ReactModal from "react-modal";
 import ReactPaginate from "react-paginate";
 import Select from "@mui/material/Select";
 import Spinner from "../../../utils/Spinner";
 import Swal from "sweetalert2";
 import { deleteStudent, exportStudent, getStudentUnit, importStudent, updateStudent } from "../../../redux/actions/adminActions";
-import { DELETE_STUDENT, SET_ERRORS, UPDATE_STUDENT } from "../../../redux/actionTypes";
+import { DELETE_STUDENT, IMPORT_STUDENTS, SET_ERRORS, UPDATE_STUDENT } from "../../../redux/actionTypes";
 
 const modalStyles = {
     content: {
@@ -36,7 +36,6 @@ const Body = () => {
     const [inputType, setInputType] = useState("text");
     const units = useSelector((state) => state.admin.allUnit);
     const cmmnCds = useSelector((state) => state.admin.allCmmnCdSv);
-    console.log("cmmnCds",cmmnCds)
     units?.sort((a, b) => a.tenLop.charCodeAt(0) - b.tenLop.charCodeAt(0));
 
     // paging
@@ -302,6 +301,8 @@ const Body = () => {
         const formData = new FormData();
         formData.append("file", file);
         dispatch(importStudent(formData,UnitId));
+        dispatch({ type: IMPORT_STUDENTS, payload: false });
+
     };
 
     const handleExport = (e) => {
@@ -309,6 +310,26 @@ const Body = () => {
 
         dispatch(exportStudent(UnitId));
     };
+
+    const inputRef = useRef(null)
+    console.log("inputRef : ", inputRef)
+    useEffect(() => {
+        if (store.admin.importStudents) {
+            if (!store.admin.importStudents) return;
+            
+            console.log("running ...")
+            setError({});
+            const UnitObj = units.find((dp) => dp.tenLop === unit);
+        const UnitId = UnitObj?.maLop;
+            dispatch(getStudentUnit(UnitId, nextPage, itemsPerPage));
+            setFile(null)
+            if (inputRef.current) { 
+              inputRef.current.value = ""; 
+              //inputRef.current.type = "text";//
+             // inputRef.current.type = "file"; //
+          } 
+        }
+    }, [dispatch, store.errors, store.admin.importStudents]);
 
     return (
         <div className="flex-[0.8] mt-3 mx-5 item-center">
@@ -368,7 +389,7 @@ const Body = () => {
                     <div className="flex mx-5 mt-3 item-center gap-x-3 items-center ">
                         <form onSubmit={handleImportFile}>
                             <div className="flex gap-x-1">
-                                <input type="file" onChange={handleFileChange} className="w-[200px] m-auto" />
+                                <input type="file" ref={inputRef} onChange={handleFileChange} className="w-[200px] m-auto" />
                                 <button
                                     className="relative mt-2 items-center gap-[9px] mr-4 w-[180px] h-[41px] hover:bg-[#04605E] block py-2 font-bold text-white rounded-lg px-4 
            bg-[#157572] focus:outline-none focus:shadow-outline "

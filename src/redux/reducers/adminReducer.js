@@ -74,6 +74,9 @@ import {
   GET_ALL_CMMNCD,
   GET_ALL_CMMNCDSV,
   GET_ALL_CMMNCDGV,
+  IMPORT_DIEMS,
+  EXPORT_DIEMS,
+  DELETE_CMMNCD,
 } from "../actionTypes";
 
 const initialState = {
@@ -145,6 +148,7 @@ const initialState = {
   //delete
   departmentDeleted: false,
   menuDeleted: false,
+  cmmnCdDeleted: false,
   unitDeleted: false,
   teacherDeleted: false,
   studentDeleted: false,
@@ -156,6 +160,8 @@ const initialState = {
   coursedetailDeleted: false,
   importStudents: false,
   exportStudents: false,
+  importDiems: false,
+  exportDiems: false,
 
 };
 
@@ -216,11 +222,11 @@ const adminReducer = (state = initialState, action) => {
         ...state,
         menuDeleted: action.payload,
       };
-    // case DELETE_CMMNCD:
-    //   return {
-    //     ...state,
-    //     cmmnCdDeleted: action.payload,
-    //   };
+    case DELETE_CMMNCD:
+      return {
+        ...state,
+        cmmnCdDeleted: action.payload,
+      };
     case GET_TEACHER_DEPARTMENT:
       return {
         ...state,
@@ -541,16 +547,26 @@ const adminReducer = (state = initialState, action) => {
           ...state,
           importStudents: action.payload,
         };
-        case EXPORT_STUDENTS:
+      case EXPORT_STUDENTS:
+        return {
+          ...state,
+          exportStudents: action.payload,
+        }; 
+      case GET_CURRENT_USER:
+        return {
+          ...state,
+          currentUser: action.payload,
+        };
+      case IMPORT_DIEMS:
+        return {
+          ...state,
+          importDiems: action.payload,
+        };
+        case EXPORT_DIEMS:
           return {
             ...state,
-            exportStudents: action.payload,
-          }; 
-        case GET_CURRENT_USER:
-          return {
-            ...state,
-            currentUser: action.payload,
-          };    
+            exportDiems: action.payload,
+          };  
     default:
       return state;
   }

@@ -1,5 +1,7 @@
 import { toast } from "react-toastify";
+import * as FileSaver from "file-saver";
 import {
+  EXPORT_DIEMS_GV,
   GET_ALL_DEPARTMENT,
   GET_ALL_KHN,
   GET_COURSE_TEACHER_KHM,
@@ -7,9 +9,11 @@ import {
   GET_TEACHER_BY_ID,
   GET_THONGKE_BY_SOMETHING,
   GET_TKB_TEACHER,
+  IMPORT_DIEMS_GV,
   SET_ERRORS,
   TEACHER_UPW,
   UPDATE_SCORE,
+
 } from "../actionTypes";
 import * as api from "../api/apiTeacher";
 
@@ -107,5 +111,36 @@ export const teacherUpw = (formData) => async (dispatch) => {
     }
   } catch (error) {
     dispatch({ type: SET_ERRORS, payload: error.response.data });
+  }
+};
+
+// import diem
+export const importDiem = (formData, maLopTc) => async (dispatch) => {
+  try {
+    const { data } = await api.importDiem(formData, maLopTc);
+
+    if (data.status === "success") {
+      toast.success("import file diems thành công!");
+      dispatch({ type: IMPORT_DIEMS_GV, payload: true });
+    } else {
+      dispatch({ type: SET_ERRORS, payload: data });
+      toast.error("import file students không thành công!");
+    }
+  } catch (error) {
+    dispatch({ type: SET_ERRORS, payload: error.response.data });
+  }
+};
+
+export const exportDiem = (maLopTc) => async (dispatch) => {
+  try {
+    const response = await api.exportDiem(maLopTc);
+    const fileData = new Blob([response.data], {
+      type: "application/octet-stream",
+    });
+    FileSaver.saveAs(fileData, "template_add_diems.xls");
+
+    dispatch({ type: EXPORT_DIEMS_GV, payload: response.data });
+  } catch (error) {
+    dispatch({ type: SET_ERRORS, payload: "Lỗi xuất file dữ liệu" });
   }
 };

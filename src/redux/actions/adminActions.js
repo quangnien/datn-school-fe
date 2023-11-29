@@ -69,6 +69,9 @@ import {
   GET_ALL_CMMNCDSV,
   GET_ALL_CMMNCDGV,
   UPDATE_CMMNCD,
+  IMPORT_DIEMS,
+  EXPORT_DIEMS,
+  DELETE_CMMNCD,
 } from "../actionTypes";
 import * as api from "../api";
 
@@ -672,6 +675,23 @@ export const deleteMenu = (formData) => async (dispatch) => {
     dispatch({ type: SET_ERRORS, payload: "Xóa menu không Thành công" });
   }
 };
+
+
+export const deleteCmmnCd = (formData) => async (dispatch) => {
+  try {
+    const { data } = await api.deleteCmmnCd(formData);
+    if (data.status === "success" && data.retObj.length > 0) {
+      toast.success("Xóa Common Code thành công!");
+      dispatch({ type: DELETE_CMMNCD, payload: true });
+    } else {
+      toast.error("Xóa Common Code này không thành không!");
+      dispatch({ type: SET_ERRORS, payload: "Xóa Common Code không Thành công" });
+    }
+  } catch (error) {
+    dispatch({ type: SET_ERRORS, payload: "Xóa Common Code không Thành công" });
+  }
+};
+
 export const deleteUser = (formData) => async (dispatch) => {
   try {
     const { data } = await api.deleteUser(formData);
@@ -989,5 +1009,37 @@ export const getCurrentUser = () => async (dispatch) => {
     dispatch({ type: GET_CURRENT_USER, payload: data.menuCodeList });
   } catch (error) {
     console.log("Redux Error", error);
+  }
+};
+
+
+// import diem
+export const importDiem = (formData, maLopTc) => async (dispatch) => {
+  try {
+    const { data } = await api.importDiem(formData, maLopTc);
+
+    if (data.status === "success") {
+      toast.success("import file diems thành công!");
+      dispatch({ type: IMPORT_DIEMS, payload: true });
+    } else {
+      dispatch({ type: SET_ERRORS, payload: data });
+      toast.error("import file students không thành công!");
+    }
+  } catch (error) {
+    dispatch({ type: SET_ERRORS, payload: error.response.data });
+  }
+};
+
+export const exportDiem = (maLopTc) => async (dispatch) => {
+  try {
+    const response = await api.exportDiem(maLopTc);
+    const fileData = new Blob([response.data], {
+      type: "application/octet-stream",
+    });
+    FileSaver.saveAs(fileData, "template_add_diems.xls");
+
+    dispatch({ type: EXPORT_DIEMS, payload: response.data });
+  } catch (error) {
+    dispatch({ type: SET_ERRORS, payload: "Lỗi xuất file dữ liệu" });
   }
 };

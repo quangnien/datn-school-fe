@@ -26,7 +26,7 @@ export const DELETE_UNIT = "DELETE_UNIT";
 export const DELETE_MENU = "DELETE_MENU";
 export const DELETE_ROLE = "DELETE_ROLE";
 export const DELETE_USER = "DELETE_USER";
-// export const DELETE_CMMNCD = "DELETE_CMMNCD";
+export const DELETE_CMMNCD = "DELETE_CMMNCD";
 
 
 export const GET_ALL_ADMIN = "GET_ALL_ADMIN";
@@ -111,3 +111,8 @@ export const EXPORT_STUDENTS = "EXPORT_STUDENTS";
 
 export const GET_CURRENT_USER = "GET_CURRENT_USER";
 
+export const IMPORT_DIEMS = "IMPORT_DIEMS";
+export const EXPORT_DIEMS = "EXPORT_DIEMS";
+
+export const IMPORT_DIEMS_GV = "IMPORT_DIEMS_GV";
+export const EXPORT_DIEMS_GV = "EXPORT_DIEMS_GV";

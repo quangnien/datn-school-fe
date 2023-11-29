@@ -2,15 +2,18 @@ import React, { useEffect, useState } from "react";
 import ReactModal from "react-modal";
 import { useSelector, useDispatch } from "react-redux";
 import {
+  deleteCmmnCd,
   getAllCmmnCd,
   updateCmmnCd,
 } from "../../../redux/actions/adminActions";
 import { Link } from "react-router-dom";
 import * as classes from "../../../utils/styles";
 import {
+  DELETE_CMMNCD,
   SET_ERRORS,
   UPDATE_CMMNCD,
 } from "../../../redux/actionTypes";
+import Swal from "sweetalert2";
 
 const modalStyles = {
   content: {
@@ -121,29 +124,29 @@ const Body = () => {
     );
   };
 
-  // const dltSubject = (e) => {
-  //   Swal.fire({
-  //     title: "Bạn có chắc chắn muốn xóa?",
-  //     text: "Hành động này sẽ không thể hoàn tác!",
-  //     icon: "warning",
-  //     showCancelButton: true,
-  //     confirmButtonColor: "#3085d6",
-  //     cancelButtonColor: "#d33",
-  //     confirmButtonText: "Đồng ý, Xóa!",
-  //   }).then(async (result) => {
-  //     if (result.isConfirmed) {
-  //       dispatch(deleteMenu(checkedValue));
-  //     }
-  //   });
-  // };
+  const dltSubject = (e) => {
+    Swal.fire({
+      title: "Bạn có chắc chắn muốn xóa?",
+      text: "Hành động này sẽ không thể hoàn tác!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Đồng ý, Xóa!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        dispatch(deleteCmmnCd(checkedValue));
+      }
+    });
+  };
 
-  // useEffect(() => {
-  //   if (store.admin.menuDeleted) {
-  //     setCheckedValue([]);
-  //     dispatch(getAllMenu());
-  //     dispatch({ type: DELETE_MENU, payload: false });
-  //   }
-  // }, [store.admin.menuDeleted]);
+  useEffect(() => {
+    if (store.admin.cmmnCdDeleted) {
+      setCheckedValue([]);
+      dispatch(getAllCmmnCd());
+      dispatch({ type: DELETE_CMMNCD, payload: false });
+    }
+  }, [store.admin.cmmnCdDeleted]);
 
   return (
     <div className="flex-[0.8] mt-3 mx-5 item-center">
@@ -156,7 +159,7 @@ const Body = () => {
             Thêm
           </button>
         </Link>
-        {/* {cmmnCds && checkedValue?.length > 0 ? (
+        {cmmnCds && checkedValue?.length > 0 ? (
           <button
             onClick={dltSubject}
             className="items-center  gap-[9px] mr-4 w-[88px] h-[53px] block py-2 font-bold text-[#7D1711] bg-[#FDD1D1] border border: 1.11647px solid #FD9999 rounded-lg px-4  hover:bg-[#FD9999] focus:#FD9999 focus:shadow-outline"
@@ -171,7 +174,7 @@ const Body = () => {
           >
             Xóa
           </button>
-        )} */}
+        )}
       </div>
       <div className="w-full my-8 mt-6">
         {cmmnCds?.length !== 0 && (

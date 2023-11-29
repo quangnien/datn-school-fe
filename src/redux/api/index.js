@@ -156,4 +156,15 @@ export const getAllCmmnCdGv = () => API.get("/api/admin/cmmnCd/gv");
 export const addCmmnCd = (cmmnCd) => API.post("/api/admin/cmmnCd", cmmnCd);
 export const updateCmmnCd = (updateCmmnCd) =>
   API.put("/api/admin/cmmnCd", updateCmmnCd);
-// export const deleteCmmnCd = (data) => API.delete("/api/admin/menu", { data });
+export const deleteCmmnCd = (data) => API.delete("/api/admin/cmmnCd", { data });
+
+
+// import diem by excel (maLopTc)
+export const importDiem = (data, maLopTc) =>
+  API.post(`/api/admin/diem/import/${maLopTc}`, data);
+
+// export diem by excel (maLopTc)
+export const exportDiem = (maLopTc) =>
+  API.get(`/api/admin/diem/export/${maLopTc}`, {
+    responseType: "blob",
+  }); 

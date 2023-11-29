@@ -1,5 +1,6 @@
 import {
   CLEAR_THONGKES,
+  EXPORT_DIEMS_GV,
   GET_ALL_DEPARTMENT,
   GET_ALL_KHN,
   GET_COURSE_TEACHER_KHM,
@@ -7,6 +8,7 @@ import {
   GET_TEACHER_BY_ID,
   GET_THONGKE_BY_SOMETHING,
   GET_TKB_TEACHER,
+  IMPORT_DIEMS_GV,
   RESET_COURSE_GV_MKH,
   RESET_SCORES,
   RESET_TEACHER_AVATAR,
@@ -28,6 +30,8 @@ const initialState = {
   updateScore: false,
   thongkes: [],
   teacherupwed: false,
+  importDiems: false,
+  exportDiems: false,
 };
 
 const teacherReducer = (state = initialState, action) => {
@@ -105,6 +109,16 @@ const teacherReducer = (state = initialState, action) => {
       return {
         ...state,
         teachers: [],
+      };
+    case IMPORT_DIEMS_GV:
+      return {
+        ...state,
+        importDiems: [],
+      };
+    case EXPORT_DIEMS_GV:
+      return {
+        ...state,
+        exportDiems: [],
       };
     default:
       return state;
