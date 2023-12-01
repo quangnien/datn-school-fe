@@ -77,6 +77,10 @@ import {
   IMPORT_DIEMS,
   EXPORT_DIEMS,
   DELETE_CMMNCD,
+  GET_ALL_CHUYENNGANH,
+  ADD_CHUYENNGANH,
+  DELETE_CHUYENNGANH,
+  UPDATE_CHUYENNGANH,
 } from "../actionTypes";
 
 const initialState = {
@@ -84,6 +88,7 @@ const initialState = {
 
   // edit
   updatedDepartment: false,
+  updatedChuyenNganh: false,
   updatedMenu: false,
   updatedCmmnCd: false,
 
@@ -102,6 +107,7 @@ const initialState = {
 
   // add
   departmentAdded: false,
+  chuyenNganhAdded: false,
   menuAdded: false,
   cmmnCdAdded: false,
 
@@ -119,6 +125,7 @@ const initialState = {
   allUser: [],
   allStudent: [],
   allDepartment: [],
+  allChuyenNganh: [],
   allCourseDetail: [],
   allTKB: [],
   allKHN: [],
@@ -147,6 +154,7 @@ const initialState = {
 
   //delete
   departmentDeleted: false,
+  chuyenNganhDeleted: false,
   menuDeleted: false,
   cmmnCdDeleted: false,
   unitDeleted: false,
@@ -176,6 +184,11 @@ const adminReducer = (state = initialState, action) => {
         ...state,
         allDepartment: action.payload,
       };
+    case GET_ALL_CHUYENNGANH:
+      return {
+        ...state,
+        allChuyenNganh: action.payload,
+      };
     case GET_ALL_MENU:
       return {
         ...state,
@@ -202,6 +215,11 @@ const adminReducer = (state = initialState, action) => {
         ...state,
         departmentAdded: action.payload,
       };
+    case ADD_CHUYENNGANH:
+      return {
+        ...state,
+        chuyenNganhAdded: action.payload,
+      };
     case ADD_MENU:
       return {
         ...state,
@@ -216,6 +234,11 @@ const adminReducer = (state = initialState, action) => {
       return {
         ...state,
         departmentDeleted: action.payload,
+      };
+    case DELETE_CHUYENNGANH:
+      return {
+        ...state,
+        chuyenNganhDeleted: action.payload,
       };
     case DELETE_MENU:
       return {
@@ -305,6 +328,11 @@ const adminReducer = (state = initialState, action) => {
         ...state,
         updatedDepartment: action.payload,
       };
+    case UPDATE_CHUYENNGANH:
+      return {
+        ...state,
+        updatedChuyenNganh: action.payload,
+    };
     case UPDATE_MENU:
       return {
         ...state,

@@ -2,7 +2,10 @@ import React, { useEffect, useState } from "react";
 import ReactModal from "react-modal";
 import { useSelector, useDispatch } from "react-redux";
 import {
+  deleteChuyenNganh,
+  getAllChuyenNganh,
   getAllDepartment,
+  updateChuyenNganh,
   updateDepartment,
 } from "../../../redux/actions/adminActions";
 import { Link } from "react-router-dom";
@@ -10,10 +13,13 @@ import { deleteDepartment } from "../../../redux/actions/adminActions";
 import * as classes from "../../../utils/styles";
 import Swal from "sweetalert2";
 import {
+  DELETE_CHUYENNGANH,
   DELETE_DEPARTMENT,
   SET_ERRORS,
+  UPDATE_CHUYENNGANH,
   UPDATE_DEPARTMENT,
 } from "../../../redux/actionTypes";
+import { MenuItem, Select } from "@mui/material";
 
 const modalStyles = {
   content: {
@@ -30,18 +36,20 @@ const modalStyles = {
 
 const Body = () => {
   const store = useSelector((state) => state);
+  const chuyennganhs = useSelector((state) => state.admin.allChuyenNganh);
   const departments = useSelector((state) => state.admin.allDepartment);
+
   // debugger;
-  if(departments != null){
+  if(chuyennganhs != null){
     
-  departments.sort((a, b) => a.tenKhoa.charCodeAt(0) - b.tenKhoa.charCodeAt(0));
+    chuyennganhs.sort((a, b) => a.tenCn.charCodeAt(0) - b.tenCn.charCodeAt(0));
   }
-  const [selectedDepartment, setSelectedDepartment] = useState("");
+  const [selectedChuyenNganh, setSelectedChuyenNganh] = useState("");
   const [error, setError] = useState({});
 
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getAllDepartment());
+    dispatch(getAllChuyenNganh());
   }, [dispatch]);
 
   useEffect(() => {
@@ -57,21 +65,18 @@ const Body = () => {
   // Begin-edit
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [value, setValue] = useState({
+    maCn: "",
+    tenCn: "",
     maKhoa: "",
-    tenKhoa: "",
-    sdt: "",
-    email: "",
     id: "",
-    
   });
   const handleEditClick = (dep) => {
-    setSelectedDepartment(dep);
+    setSelectedChuyenNganh(dep);
     setIsModalOpen(true);
     setValue({
-      sdt: "",
-      tenKhoa: "",
-      maKhoa: dep.maKhoa,
-      email: dep.email,
+      tenCn: "",
+      maKhoa: "",
+      maCn: dep.maCn,
       id: dep.id,
     });
   };
@@ -84,27 +89,27 @@ const Body = () => {
   const handleFormSubmit = (e) => {
     e.preventDefault();
     const updatedValue = {};
-    if (value.tenKhoa !== "") {
-      updatedValue.tenKhoa = value.tenKhoa;
+    if (value.tenCn !== "") {
+      updatedValue.tenCn = value.tenCn;
     } else {
-      updatedValue.tenKhoa = selectedDepartment.tenKhoa;
+      updatedValue.tenCn = selectedChuyenNganh.tenCn;
     }
-    if (value.sdt !== "") {
-      updatedValue.sdt = value.sdt;
+    if (value.maKhoa !== "") {
+      updatedValue.maKhoa = value.maKhoa;
     } else {
-      updatedValue.sdt = selectedDepartment.sdt;
+      updatedValue.maKhoa = selectedChuyenNganh.maKhoa;
     }
-    dispatch(updateDepartment({ ...selectedDepartment, ...updatedValue }));
-    dispatch({ type: UPDATE_DEPARTMENT, payload: false });
+    dispatch(updateChuyenNganh({ ...selectedChuyenNganh, ...updatedValue }));
+    dispatch({ type: UPDATE_CHUYENNGANH, payload: false });
   };
 
   useEffect(() => {
-    if (store.admin.updatedDepartment) {
+    if (store.admin.updatedChuyenNganh) {
       setError({});
       closeModal();
-      dispatch(getAllDepartment());
+      dispatch(getAllChuyenNganh());
     }
-  }, [dispatch, store.errors, store.admin.updatedDepartment]);
+  }, [dispatch, store.errors, store.admin.updatedChuyenNganh]);
 
   const handleModalError = () => {
     setError({});
@@ -136,23 +141,23 @@ const Body = () => {
       confirmButtonText: "Đồng ý, Xóa!",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        dispatch(deleteDepartment(checkedValue));
+        dispatch(deleteChuyenNganh(checkedValue));
       }
     });
   };
 
   useEffect(() => {
-    if (store.admin.departmentDeleted) {
+    if (store.admin.chuyenNganhDeleted) {
       setCheckedValue([]);
-      dispatch(getAllDepartment());
-      dispatch({ type: DELETE_DEPARTMENT, payload: false });
+      dispatch(getAllChuyenNganh());
+      dispatch({ type: DELETE_CHUYENNGANH, payload: false });
     }
-  }, [store.admin.departmentDeleted]);
+  }, [store.admin.chuyenNganhDeleted]);
 
   return (
     <div className="flex-[0.8] mt-3 mx-5 item-center">
       <div className="flex mt-4">
-        <Link to="/admin/adddepartment" className="btn btn-primary">
+        <Link to="/admin/addChuyenNganh" className="btn btn-primary">
           <button
             className="items-center gap-[9px] mr-4 w-[88px] h-[53px] hover:bg-[#04605E] block py-2 font-bold text-white rounded-lg px-4 
            bg-[#157572] focus:outline-none focus:shadow-outline "
@@ -160,7 +165,7 @@ const Body = () => {
             Thêm
           </button>
         </Link>
-        {departments && checkedValue?.length > 0 ? (
+        {chuyennganhs && checkedValue?.length > 0 ? (
           <button
             onClick={dltSubject}
             className="items-center  gap-[9px] mr-4 w-[88px] h-[53px] block py-2 font-bold text-[#7D1711] bg-[#FDD1D1] border border: 1.11647px solid #FD9999 rounded-lg px-4  hover:bg-[#FD9999] focus:#FD9999 focus:shadow-outline"
@@ -178,21 +183,20 @@ const Body = () => {
         )}
       </div>
       <div className="w-full my-8 mt-6">
-        {departments?.length !== 0 && (
+        {chuyennganhs?.length !== 0 && (
           <table className="w-full table-auto ">
             <thead className="bg-[#E1EEEE] items-center">
               <tr>
                 <th className="px-4 py-1">Chọn</th>
                 <th className="px-4 py-1">STT</th>
-                <th className="px-4 py-1">Mã khoa</th>
-                <th className="px-4 py-1">Tên khoa</th>
-                {/* <th className="px-4 py-1">SĐT</th> */}
-                {/* <th className="px-4 py-1">Email</th> */}
+                <th className="px-4 py-1">Mã chuyên ngành</th>
+                <th className="px-4 py-1">Tên chuyên ngành</th>
+                <th className="px-4 py-1">Tên Khoa</th>
                 <th className="px-4 py-1">Hành động</th>
               </tr>
             </thead>
             <tbody className="">
-              {departments?.map((dep, idx) => (
+              {chuyennganhs?.map((dep, idx) => (
                 <tr
                   className="justify-center item-center hover:bg-[#EEF5F5]"
                   key={idx}
@@ -207,12 +211,13 @@ const Body = () => {
                     />
                   </td>
                   <td className="px-4 py-1 text-center border ">{idx + 1}</td>
-                  <td className="px-4 py-1 text-left border">{dep.maKhoa}</td>
+                  <td className="px-4 py-1 text-left border">{dep.maCn}</td>
                   <td className="px-4 py-1 text-left border">
-                    {dep.tenKhoa}
+                    {dep.tenCn}
                   </td>
-                  {/* <td className="px-4 py-1 border">{dep.sdt}</td> */}
-                  {/* <td className="px-4 py-1 border">{dep.email}</td> */}
+                  <td className="px-4 py-1 text-left border">
+                    {dep?.tenKhoa}
+                  </td>
                   <td
                     className="items-center justify-center px-4 py-1 mr-0 border"
                     style={{ display: "flex", justifyContent: "center" }}
@@ -231,7 +236,7 @@ const Body = () => {
         )}
       </div>
       {/* modal edit */}
-      {selectedDepartment ? (
+      {selectedChuyenNganh ? (
         <ReactModal
           isOpen={isModalOpen}
           onRequestClose={openModal}
@@ -245,62 +250,60 @@ const Body = () => {
             >
               <div className={classes.FormItem}>
                 <div className={classes.WrapInputLabel}>
-                  <h1 className={classes.LabelStyle}>Mã khoa :</h1>
+                  <h1 className={classes.LabelStyle}>Mã chuyên ngành :</h1>
                   <input
-                    placeholder={selectedDepartment?.maKhoa}
+                    placeholder={selectedChuyenNganh?.maCn}
                     disabled
                     className={classes.InputStyle}
                     type="text"
                   />
                 </div>
                 <div className={classes.WrapInputLabel}>
-                  <h1 className={classes.LabelStyle}>Tên khoa :</h1>
+                  <h1 className={classes.LabelStyle}>Tên chuyên ngành :</h1>
                   <input
-                    placeholder={selectedDepartment?.tenKhoa}
+                    placeholder={selectedChuyenNganh?.tenCn}
                     className={classes.InputStyle}
                     type="text"
-                    value={value.tenKhoa}
+                    value={value.tenCn}
                     onChange={(e) =>
                       setValue({
                         ...value,
-                        tenKhoa: e.target.value,
+                        tenCn: e.target.value,
                       })
                     }
                   />
                 </div>
-                {/* <div className={classes.WrapInputLabel}>
-                  <h1 className={classes.LabelStyle}>Số điện thoại :</h1>
-                  <input
-                    placeholder={selectedDepartment?.sdt}
-                    className={classes.InputStyle}
-                    type="text"
-                    value={value.sdt}
-                    pattern="^(0[1-9]|1[0-9]|2[0-9]|3[2-9]|5[689])([0-9]{8})$"
-                    title="Vui lòng nhập số điện thoại đúng định dạng."
-                    onChange={(e) =>
-                      setValue({
-                        ...value,
-                        sdt: e.target.value,
-                      })
-                    }
-                  />
-                </div>
+
                 <div className={classes.WrapInputLabel}>
-                  <h1 className={classes.LabelStyle}>Email :</h1>
-                  <input
-                    placeholder={selectedDepartment?.email}
-                    disabled
-                    className={classes.InputStyle}
-                    type="text"
-                  />
-                </div> */}
+                  <h1 className={classes.LabelStyle}>Khoa :</h1>
+                  <Select
+                    required
+                    displayEmpty
+                    sx={{
+                      height: 36,
+                      outline: "none",
+                    }}
+                    inputProps={{ "aria-label": "Without label" }}
+                    value={value.maKhoa || selectedChuyenNganh.maKhoa}
+                    onChange={(e) =>
+                      setValue({ ...value, maKhoa: e.target.value })
+                    }
+                    className={`${classes.InputStyle} hover:focus:border-none `}
+                  >
+                    {departments?.map((dp, idx) => (
+                      <MenuItem key={idx} value={dp.maKhoa}>
+                        {dp.tenKhoa}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </div>
               </div>
 
               <div className="flex items-center justify-center mt-10 space-x-6">
                 <button className={classes.adminFormSubmitButton} type="submit">
                   Lưu
                 </button>
-                <Link to="/admin/getdepartmentall" className="btn btn-primary">
+                <Link to="/admin/getchuyennganhall" className="btn btn-primary">
                   <button
                     className={classes.adminFormClearButton}
                     type="button"

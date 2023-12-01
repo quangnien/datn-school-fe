@@ -38,8 +38,15 @@ const Sidebar = () => {
                 </div>
 
                 <div className="mt-0" style={{ marginTop: 0 }}>
-                    {users[users.indexOf('MENU_CHUYENNGANH')] && (
+                    {users[users.indexOf('MENU_KHOA')] && (
                         <NavLink to="/admin/getdepartmentall" className={({ isActive }) => (isActive ? isActiveStyle : isNotActiveStyle)}>
+                            <AssignmentIndIcon className="" />
+                            <h1 className="font-normal">Khoa</h1>
+                        </NavLink>
+                    )}
+
+                    {users[users.indexOf('MENU_CHUYENNGANH')] && (
+                        <NavLink to="/admin/getchuyennganhall" className={({ isActive }) => (isActive ? isActiveStyle : isNotActiveStyle)}>
                             <AssignmentIndIcon className="" />
                             <h1 className="font-normal">Chuyên Ngành</h1>
                         </NavLink>

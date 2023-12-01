@@ -41,6 +41,8 @@ import AddUser from "./components/admin/addUser/AddUser";
 import GetUserList from "./components/admin/getAllUser/GetUserList";
 import GetCmmnCdList from "./components/admin/getCmmnCdAll/GetMenuList";
 import AddCmmnCd from "./components/admin/addCmmnCd/AddCmmnCd";
+import GetChuyenNganhList from "./components/admin/getChuyenNganhAll/GetChuyenNganhList";
+import AddChuyenNganh from "./components/admin/addChuyenNganh/AddChuyenNganh";
 
 const App = () => {
   return (
@@ -102,6 +104,10 @@ const App = () => {
       {/* Common Code */}
       <Route path="/admin/getcmmncdall" element={<GetCmmnCdList />} />
       <Route path="/admin/addCmmnCd" element={<AddCmmnCd />} />
+
+      {/* Chuyen Nganh */}
+      <Route path="/admin/getchuyennganhall" element={<GetChuyenNganhList />} />
+      <Route path="/admin/addChuyenNganh" element={<AddChuyenNganh />} />
 
     </Routes>
   );

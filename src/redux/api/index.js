@@ -11,6 +11,16 @@ export const updateDepartment = (updateDepartment) =>
 export const deleteDepartment = (data) =>
   API.delete("/api/admin/khoa", { data });
 
+
+  // chuyen nganh
+export const getAllChuyenNganh = () => API.get("/api/admin/chuyenNganh");
+export const addChuyenNganh = (chuyennganh) =>
+  API.post("/api/admin/chuyenNganh", chuyennganh);
+export const updateChuyenNganh = (updateChuyenNganh) =>
+  API.put("/api/admin/chuyenNganh", updateChuyenNganh);
+export const deleteChuyenNganh = (data) =>
+  API.delete("/api/admin/chuyenNganh", { data });
+
 //2. teacher
 
 export const getTeacherDepartment = (department, page, size) =>

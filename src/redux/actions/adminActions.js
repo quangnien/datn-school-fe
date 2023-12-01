@@ -72,6 +72,10 @@ import {
   IMPORT_DIEMS,
   EXPORT_DIEMS,
   DELETE_CMMNCD,
+  ADD_CHUYENNGANH,
+  UPDATE_CHUYENNGANH,
+  DELETE_CHUYENNGANH,
+  GET_ALL_CHUYENNGANH,
 } from "../actionTypes";
 import * as api from "../api";
 
@@ -85,6 +89,17 @@ export const getAllDepartment = () => async (dispatch) => {
     console.log("Redux Error", error);
   }
 };
+
+export const getAllChuyenNganh = () => async (dispatch) => {
+  try {
+    const { data } = await api.getAllChuyenNganh();
+    // dispatch({ type: GET_ALL_DEPARTMENT, payload: data.retObj[0] });
+    dispatch({ type: GET_ALL_CHUYENNGANH, payload: data.retObj });
+  } catch (error) {
+    console.log("Redux Error", error);
+  }
+};
+
 export const getAllTeacher = (redata) => async (dispatch) => {
   try {
     const { data } = await api.getAllTeacher(redata);
@@ -216,6 +231,31 @@ export const addDepartment = (formData) => async (dispatch) => {
     if (data.status === "success") {
       toast.success("Thêm khoa mới thành công!");
       dispatch({ type: ADD_DEPARTMENT, payload: true });
+    } else {
+      dispatch({ type: SET_ERRORS, payload: data });
+    }
+  } catch (error) {
+    if (
+      error.response &&
+      error.response.data &&
+      error.response.data.status === "error"
+    ) {
+      dispatch({ type: SET_ERRORS, payload: error.response.data });
+    } else {
+      console.log("Unknown error occurred");
+    }
+  }
+};
+
+// Add
+export const addChuyenNganh = (formData) => async (dispatch) => {
+  try {
+    console.log(formData);
+    // debugger;
+    const { data } = await api.addChuyenNganh(formData);
+    if (data.status === "success") {
+      toast.success("Thêm chuyên ngành mới thành công!");
+      dispatch({ type: ADD_CHUYENNGANH, payload: true });
     } else {
       dispatch({ type: SET_ERRORS, payload: data });
     }
@@ -453,7 +493,6 @@ export const addCourseDetail = (formData) => async (dispatch) => {
 };
 
 //update
-
 export const updateDepartment = (formData) => async (dispatch) => {
   try {
     const { data } = await api.updateDepartment(formData);
@@ -462,6 +501,21 @@ export const updateDepartment = (formData) => async (dispatch) => {
       dispatch({ type: UPDATE_DEPARTMENT, payload: true });
     } else {
       toast.error("Chỉnh sửa khoa không thành công!");
+      dispatch({ type: SET_ERRORS, payload: data });
+    }
+  } catch (error) {
+    dispatch({ type: SET_ERRORS, payload: error.response.data });
+  }
+};
+
+export const updateChuyenNganh = (formData) => async (dispatch) => {
+  try {
+    const { data } = await api.updateChuyenNganh(formData);
+    if (data.status === "success") {
+      toast.success("Chỉnh sửa chuyên ngành thành công!");
+      dispatch({ type: UPDATE_CHUYENNGANH, payload: true });
+    } else {
+      toast.error("Chỉnh sửa chuyên ngành không thành công!");
       dispatch({ type: SET_ERRORS, payload: data });
     }
   } catch (error) {
@@ -658,6 +712,21 @@ export const deleteDepartment = (formData) => async (dispatch) => {
     }
   } catch (error) {
     dispatch({ type: SET_ERRORS, payload: "Xóa Khoa không Thành công" });
+  }
+};
+
+export const deleteChuyenNganh = (formData) => async (dispatch) => {
+  try {
+    const { data } = await api.deleteChuyenNganh(formData);
+    if (data.status === "success" && data.retObj.length > 0) {
+      toast.success("Xóa chuyên ngành thành công!");
+      dispatch({ type: DELETE_CHUYENNGANH, payload: true });
+    } else {
+      toast.error("Xóa chuyên ngành này không thành không!");
+      dispatch({ type: SET_ERRORS, payload: "Xóa chuyên ngành không Thành công" });
+    }
+  } catch (error) {
+    dispatch({ type: SET_ERRORS, payload: "Xóa chuyên ngành không Thành công" });
   }
 };
 

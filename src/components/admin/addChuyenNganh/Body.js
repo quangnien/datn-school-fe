@@ -1,22 +1,25 @@
-import { ADD_DEPARTMENT, SET_ERRORS } from "../../../redux/actionTypes";
-import { addDepartment } from "../../../redux/actions/adminActions";
+import { ADD_CHUYENNGANH, ADD_DEPARTMENT, SET_ERRORS } from "../../../redux/actionTypes";
+import { addChuyenNganh, addDepartment } from "../../../redux/actions/adminActions";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import * as classes from "../../../utils/styles";
 import AddIcon from "@mui/icons-material/Add";
 import React, { useEffect, useState } from "react";
 import Spinner from "../../../utils/Spinner";
+import { MenuItem, Select } from "@mui/material";
 
 const Body = () => {
   const dispatch = useDispatch();
   const store = useSelector((state) => state);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState({});
+  const departments = useSelector((state) => state.admin.allDepartment);
   const [value, setValue] = useState({
-    tenKhoa: "",
+    tenCn: "",
+    maCn: "",
     maKhoa: "",
-    sdt: "0961319365",
-    email: "123meomeo@gmail.com",
+    // sdt: "0961319365",
+    // email: "123meomeo@gmail.com",
   });
 
   useEffect(() => {
@@ -30,26 +33,25 @@ const Body = () => {
     e.preventDefault();
     setError({});
     setLoading(true);
-    dispatch(addDepartment(value));
+    dispatch(addChuyenNganh(value));
   };
 
   useEffect(() => {
-    if (store.errors || store.admin.departmentAdded) {
+    if (store.errors || store.admin.chuyenNganhAdded) {
       setLoading(false);
-      if (store.admin.departmentAdded) {
+      if (store.admin.chuyenNganhAdded) {
         setValue({
-          tenKhoa: "",
+          tenCn: "",
+          maCn: "",
           maKhoa: "",
-          sdt: "",
-          email: "",
         });
         dispatch({ type: SET_ERRORS, payload: {} });
-        dispatch({ type: ADD_DEPARTMENT, payload: false });
+        dispatch({ type: ADD_CHUYENNGANH, payload: false });
       }
     } else {
       setLoading(true);
     }
-  }, [store.errors, store.admin.departmentAdded]);
+  }, [store.errors, store.admin.chuyenNganhAdded]);
 
   useEffect(() => {
     dispatch({ type: SET_ERRORS, payload: {} });
@@ -60,9 +62,9 @@ const Body = () => {
       <div className="space-y-5">
         <div className="flex items-center space-x-2 text-gray-400">
           <AddIcon />
-          <h1>Thêm Khoa Mới</h1>
+          <h1>Thêm Chuyên Ngành Mới</h1>
         </div>
-        <Link to="/admin/getdepartmentall" className="">
+        <Link to="/admin/getchuyennganhall" className="">
           <button className="mt-5 px-4 py-2  font-bold text-white rounded bg-[#157572] mr-14 hover:bg-[#04605E] focus:outline-none focus:shadow-outline">
             Quay lại
           </button>
@@ -74,31 +76,53 @@ const Body = () => {
           >
             <div className={classes.FormItem}>
               <div className={classes.WrapInputLabel}>
-                <h1 className={classes.LabelStyle}>Tên khoa *:</h1>
+                <h1 className={classes.LabelStyle}>Tên chuyên ngành *:</h1>
                 <input
-                  placeholder="Tên khoa"
+                  placeholder="Tên chuyên ngành"
                   required
                   className={classes.InputStyle}
                   type="text"
-                  value={value.tenKhoa}
+                  value={value.tenCn}
                   onChange={(e) =>
-                    setValue({ ...value, tenKhoa: e.target.value })
+                    setValue({ ...value, tenCn: e.target.value })
                   }
                 />
               </div>
               <div className={classes.WrapInputLabel}>
-                <h1 className={classes.LabelStyle}>Mã khoa *:</h1>
+                <h1 className={classes.LabelStyle}>Mã chuyên ngành *:</h1>
 
                 <input
-                  placeholder="Mã khoa"
+                  placeholder="Mã chuyên ngành"
                   required
                   className={classes.InputStyle}
                   type="text"
+                  value={value.maCn}
+                  onChange={(e) =>
+                    setValue({ ...value, maCn: e.target.value })
+                  }
+                />
+              </div>
+
+              <div className={classes.WrapInputLabel}>
+                <h1 className={classes.LabelStyle}>Khoa *:</h1>
+                <Select
+                  required
+                  displayEmpty
+                  sx={{ height: 36 }}
+                  inputProps={{ "aria-label": "Without label" }}
                   value={value.maKhoa}
                   onChange={(e) =>
                     setValue({ ...value, maKhoa: e.target.value })
                   }
-                />
+                  className={`${classes.InputStyle} hover:focus:border-none `}
+                >
+                  <MenuItem value="">None</MenuItem>
+                  {departments?.map((dp, idx) => (
+                    <MenuItem key={idx} value={dp.maKhoa}>
+                      {dp.tenKhoa}
+                    </MenuItem>
+                  ))}
+                </Select>
               </div>
               {/* <div className={classes.WrapInputLabel}>
                 <h1 className={classes.LabelStyle}>Số điện thoại :</h1>
@@ -137,10 +161,9 @@ const Body = () => {
               <button
                 onClick={() => {
                   setValue({
-                    tenKhoa: "",
+                    tenCn: "",
+                    maCn: "",
                     maKhoa: "",
-                    sdt: "",
-                    email: "",
                   });
                   setError({});
                 }}
@@ -153,7 +176,7 @@ const Body = () => {
             <div className={classes.loadingAndError}>
               {loading && (
                 <Spinner
-                  message="Đang thêm khoa..."
+                  message="Đang thêm chuyên ngành..."
                   height={30}
                   width={150}
                   color="#157572"
