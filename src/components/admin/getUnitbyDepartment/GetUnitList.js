@@ -1,4 +1,4 @@
-import { getAllDepartment } from "../../../redux/actions/adminActions";
+import { getAllChuyenNganh, lpk } from "../../../redux/actions/adminActions";
 import { useDispatch } from "react-redux";
 import Body from "./Body";
 import Header from "../Header";
@@ -8,7 +8,7 @@ import Sidebar from "../Sidebar";
 const GetUnitList = () => {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getAllDepartment());
+    dispatch(getAllChuyenNganh());
   }, [dispatch]);
 
   return (

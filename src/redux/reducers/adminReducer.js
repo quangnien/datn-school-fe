@@ -38,7 +38,6 @@ import {
   GET_SUBJECT_DEPARTMENT,
   GET_TEACHER_DEPARTMENT,
   GET_THONGKE_BY_SOMETHING,
-  GET_UNIT_DEPARTMENT,
   RESET_COURSEDETAILS,
   RESET_COURSES,
   RESET_SCORES,
@@ -81,6 +80,7 @@ import {
   ADD_CHUYENNGANH,
   DELETE_CHUYENNGANH,
   UPDATE_CHUYENNGANH,
+  GET_UNIT_CHUYENNGANH,
 } from "../actionTypes";
 
 const initialState = {
@@ -343,7 +343,7 @@ const adminReducer = (state = initialState, action) => {
           ...state,
           updatedCmmnCd: action.payload,
         };
-    case GET_UNIT_DEPARTMENT:
+    case GET_UNIT_CHUYENNGANH:
       return {
         ...state,
         units: action.payload,

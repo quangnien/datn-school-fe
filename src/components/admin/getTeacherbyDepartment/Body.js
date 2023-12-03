@@ -556,7 +556,7 @@ const Body = () => {
                     inputProps={{ "aria-label": "Without label" }}
                     value={value.maKhoa || selectedTeacher.maKhoa}
                     onChange={(e) =>
-                      setValue({ ...value, maLop: e.target.value })
+                      setValue({ ...value, maKhoa: e.target.value })
                     }
                     className={`${classes.InputStyle} hover:focus:border-none `}
                   >

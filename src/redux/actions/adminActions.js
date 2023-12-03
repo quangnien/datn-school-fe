@@ -76,6 +76,7 @@ import {
   UPDATE_CHUYENNGANH,
   DELETE_CHUYENNGANH,
   GET_ALL_CHUYENNGANH,
+  GET_UNIT_CHUYENNGANH,
 } from "../actionTypes";
 import * as api from "../api";
 
@@ -924,10 +925,10 @@ export const getStudentUnit = (unit, page, size) => async (dispatch) => {
   }
 };
 
-export const getUnitDepartment = (department) => async (dispatch) => {
+export const getUnitChuyenNganh = (chuyennganh) => async (dispatch) => {
   try {
-    const { data } = await api.getUnitDepartment(department);
-    dispatch({ type: GET_UNIT_DEPARTMENT, payload: data });
+    const { data } = await api.getUnitChuyenNganh(chuyennganh);
+    dispatch({ type: GET_UNIT_CHUYENNGANH, payload: data });
   } catch (error) {
     // console.log("error.response.data", error.response.data);
     dispatch({ type: SET_ERRORS, payload: error.response.data });

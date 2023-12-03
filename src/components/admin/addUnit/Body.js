@@ -12,13 +12,13 @@ import Spinner from "../../../utils/Spinner";
 const Body = () => {
   const dispatch = useDispatch();
   const store = useSelector((state) => state);
-  const departments = useSelector((state) => state.admin.allDepartment);
+  const chuyennganhs = useSelector((state) => state.admin.allChuyenNganh);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState({});
   const [value, setValue] = useState({
     tenLop: "",
     maLop: "",
-    maKhoa: "",
+    maCn: "",
   });
 
   useEffect(() => {
@@ -42,7 +42,7 @@ const Body = () => {
         setValue({
           tenLop: "",
           maLop: "",
-          maKhoa: "",
+          maCn: "",
         });
         dispatch({ type: SET_ERRORS, payload: {} });
         dispatch({ type: ADD_UNIT, payload: false });
@@ -111,15 +111,15 @@ const Body = () => {
                     displayEmpty
                     sx={{ height: 36 }}
                     inputProps={{ "aria-label": "Without label" }}
-                    value={value.maKhoa}
+                    value={value.maCn}
                     onChange={(e) =>
-                      setValue({ ...value, maKhoa: e.target.value })
+                      setValue({ ...value, maCn: e.target.value })
                     }
                   >
                     <MenuItem value="">None</MenuItem>
-                    {departments?.map((dp, idx) => (
-                      <MenuItem key={idx} value={dp.maKhoa}>
-                        {dp.tenKhoa}
+                    {chuyennganhs?.map((dp, idx) => (
+                      <MenuItem key={idx} value={dp.maCn}>
+                        {dp.tenCn}
                       </MenuItem>
                     ))}
                   </Select>
@@ -136,7 +136,7 @@ const Body = () => {
                   setValue({
                     tenLop: "",
                     maLop: "",
-                    maKhoa: "",
+                    maCn: "",
                   });
                   setError({});
                 }}

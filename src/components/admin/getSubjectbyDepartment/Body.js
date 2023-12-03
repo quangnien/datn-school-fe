@@ -338,7 +338,7 @@ const Body = () => {
           onSubmit={handleSubmit}
         >
           <label htmlFor="department">
-            Chọn chuyên ngành để xem danh sách môn học:
+            Chọn khoa để xem danh sách môn học:
           </label>
 
           <div className="flex">
@@ -476,9 +476,9 @@ const Body = () => {
           style={modalStyles}
           ariaHideApp={false}
         >
-          <div className="flex flex-col bg-white rounded-xl">
+          <div className="flex flex-col bg-white rounded-xl w-full ">
             <form
-              className="w-full min-h-[400px] py-10 px-7 text-center bg-[#fff] border rounded-md  shadow-md mx-auto"
+              className="w-[1624px] min-h-[500px] py-10 px-7 text-center bg-[#fff] border rounded-md  shadow-md mx-auto"
               onSubmit={handleFormSubmit}
             >
               <div className="grid grid-cols-4 mt-4 gap-x-10">

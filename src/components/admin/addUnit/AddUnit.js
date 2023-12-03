@@ -4,12 +4,12 @@ import Header from "../Header";
 import Sidebar from "../Sidebar";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { getAllDepartment } from "../../../redux/actions/adminActions";
+import { getAllChuyenNganh } from "../../../redux/actions/adminActions";
 
 const AddUnit = () => {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getAllDepartment());
+    dispatch(getAllChuyenNganh());
   }, [dispatch]);
   return (
     <div className="bg-[#d6d9e0] h-screen flex items-center ">

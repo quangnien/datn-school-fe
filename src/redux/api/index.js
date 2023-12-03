@@ -39,8 +39,8 @@ export const deleteTeacher = (data) =>
 export const addUnit = (unit) => API.post("/api/admin/lop", unit);
 export const getAllUnit = () => API.get("/api/admin/lop");
 
-export const getUnitDepartment = (department) =>
-  API.get(`/api/admin/lop/khoa/${department}`, department);
+export const getUnitChuyenNganh = (chuyennganh) =>
+  API.get(`/api/admin/lop/chuyenNganh/${chuyennganh}`, chuyennganh);
 export const updateUnit = (updateUnit) => API.put("/api/admin/lop", updateUnit);
 export const deleteUnit = (data) => API.delete("api/admin/lop", { data });
 

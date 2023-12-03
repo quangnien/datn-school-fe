@@ -238,7 +238,7 @@ const Body = () => {
                 />
               </div>
               <div className={classes.WrapInputLabel}>
-                <h1 className={classes.LabelStyle}>Chuyên ngành *:</h1>
+                <h1 className={classes.LabelStyle}>Khoa *:</h1>
                 <Select
                   required
                   displayEmpty

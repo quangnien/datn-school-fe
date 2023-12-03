@@ -14,7 +14,7 @@ import {
 } from "../../../redux/actionTypes";
 import {
   deleteUnit,
-  getUnitDepartment,
+  getUnitChuyenNganh,
   updateUnit,
 } from "../../../redux/actions/adminActions";
 
@@ -32,27 +32,29 @@ const modalStyles = {
 
 const Body = () => {
   const dispatch = useDispatch();
-  const [department, setDepartment] = useState("");
+  const [chuyennganh, setChuyenNganh] = useState("");
   const [error, setError] = useState({});
   const [search, setSearch] = useState(false);
   const [loading, setLoading] = useState(false);
   const store = useSelector((state) => state);
-  const departments = useSelector((state) => state.admin.allDepartment);
-  departments?.sort(
-    (a, b) => a.tenKhoa.charCodeAt(0) - b.tenKhoa.charCodeAt(0)
+  const chuyennganhs = useSelector((state) => state.admin.allChuyenNganh);
+  chuyennganhs?.sort(
+    (a, b) => a.tenCn.charCodeAt(0) - b.tenCn.charCodeAt(0)
   );
   // phục vụ xóa
-  const departmentObj = departments?.find((dp) => dp.tenKhoa === department);
-  const departmentId = departmentObj?.maKhoa;
+  const chuyenNganhObj = chuyennganhs?.find((dp) => dp.tenCn === chuyennganh);
+  const chuyenNganhId = chuyenNganhObj?.maCn;
+
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setSearch(true);
     setLoading(true);
     setError({});
-    const departmentObj = departments.find((dp) => dp.tenKhoa === department);
-    const departmentId = departmentObj?.maKhoa;
-    dispatch(getUnitDepartment(departmentId));
+    const chuyenNganhObj = chuyennganhs.find((dp) => dp.tenCn === chuyennganh);
+    const chuyenNganhId = chuyenNganhObj?.maCn;
+    dispatch(getUnitChuyenNganh(chuyenNganhId));
   };
 
   const units = useSelector((state) => state.admin.units.retObj);
@@ -75,8 +77,8 @@ const Body = () => {
     }
   }, [store.errors]);
   useEffect(() => {
-    if (!department) dispatch({ type: "RESET_UNITS" });
-  }, [department]);
+    if (!chuyennganh) dispatch({ type: "RESET_UNITS" });
+  }, [chuyennganh]);
 
   // Begin edit
   const [selectedUnit, setSelectedUnit] = useState("");
@@ -84,7 +86,7 @@ const Body = () => {
   const [value, setValue] = useState({
     tenLop: "",
     maLop: "",
-    maKhoa: "",
+    maCn: "",
     id: "",
   });
 
@@ -94,7 +96,7 @@ const Body = () => {
     setValue({
       tenLop: "",
       maLop: unit?.maLop,
-      maKhoa: unit?.maKhoa,
+      maCn: unit?.maCn,
       id: unit?.id,
     });
   };
@@ -114,6 +116,11 @@ const Body = () => {
     } else {
       updatedValue.tenLop = selectedUnit.tenLop;
     }
+    if (value.maCn !== "") {
+      updatedValue.maCn = value.maCn;
+    } else {
+      updatedValue.maCn = selectedUnit.maCn;
+    }
     dispatch(updateUnit({ ...selectedUnit, ...updatedValue }));
     dispatch({ type: UPDATE_UNIT, payload: false });
   };
@@ -122,7 +129,7 @@ const Body = () => {
     if (store.admin.updatedUnit) {
       setError({});
       closeModal();
-      dispatch(getUnitDepartment(selectedUnit.maKhoa));
+      dispatch(getUnitChuyenNganh(selectedUnit.maCn));
     }
   }, [dispatch, store.errors, store.admin.updatedUnit]);
 
@@ -165,16 +172,16 @@ const Body = () => {
     if (store.admin.unitDeleted) {
       setLoading(false);
       setCheckedValue([]);
-      const departmentObj = departments.find((dp) => dp.tenKhoa === department);
-      const departmentId = departmentObj.maKhoa;
-      dispatch(getUnitDepartment(departmentId));
+      const chuyenNganhObj = chuyennganhs.find((dp) => dp.tenCn === chuyennganhs);
+      const chuyenNganhId = chuyenNganhObj.maCn;
+      dispatch(getUnitChuyenNganh(chuyenNganhId));
       dispatch({ type: DELETE_UNIT, payload: false });
     }
   }, [store.admin.unitDeleted]);
 
   useEffect(() => {
     if (Object.keys(store.errors).length !== 0) {
-      dispatch(getUnitDepartment(departmentId));
+      dispatch(getUnitChuyenNganh(chuyenNganhId));
     }
   }, [store.errors]);
 
@@ -222,13 +229,13 @@ const Body = () => {
               displayEmpty
               sx={{ height: 36, width: 284 }}
               inputProps={{ "aria-label": "Without label" }}
-              value={department}
-              onChange={(e) => setDepartment(e.target.value)}
+              value={chuyennganh}
+              onChange={(e) => setChuyenNganh(e.target.value)}
             >
               <MenuItem value="">None</MenuItem>
-              {departments?.map((dp, idx) => (
-                <MenuItem key={idx} value={dp.tenKhoa}>
-                  {dp.tenKhoa}
+              {chuyennganhs?.map((dp, idx) => (
+                <MenuItem key={idx} value={dp.tenCn}>
+                  {dp.tenCn}
                 </MenuItem>
               ))}
             </Select>
@@ -348,6 +355,30 @@ const Body = () => {
                       })
                     }
                   />
+                </div>
+
+                <div className={classes.WrapInputLabel}>
+                  <h1 className={classes.LabelStyle}>Chuyên Ngành* :</h1>
+                  <Select
+                    required
+                    displayEmpty
+                    sx={{
+                      height: 36,
+                      outline: "none",
+                    }}
+                    inputProps={{ "aria-label": "Without label" }}
+                    value={value.maCn || selectedUnit.maCn}
+                    onChange={(e) =>
+                      setValue({ ...value, maCn: e.target.value })
+                    }
+                    className={`${classes.InputStyle} hover:focus:border-none `}
+                  >
+                    {chuyennganhs?.map((dp, idx) => (
+                      <MenuItem key={idx} value={dp.maCn}>
+                        {dp.tenCn}
+                      </MenuItem>
+                    ))}
+                  </Select>
                 </div>
               </div>
 

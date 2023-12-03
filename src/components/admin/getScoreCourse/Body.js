@@ -382,8 +382,8 @@ console.log("file",file)
                                         <th className="px-4 py-1">Điểm CC</th>
                                         <th className="px-4 py-1">Điểm GK</th>
                                         <th className="px-4 py-1">Điểm CK</th>
-                                        <th className="px-4 py-1">TK10</th>
-                                        <th className="px-4 py-1">TKCH</th>
+                                        <th className="px-4 py-1">Trung Bình</th>
+                                        <th className="px-4 py-1">Xếp Loại</th>
                                         {valueMKH?.maKeHoach === "MKH1" && <th className="px-4 py-1">Hành Động</th>}
                                     </tr>
                                 </thead>

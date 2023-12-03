@@ -24,6 +24,7 @@ const Body = () => {
   }, 0);
   // kỳ 1
   const scores1 = useSelector((state) => state?.student?.scores1?.retObj);
+
   const totalCredits1 = scores1?.reduce((accumulator, currentValue) => {
     return accumulator + currentValue.soTc;
   }, 0);
@@ -241,7 +242,7 @@ const Body = () => {
                             className="px-4 py-2 text-center border"
                             style={{ width: "93px" }}
                           >
-                            {score.xepLoai === "F" ? (
+                            {score.xepLoai === "F"  || score.xepLoai === null ? (
                               <div className="text-center">
                                 <svg
                                   xmlns="http://www.w3.org/2000/svg"
