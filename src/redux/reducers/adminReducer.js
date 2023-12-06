@@ -81,6 +81,9 @@ import {
   DELETE_CHUYENNGANH,
   UPDATE_CHUYENNGANH,
   GET_UNIT_CHUYENNGANH,
+  GET_ALL_GV_DOW,
+  UPDATE_GV_DOW,
+  GET_ALL_DAY_OF_WEEK,
 } from "../actionTypes";
 
 const initialState = {
@@ -95,6 +98,7 @@ const initialState = {
   updatedUnit: false,
   updatedSubject: false,
   updatedRole: false,
+  updatedGvDow: false,
   updatedUser: false,
 
   updatedStudent: false,
@@ -122,6 +126,8 @@ const initialState = {
   allTeacher: [],
   allSubject: [],
   allRole: [],
+  allGvDow: [],
+  allDayOfWeek: [],
   allUser: [],
   allStudent: [],
   allDepartment: [],
@@ -194,6 +200,11 @@ const adminReducer = (state = initialState, action) => {
         ...state,
         allMenu: action.payload,
       };
+      case GET_ALL_GV_DOW:
+        return {
+          ...state,
+          allGvDow: action.payload,
+        };
     case GET_ALL_CMMNCD:
       return {
         ...state,
@@ -260,6 +271,11 @@ const adminReducer = (state = initialState, action) => {
         ...state,
         allTeacher: action.payload,
       };
+      case GET_ALL_DAY_OF_WEEK:
+        return {
+          ...state,
+          allDayOfWeek: action.payload,
+        };  
     case ADD_TEACHER:
       return {
         ...state,
@@ -338,6 +354,11 @@ const adminReducer = (state = initialState, action) => {
         ...state,
         updatedMenu: action.payload,
       };
+      case UPDATE_GV_DOW:
+        return {
+          ...state,
+          updatedGvDow: action.payload,
+        };  
     case UPDATE_CMMNCD:
         return {
           ...state,

@@ -347,7 +347,7 @@ console.log("file",file)
            bg-[#157572] focus:outline-none focus:shadow-outline "
                                     type="submit"
                                 >
-                                    Upload Template
+                                    Upload File
                                 </button>
                             </div>
                         </form>
@@ -356,7 +356,7 @@ console.log("file",file)
            bg-[#157572] focus:outline-none focus:shadow-outline "
                             onClick={handleExport}
                         >
-                            Download Template
+                            Download File
                         </button>
                     </div>
                 )}

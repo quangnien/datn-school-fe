@@ -42,6 +42,7 @@ export const GET_ALL_DSLOPTC_SV = "GET_ALL_DSLOPTC_SV";
 export const GET_ALL_KHN = "GET_ALL_KHN";
 export const GET_ALL_MENU = "GET_ALL_MENU";
 export const GET_ALL_ROLE = "GET_ALL_ROLE";
+export const GET_ALL_GV_DOW = "GET_ALL_GV_DOW";
 export const GET_ALL_USER = "GET_ALL_USER";
 export const GET_ALL_CMMNCD = "GET_ALL_CMMNCD";
 export const GET_ALL_CMMNCDSV = "GET_ALL_CMMNCDSV";
@@ -49,6 +50,7 @@ export const GET_ALL_CMMNCDGV = "GET_ALL_CMMNCDGV";
 
 
 export const GET_ALL_MHTQ = "GET_ALL_MHTQ";
+export const GET_ALL_DAY_OF_WEEK = "GET_ALL_DAY_OF_WEEK";
 export const GET_ALL_SCORE_STUDENT = "GET_ALL_SCORE_STUDENT";
 export const GET_ALL_SCORE_STUDENT0 = "GET_ALL_SCORE_STUDENT0";
 export const GET_ALL_SCORE_STUDENT1 = "GET_ALL_SCORE_STUDENT1";
@@ -103,6 +105,8 @@ export const UPDATE_MENU = "UPDATE_MENU";
 export const UPDATE_ROLE = "UPDATE_ROLE";
 export const UPDATE_PASSWORD = "UPDATE_PASSWORD";
 export const UPDATE_SCORE = "UPDATE_SCORE";
+export const UPDATE_GV_DOW = "UPDATE_GV_DOW";
+
 export const UPDATE_STUDENT = "UPDATE_STUDENT";
 export const UPDATE_SUBJECT = "UPDATE_SUBJECT";
 export const UPDATE_TEACHER = "UPDATE_TEACHER";

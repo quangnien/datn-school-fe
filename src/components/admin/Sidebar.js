@@ -23,7 +23,7 @@ const Sidebar = () => {
         dispatch(getCurrentUser());
     }, []);
     const users = useSelector((state) => state.admin.currentUser);
-    console.log("users : ", users)
+    console.log("users : ", users);
     return (
         <div className="flex-[0.2] w-[268px] h-full">
             <div className="ml-1  pt-4 space-y-8  h-full bg-[#04605E]">
@@ -38,27 +38,27 @@ const Sidebar = () => {
                 </div>
 
                 <div className="mt-0" style={{ marginTop: 0 }}>
-                    {users[users.indexOf('MENU_KHOA')] && (
+                    {users[users.indexOf("MENU_KHOA")] && (
                         <NavLink to="/admin/getdepartmentall" className={({ isActive }) => (isActive ? isActiveStyle : isNotActiveStyle)}>
                             <AssignmentIndIcon className="" />
                             <h1 className="font-normal">Khoa</h1>
                         </NavLink>
                     )}
 
-                    {users[users.indexOf('MENU_CHUYENNGANH')] && (
+                    {users[users.indexOf("MENU_CHUYENNGANH")] && (
                         <NavLink to="/admin/getchuyennganhall" className={({ isActive }) => (isActive ? isActiveStyle : isNotActiveStyle)}>
                             <AssignmentIndIcon className="" />
                             <h1 className="font-normal">Chuyên Ngành</h1>
                         </NavLink>
                     )}
 
-                    {users[users.indexOf('MENU_LOPTINCHI')] && (
+                    {users[users.indexOf("MENU_LOPTINCHI")] && (
                         <NavLink to="/admin/allUnit" className={({ isActive }) => (isActive ? isActiveStyle : isNotActiveStyle)}>
                             <SchoolIcon className="" />
                             <h1 className="font-normal">Lớp</h1>
                         </NavLink>
                     )}
-                    {users[users.indexOf('MENU_SINHVIEN')] && (
+                    {users[users.indexOf("MENU_SINHVIEN")] && (
                         <NavLink to="/admin/student" className={({ isActive }) => (isActive ? isActiveStyle : isNotActiveStyle)}>
                             <GroupIcon className="" />
 
@@ -66,14 +66,14 @@ const Sidebar = () => {
                         </NavLink>
                     )}
 
-                    {users[users.indexOf('MENU_GIANGVIEN')] && (
+                    {users[users.indexOf("MENU_GIANGVIEN")] && (
                         <NavLink to="/admin/teacher" className={({ isActive }) => (isActive ? isActiveStyle : isNotActiveStyle)}>
                             <GroupIcon className="" />
                             <h1 className="font-normal">Giảng Viên</h1>
                         </NavLink>
                     )}
 
-                    {users[users.indexOf('MENU_LOPTINCHI')] && (
+                    {users[users.indexOf("MENU_LOPTINCHI")] && (
                         <NavLink to="/admin/allcourse" className={({ isActive }) => (isActive ? isActiveStyle : isNotActiveStyle)}>
                             <SchoolIcon className="" />
 
@@ -81,17 +81,17 @@ const Sidebar = () => {
                         </NavLink>
                     )}
 
-                    {users[users.indexOf('MENU_LICHHOC')] && (
-                    <NavLink to="/admin/coursedetail" className={({ isActive }) => (isActive ? isActiveStyle : isNotActiveStyle)}>
-                        <SchoolIcon className="" />
+                    {users[users.indexOf("MENU_LICHHOC")] && (
+                        <NavLink to="/admin/coursedetail" className={({ isActive }) => (isActive ? isActiveStyle : isNotActiveStyle)}>
+                            <SchoolIcon className="" />
 
-                        <h1 className="font-normal">Lịch học</h1>
-                    </NavLink>
+                            <h1 className="font-normal">Lịch học</h1>
+                        </NavLink>
                     )}
                 </div>
 
                 <div className="" style={{ marginTop: 0 }}>
-                    {users[users.indexOf('MENU_DIEM')] && (
+                    {users[users.indexOf("MENU_DIEM")] && (
                         <NavLink to="/admin/allscore" className={({ isActive }) => (isActive ? isActiveStyle : isNotActiveStyle)}>
                             <CreditScoreIcon className="" />
                             <h1 className="font-normal">Điểm</h1>
@@ -99,7 +99,7 @@ const Sidebar = () => {
                     )}
                 </div>
                 <div className="" style={{ marginTop: 0 }}>
-                    {users[users.indexOf('MENU_MONHOC')] && (
+                    {users[users.indexOf("MENU_MONHOC")] && (
                         <NavLink to="/admin/allsubject" className={({ isActive }) => (isActive ? isActiveStyle : isNotActiveStyle)}>
                             <MenuBookIcon className="" />
                             <h1 className="font-normal">Môn học</h1>
@@ -107,7 +107,7 @@ const Sidebar = () => {
                     )}
                 </div>
                 <div className="" style={{ marginTop: 0 }}>
-                    {users[users.indexOf('MENU_MENU')] && (
+                    {users[users.indexOf("MENU_MENU")] && (
                         <NavLink to="/admin/getmenuall" className={({ isActive }) => (isActive ? isActiveStyle : isNotActiveStyle)}>
                             <MenuBookIcon className="" />
                             <h1 className="font-normal">Menu</h1>
@@ -115,7 +115,7 @@ const Sidebar = () => {
                     )}
                 </div>
                 <div className="" style={{ marginTop: 0 }}>
-                    {users[users.indexOf('MENU_ROLE')] && (
+                    {users[users.indexOf("MENU_ROLE")] && (
                         <NavLink to="/admin/getroleall" className={({ isActive }) => (isActive ? isActiveStyle : isNotActiveStyle)}>
                             <MenuBookIcon className="" />
                             <h1 className="font-normal">Role</h1>
@@ -123,7 +123,7 @@ const Sidebar = () => {
                     )}
                 </div>
                 <div className="" style={{ marginTop: 0 }}>
-                    {users[users.indexOf('MENU_USERS')] && (
+                    {users[users.indexOf("MENU_USERS")] && (
                         <NavLink to="/admin/getuserall" className={({ isActive }) => (isActive ? isActiveStyle : isNotActiveStyle)}>
                             <MenuBookIcon className="" />
                             <h1 className="font-normal">Users</h1>
@@ -131,22 +131,26 @@ const Sidebar = () => {
                     )}
                 </div>
                 <div className="" style={{ marginTop: 0 }}>
-                
-                    {users[users.indexOf('MENU_CMMNCD')] && (
+                    {users[users.indexOf("MENU_CMMNCD")] && (
                         <NavLink to="/admin/getcmmncdall" className={({ isActive }) => (isActive ? isActiveStyle : isNotActiveStyle)}>
                             <MenuBookIcon className="" />
-                            <h1 className="font-normal">Common Code</h1>
+                            <h1 className="font-normal">Danh mục trạng thái</h1>
                         </NavLink>
                     )}
                 </div>
                 <div className="" style={{ marginTop: 0 }}>
-                    {users[users.indexOf('MENU_THONGKEDIEM')] && (
+                    {users[users.indexOf("MENU_THONGKEDIEM")] && (
                         <NavLink to="/admin/thongke" className={({ isActive }) => (isActive ? isActiveStyle : isNotActiveStyle)}>
                             <BarChartIcon className="" />
                             <h1 className="font-normal">Thống kê điểm</h1>
                         </NavLink>
                     )}
-
+                    {users[users.indexOf("MENU_GV_DANGKYLICHDAY")] && (
+                        <NavLink to="/admin/getgvdow" className={({ isActive }) => (isActive ? isActiveStyle : isNotActiveStyle)}>
+                            <BarChartIcon className="" />
+                            <h1 className="font-normal">Lịch dạy</h1>
+                        </NavLink>
+                    )}
                     <NavLink to="/admin/updatepassword" className={({ isActive }) => (isActive ? isActiveStyle : isNotActiveStyle)}>
                         <div>
                             <svg

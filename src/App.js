@@ -43,6 +43,7 @@ import GetCmmnCdList from "./components/admin/getCmmnCdAll/GetMenuList";
 import AddCmmnCd from "./components/admin/addCmmnCd/AddCmmnCd";
 import GetChuyenNganhList from "./components/admin/getChuyenNganhAll/GetChuyenNganhList";
 import AddChuyenNganh from "./components/admin/addChuyenNganh/AddChuyenNganh";
+import GetGvDowList from "./components/admin/getAllGvDow/GetGvDowList";
 
 const App = () => {
   return (
@@ -108,6 +109,10 @@ const App = () => {
       {/* Chuyen Nganh */}
       <Route path="/admin/getchuyennganhall" element={<GetChuyenNganhList />} />
       <Route path="/admin/addChuyenNganh" element={<AddChuyenNganh />} />
+
+
+      {/* lịch dạy */}
+      <Route path="/admin/getgvdow" element={<GetGvDowList />} />
 
     </Routes>
   );

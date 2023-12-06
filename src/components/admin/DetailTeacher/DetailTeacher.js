@@ -51,22 +51,28 @@ const DetailTeacher = ({ teacher, isOpen, onClose }) => {
                 <span className="font-sans">Ngày Sinh</span>
                 <span className="font-sans">Số điện thoại</span>
                 <span className="font-sans">Email</span>
-                <span className="font-sans">Khoa</span>
+                <span className="font-sans">Trạng thái</span>
+                <span className="font-sans">Mã Khoa</span>
+                <span className="font-sans">Tên Khoa</span>
+                <span className="font-sans">Danh sách môn dạy</span>
               </div>
               <div
                 className="flex flex-col gap-y-5"
                 style={{ width: "250px", textAlign: "left" }}
               >
-                <span>{teacher.maGv}</span>
+                <span>{teacher?.maGv}</span>
                 <span>
-                  {teacher.ho} {teacher.ten}
+                  {teacher?.ho} {teacher?.ten}
                 </span>
-                <span>{teacher.phai}</span>
+                <span>{teacher?.phai}</span>
 
                 <span>{format(new Date(teacher.ngaySinh), "dd/MM/yyyy")}</span>
-                <span>{teacher.sdt}</span>
-                <span>{teacher.email}</span>
-                <span>{teacher.maKhoa}</span>
+                <span>{teacher?.sdt}</span>
+                <span>{teacher?.email}</span>
+                <span>{teacher?.tenStatus}</span>
+                <span>{teacher?.maKhoa}</span>
+                <span>{teacher?.tenKhoa}</span>
+                <span>{teacher?.tenMhList}</span>
               </div>
             </div>
           </div>

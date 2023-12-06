@@ -110,7 +110,7 @@ const Body = () => {
             onSubmit={handleSubmit}
           >
             <div className={classes.FormItem}>
-              <div className={classes.WrapInputLabel}>
+              {/* <div className={classes.WrapInputLabel}>
                 <h1 className={classes.LabelStyle}>Mã giảng viên *:</h1>
 
                 <input
@@ -121,7 +121,7 @@ const Body = () => {
                   value={value.maGv}
                   onChange={(e) => setValue({ ...value, maGv: e.target.value })}
                 />
-              </div>
+              </div> */}
               <div className={classes.WrapInputLabel}>
                 <h1 className={classes.LabelStyle}>Họ *:</h1>
 
@@ -158,7 +158,8 @@ const Body = () => {
                   }
                 />
               </div>
-              <div className={classes.WrapInputLabel}>
+            
+              {/* <div className={classes.WrapInputLabel}>
                 <h1 className={classes.LabelStyle}>Email *:</h1>
 
                 <input
@@ -171,7 +172,7 @@ const Body = () => {
                     setValue({ ...value, email: e.target.value })
                   }
                 />
-              </div>
+              </div> */}
               <div className={classes.WrapInputLabel}>
                 <h1 className={classes.LabelStyle}>Khoa *:</h1>
                 <Select

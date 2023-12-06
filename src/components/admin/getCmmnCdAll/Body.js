@@ -183,9 +183,9 @@ const Body = () => {
               <tr>
                 <th className="px-4 py-1">Chọn</th>
                 <th className="px-4 py-1">STT</th>
-                <th className="px-4 py-1">Mã Code</th>
-                <th className="px-4 py-1">Tên Code</th>
-                <th className="px-4 py-1">Master Data</th>
+                <th className="px-4 py-1">Mã danh mục trạng thái</th>
+                <th className="px-4 py-1">Tên danh mục trạng thái</th>
+                <th className="px-4 py-1">Đối tượng áp dụng</th>
                 <th className="px-4 py-1">Hành động</th>
               </tr>
             </thead>
@@ -272,7 +272,7 @@ const Body = () => {
                 </div>
 
                 <div className={classes.WrapInputLabel}>
-                  <h1 className={classes.LabelStyle}>Tên Master Data :</h1>
+                  <h1 className={classes.LabelStyle}>Đối tượng áp dụng :</h1>
                   <input
                     placeholder={selectedCmmnCd?.masterDataNm}
                     className={classes.InputStyle}

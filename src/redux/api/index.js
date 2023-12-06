@@ -24,7 +24,8 @@ export const deleteChuyenNganh = (data) =>
 //2. teacher
 
 export const getTeacherDepartment = (department, page, size) =>
-  API.get(`/api/admin/giangVien/khoa/${department}?page=${page}&size=${size}`);
+  // API.get(`/api/admin/giangVien/khoa/${department}?page=${page}&size=${size}`);
+  API.get(`/api/admin/giangVien/khoa/${department}?page=0&size=1000`);
 export const getAllTeacher = (data) => API.get("/api/admin/giangVien", data);
 export const addTeacher = (teacher) =>
   API.post("/api/admin/giangVien", teacher);
@@ -52,13 +53,15 @@ export const updateSubject = (updateSubject) =>
 export const deleteSubject = (data) => API.delete("api/admin/monHoc", { data });
 
 export const getSubjectDepartment = (department, page, size) =>
-  API.get(`/api/admin/monHoc/khoa/${department}?page=${page}&size=${size}`);
+  // API.get(`/api/admin/monHoc/khoa/${department}?page=${page}&size=${size}`);
+  API.get(`/api/admin/monHoc/khoa/${department}?page=0&size=1000`);
 
 //sinh viên
 export const getAllStudent = () => API.get("/api/admin/sinhVien");
 export const addStudent = (student) => API.post("/api/admin/sinhVien", student);
 export const getStudentUnit = (unit, page, size) =>
-  API.get(`/api/admin/sinhVien/lop/${unit}?page=${page}&size=${size}`);
+  // API.get(`/api/admin/sinhVien/lop/${unit}?page=${page}&size=${size}`);
+  API.get(`/api/admin/sinhVien/lop/${unit}?page=0&size=1000`);
 
 export const updateStudent = (updateStudent) =>
   API.put("/api/admin/sinhVien", updateStudent);
@@ -105,6 +108,7 @@ export const getAllCoursebyUnitMKH = (data) =>
 //Điểm
 export const getScoreCourse = (course) =>
   API.get(`/api/admin/diem/lopTc/detail/${course}`, course);
+
 export const updateScore = (updateScore) =>
   API.put("/api/admin/diem", updateScore);
 
@@ -139,6 +143,8 @@ export const getMhtq = () => API.get("/api/admin/mhtq");
 
 // Menu
 export const getAllMenu = () => API.get("/api/admin/menu");
+export const getAllDayOfDow = () => API.get("/api/admin/dayOfWeek");
+
 export const addMenu = (menu) => API.post("/api/admin/menu", menu);
 export const updateMenu = (updateMenu) =>
   API.put("/api/admin/menu", updateMenu);
@@ -146,7 +152,12 @@ export const deleteMenu = (data) => API.delete("/api/admin/menu", { data });
 
 // role
 export const getAllRole = () => API.get("/api/admin/role");
+
 export const addRole = (tole) => API.post("/api/admin/role", tole);
+// gvdow
+export const updateGvDow = (gvDow) => API.put("/api/admin/giangVien/dow", gvDow);
+export const getAllGvDow = () => API.get("/api/admin/giangVien/dow");
+
 export const updateRole = (updateRole) =>
   API.put("/api/admin/role", updateRole);
 export const deleteRole = (data) => API.delete("api/admin/role", { data });
@@ -178,3 +189,4 @@ export const exportDiem = (maLopTc) =>
   API.get(`/api/admin/diem/export/${maLopTc}`, {
     responseType: "blob",
   }); 
+

@@ -58,7 +58,7 @@ const Body = () => {
       <div className="space-y-5">
         <div className="flex items-center space-x-2 text-gray-400">
           <AddIcon />
-          <h1>Thêm Common Code Mới</h1>
+          <h1>Thêm Danh Mục Trạng Thái Mới</h1>
         </div>
         <Link to="/admin/getcmmncdall" className="">
           <button className="mt-5 px-4 py-2  font-bold text-white rounded bg-[#157572] mr-14 hover:bg-[#04605E] focus:outline-none focus:shadow-outline">
@@ -72,9 +72,9 @@ const Body = () => {
           >
             <div className={classes.FormItem}>
               <div className={classes.WrapInputLabel}>
-                <h1 className={classes.LabelStyle}>Mã Code *:</h1>
+                <h1 className={classes.LabelStyle}>Mã trạng thái *:</h1>
                 <input
-                  placeholder="Mã Code"
+                  placeholder="Mã trạng thái"
                   required
                   className={classes.InputStyle}
                   type="text"
@@ -85,10 +85,10 @@ const Body = () => {
                 />
               </div>
               <div className={classes.WrapInputLabel}>
-                <h1 className={classes.LabelStyle}>Tên Code *:</h1>
+                <h1 className={classes.LabelStyle}>Tên trạng thái *:</h1>
 
                 <input
-                  placeholder="Tên Code"
+                  placeholder="Tên trạng thái"
                   required
                   className={classes.InputStyle}
                   type="text"
@@ -99,10 +99,10 @@ const Body = () => {
                 />
               </div>
               <div className={classes.WrapInputLabel}>
-                <h1 className={classes.LabelStyle}>Master Data Name *:</h1>
+                <h1 className={classes.LabelStyle}>Đối tượng áp dụng *:</h1>
 
                 <input
-                  placeholder="Tên Master Data"
+                  placeholder="Đối tượng áp dụng"
                   required
                   className={classes.InputStyle}
                   type="text"

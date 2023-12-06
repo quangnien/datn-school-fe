@@ -77,6 +77,9 @@ import {
   DELETE_CHUYENNGANH,
   GET_ALL_CHUYENNGANH,
   GET_UNIT_CHUYENNGANH,
+  UPDATE_GV_DOW,
+  GET_ALL_GV_DOW,
+  GET_ALL_DAY_OF_WEEK,
 } from "../actionTypes";
 import * as api from "../api";
 
@@ -128,6 +131,7 @@ export const getAllSubject = () => async (dispatch) => {
     console.log("Redux Error", error);
   }
 };
+
 export const getAllRole = () => async (dispatch) => {
   try {
     const { data } = await api.getAllRole();
@@ -136,6 +140,16 @@ export const getAllRole = () => async (dispatch) => {
     console.log("Redux Error", error);
   }
 };
+
+export const getAllGvDow = () => async (dispatch) => {
+  try {
+    const { data } = await api.getAllGvDow();
+    dispatch({ type: GET_ALL_GV_DOW, payload: data.retObj });
+  } catch (error) {
+    console.log("Redux Error", error);
+  }
+};
+
 
 export const getAllUser = () => async (dispatch) => {
   try {
@@ -193,6 +207,17 @@ export const getAllMenu = () => async (dispatch) => {
     console.log("Redux Error", error);
   }
 };
+
+export const getAllDayOfDow = () => async (dispatch) => {
+  try {
+    const { data } = await api.getAllDayOfDow();
+    dispatch({ type: GET_ALL_DAY_OF_WEEK, payload: data.retObj });
+  } catch (error) {
+    console.log("Redux Error", error);
+  }
+};
+
+
 
 export const getAllCmmnCd = () => async (dispatch) => {
   try {
@@ -303,7 +328,7 @@ export const addCmmnCd = (formData) => async (dispatch) => {
     // debugger;
     const { data } = await api.addCmmnCd(formData);
     if (data.status === "success") {
-      toast.success("Thêm Common Code mới thành công!");
+      toast.success("Thêm danh mục trạng thái mới thành công!");
       dispatch({ type: ADD_CMMNCD, payload: true });
     } else {
       dispatch({ type: SET_ERRORS, payload: data });
@@ -543,10 +568,10 @@ export const updateCmmnCd = (formData) => async (dispatch) => {
   try {
     const { data } = await api.updateCmmnCd(formData);
     if (data.status === "success") {
-      toast.success("Chỉnh sửa Common Code thành công!");
+      toast.success("Chỉnh sửa danh mục trạng thái thành công!");
       dispatch({ type: UPDATE_CMMNCD, payload: true });
     } else {
-      toast.error("Chỉnh sửa Common Code không thành công!");
+      toast.error("Chỉnh sửa danh mục trạng thái không thành công!");
       dispatch({ type: SET_ERRORS, payload: data });
     }
   } catch (error) {
@@ -599,6 +624,21 @@ export const updateRole = (formData) => async (dispatch) => {
   }
 };
 
+export const updateGvDow = (formData) => async (dispatch) => {
+  try {
+    const { data } = await api.updateGvDow(formData);
+    if (data.status === "success") {
+      toast.success("Chỉnh sửa lịch dạy thành công!");
+      dispatch({ type: UPDATE_GV_DOW, payload: true });
+    } else {
+      toast.error("Chỉnh sửa lịch dạy không thành công!");
+      dispatch({ type: SET_ERRORS, payload: data });
+    }
+  } catch (error) {
+    dispatch({ type: SET_ERRORS, payload: error.response.data });
+  }
+};
+
 export const updateUser = (formData) => async (dispatch) => {
   try {
     const { data } = await api.updateUser(formData);
@@ -641,6 +681,7 @@ export const updateTeacher = (formData) => async (dispatch) => {
     dispatch({ type: SET_ERRORS, payload: error.response.data });
   }
 };
+
 export const updateCourse = (formData) => async (dispatch) => {
   try {
     const { data } = await api.updateCourse(formData);
@@ -751,14 +792,14 @@ export const deleteCmmnCd = (formData) => async (dispatch) => {
   try {
     const { data } = await api.deleteCmmnCd(formData);
     if (data.status === "success" && data.retObj.length > 0) {
-      toast.success("Xóa Common Code thành công!");
+      toast.success("Xóa danh mục trạng thái thành công!");
       dispatch({ type: DELETE_CMMNCD, payload: true });
     } else {
-      toast.error("Xóa Common Code này không thành không!");
-      dispatch({ type: SET_ERRORS, payload: "Xóa Common Code không Thành công" });
+      toast.error("Xóa danh mục trạng thái này không thành không!");
+      dispatch({ type: SET_ERRORS, payload: "Xóa danh mục trạng thái không thành công" });
     }
   } catch (error) {
-    dispatch({ type: SET_ERRORS, payload: "Xóa Common Code không Thành công" });
+    dispatch({ type: SET_ERRORS, payload: "Xóa danh mục trạng thái không Thành công" });
   }
 };
 
@@ -934,6 +975,8 @@ export const getUnitChuyenNganh = (chuyennganh) => async (dispatch) => {
     dispatch({ type: SET_ERRORS, payload: error.response.data });
   }
 };
+
+
 export const getCourseUnit = (unit) => async (dispatch) => {
   try {
     const { data } = await api.getCourseUnit(unit);
