@@ -288,7 +288,7 @@ const Body = () => {
                 }
                 className=" h-10  bg-[#DDDEEE] bg-opacity-50 rounded-md outline-none text-sm hover:focus:border-none w-[200px] mr-3"
               >
-                <MenuItem value="">None</MenuItem>
+                <MenuItem value="">Chưa chọn</MenuItem>
                 {khns?.map((khn, idx) => (
                   <MenuItem key={idx} value={khn.maKeHoach}>
                     {`Học kỳ ${khn.ky} - Năm học ${khn.nam}-2024`}
@@ -308,7 +308,7 @@ const Body = () => {
                 onChange={(e) => setUnit(e.target.value)}
                 className=" h-10  bg-[#DDDEEE] bg-opacity-50 rounded-md outline-none text-sm hover:focus:border-none"
               >
-                <MenuItem value="">None</MenuItem>
+                <MenuItem value="">Chưa chọn</MenuItem>
                 {units?.map((ut, idx) => (
                   <MenuItem key={idx} value={ut.tenLop}>
                     {ut.tenLop}
@@ -329,7 +329,7 @@ const Body = () => {
                 MenuProps={{ PaperProps: { style: { maxHeight: 224 } } }}
                 SelectDisplayProps={{ sx: { overflow: "auto" } }}
               >
-                <MenuItem value="">None</MenuItem>
+                <MenuItem value="">Chưa chọn</MenuItem>
 
                 {courses && courses.length > 0 ? (
                   courses.map((ut, idx) => (
@@ -442,6 +442,9 @@ const Body = () => {
                     {coursedetail.thu === "07" && (
                       <td className="px-4 py-2 text-center border">Thứ 7</td>
                     )}
+                    {coursedetail.thu === "08" && (
+                      <td className="px-4 py-2 text-center border">Chủ nhật</td>
+                    )}
                     <td className="px-4 py-2 text-center border">
                       {new Date(coursedetail.timeBd).toLocaleDateString(
                         "en-GB"
@@ -535,6 +538,7 @@ const Body = () => {
                     <MenuItem value="05">Thứ 5</MenuItem>
                     <MenuItem value="06">Thứ 6</MenuItem>
                     <MenuItem value="07">Thứ 7</MenuItem>
+                    <MenuItem value="08">Chủ nhật</MenuItem>
                   </Select>
                 </div>
                 <div className={classes.WrapInputLabel}>
@@ -552,7 +556,7 @@ const Body = () => {
                     }
                     className={classes.InputStyle}
                   >
-                    <MenuItem value="2">2</MenuItem>
+                    {/* <MenuItem value="2">2</MenuItem> */}
                     <MenuItem value="4">4</MenuItem>
                   </Select>
                 </div>

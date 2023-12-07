@@ -133,7 +133,7 @@ const Body = () => {
                   }
                   className={`${classes.InputStyle} hover:focus:border-none `}
                 >
-                  <MenuItem value="">None</MenuItem>
+                  <MenuItem value="">Chưa chọn</MenuItem>
                   {units?.map((dp, idx) => (
                     <MenuItem key={idx} value={dp.maLop}>
                       {dp.tenLop}
@@ -159,7 +159,7 @@ const Body = () => {
                     },
                   }}
                 >
-                  <MenuItem value="">None</MenuItem>
+                  <MenuItem value="">Chưa chọn</MenuItem>
                   {teachers?.map((teacher, idx) => (
                     <MenuItem key={idx} value={teacher.maGv}>
                       {teacher.ho} {teacher.ten}
@@ -185,7 +185,7 @@ const Body = () => {
                     },
                   }}
                 >
-                  <MenuItem value="">None</MenuItem>
+                  <MenuItem value="">Chưa chọn</MenuItem>
 
                   {subjects?.map((subject, idx) => (
                     <MenuItem key={idx} value={subject.maMh}>

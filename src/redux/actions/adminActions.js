@@ -80,6 +80,7 @@ import {
   UPDATE_GV_DOW,
   GET_ALL_GV_DOW,
   GET_ALL_DAY_OF_WEEK,
+  ADD_CHECK_COURSE_DETAIL,
 } from "../actionTypes";
 import * as api from "../api";
 
@@ -518,6 +519,28 @@ export const addCourseDetail = (formData) => async (dispatch) => {
   }
 };
 
+export const addCheckCourseDetail = (formData) => async (dispatch) => {
+  try {
+    const { data } = await api.addCheckCourseDetail(formData);
+
+    if (data.status === "success") {
+      dispatch({ type: ADD_CHECK_COURSE_DETAIL, payload: data.retObj });
+    } else {
+      dispatch({ type: SET_ERRORS, payload: data });
+    }
+
+  } catch (error) {
+    if (
+      error.response &&
+      error.response.data &&
+      error.response.data.status === "error"
+    ) {
+      dispatch({ type: SET_ERRORS, payload: error.response.data });
+    } else {
+      console.log("Unknown error occurred");
+    }
+  }
+};
 //update
 export const updateDepartment = (formData) => async (dispatch) => {
   try {

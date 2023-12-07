@@ -116,7 +116,7 @@ const Body = () => {
                       setValue({ ...value, maCn: e.target.value })
                     }
                   >
-                    <MenuItem value="">None</MenuItem>
+                    <MenuItem value="">Chưa chọn</MenuItem>
                     {chuyennganhs?.map((dp, idx) => (
                       <MenuItem key={idx} value={dp.maCn}>
                         {dp.tenCn}

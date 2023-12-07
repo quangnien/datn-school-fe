@@ -121,6 +121,12 @@ export const updateCourseDetail = (updateCourseDetail) =>
 export const deleteCourseDetail = (data) =>
   API.delete("api/admin/chiTietLopTc", { data });
 
+//   
+export const addCheckCourseDetail = (coursedetail) =>
+  API.post("/api/admin/chiTietLopTc/validate", coursedetail);
+
+
+
 export const getAllCourseDetailCourse = (course) =>
   API.get(`api/admin/chiTietLopTc/lopTc/${course}`, course);
 // đăng ký môn
@@ -189,4 +195,6 @@ export const exportDiem = (maLopTc) =>
   API.get(`/api/admin/diem/export/${maLopTc}`, {
     responseType: "blob",
   }); 
+
+
 

@@ -113,7 +113,7 @@ const Body = () => {
                     onChange={handleKyChange}
                     className=" h-10  bg-[#DDDEEE] bg-opacity-50 rounded-md outline-none text-sm hover:focus:border-none w-[200px]"
                   >
-                    <MenuItem value="">None</MenuItem>
+                    <MenuItem value="">Chưa chọn</MenuItem>
                     {khns?.map((khn, idx) => (
                       <MenuItem key={idx} value={khn.maKeHoach}>
                         {`Học kỳ ${khn.ky} - Năm học ${khn.nam}-2024`}

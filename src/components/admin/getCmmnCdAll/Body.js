@@ -106,7 +106,6 @@ const Body = () => {
 
   const handleModalError = () => {
     setError({});
-    console.log("runing....")
     closeModal();
   };
   // End edit

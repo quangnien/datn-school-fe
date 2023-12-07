@@ -212,7 +212,7 @@ const Body = () => {
                   onChange={(e) => setValue({ ...value, phai: e.target.value })}
                   className={`${classes.InputStyle} hover:focus:border-none `}
                 >
-                  <MenuItem value="">None</MenuItem>
+                  <MenuItem value="">Chưa chọn</MenuItem>
                   <MenuItem value="Nam">Nam</MenuItem>
                   <MenuItem value="Nữ">Nữ</MenuItem>
                 </Select>

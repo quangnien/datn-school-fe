@@ -239,7 +239,7 @@ console.log("file",file)
                                 onChange={(e) => setValueMKH({ ...valueMKH, maKeHoach: e.target.value })}
                                 className=" h-10  bg-[#DDDEEE] bg-opacity-50 rounded-md outline-none text-sm hover:focus:border-none w-[200px] mr-3"
                             >
-                                <MenuItem value="">None</MenuItem>
+                                <MenuItem value="">Chưa chọn</MenuItem>
                                 {khns?.map((khn, idx) => (
                                     <MenuItem key={idx} value={khn.maKeHoach}>
                                         {`Học kỳ ${khn.ky} - Năm học ${khn.nam}-2024`}
@@ -260,7 +260,7 @@ console.log("file",file)
                                 onChange={(e) => setUnit(e.target.value)}
                                 className=" h-10  bg-[#DDDEEE] bg-opacity-50 rounded-md outline-none text-sm hover:focus:border-none"
                             >
-                                <MenuItem value="">None</MenuItem>
+                                <MenuItem value="">Chưa chọn</MenuItem>
                                 {units?.map((ut, idx) => (
                                     <MenuItem key={idx} value={ut.tenLop}>
                                         {ut.tenLop}
@@ -282,7 +282,7 @@ console.log("file",file)
                                 MenuProps={{ PaperProps: { style: { maxHeight: 224 } } }}
                                 SelectDisplayProps={{ sx: { overflow: "auto" } }}
                             >
-                                <MenuItem value="">None</MenuItem>
+                                <MenuItem value="">Chưa chọn</MenuItem>
 
                                 {courses && courses.length > 0 ? (
                                     courses.map((ut, idx) => (
@@ -356,7 +356,7 @@ console.log("file",file)
            bg-[#157572] focus:outline-none focus:shadow-outline "
                             onClick={handleExport}
                         >
-                            Download File
+                            Tải File
                         </button>
                     </div>
                 )}

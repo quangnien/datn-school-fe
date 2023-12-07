@@ -350,7 +350,7 @@ const Body = () => {
               value={department}
               onChange={(e) => setDepartment(e.target.value)}
             >
-              <MenuItem value="">None</MenuItem>
+              <MenuItem value="">Chưa chọn</MenuItem>
               {departments?.map((dp, idx) => (
                 <MenuItem key={idx} value={dp.tenKhoa}>
                   {dp.tenKhoa}

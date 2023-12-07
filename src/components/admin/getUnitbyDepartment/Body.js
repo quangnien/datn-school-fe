@@ -232,7 +232,7 @@ const Body = () => {
               value={chuyennganh}
               onChange={(e) => setChuyenNganh(e.target.value)}
             >
-              <MenuItem value="">None</MenuItem>
+              <MenuItem value="">Chưa chọn</MenuItem>
               {chuyennganhs?.map((dp, idx) => (
                 <MenuItem key={idx} value={dp.tenCn}>
                   {dp.tenCn}

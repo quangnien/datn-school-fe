@@ -98,7 +98,7 @@ const Body = () => {
                 onChange={(e) => setValueMKH(e.target.value)}
                 className=" h-10  bg-[#DDDEEE] bg-opacity-50 rounded-md outline-none text-sm hover:focus:border-none w-[200px] mr-3"
               >
-                <MenuItem value="">None</MenuItem>
+                <MenuItem value="">Chưa chọn</MenuItem>
                 {khns?.map((khn, idx) => (
                   <MenuItem key={idx} value={khn.maKeHoach}>
                     {`Học kỳ ${khn.ky} - Năm học ${khn.nam}-2024`}
@@ -119,7 +119,7 @@ const Body = () => {
                 MenuProps={{ PaperProps: { style: { maxHeight: 294 } } }}
                 SelectDisplayProps={{ sx: { overflow: "auto" } }}
               >
-                <MenuItem value="">None</MenuItem>
+                <MenuItem value="">Chưa chọn</MenuItem>
                 {coursesbykhnmagv && coursesbykhnmagv.length > 0 ? (
                   coursesbykhnmagv.map((ut, idx) => (
                     <MenuItem key={idx} value={ut?.maLopTc}>

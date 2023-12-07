@@ -371,7 +371,7 @@ const Body = () => {
                                 value={unit}
                                 onChange={(e) => setUnit(e.target.value)}
                             >
-                                <MenuItem value="">None</MenuItem>
+                                <MenuItem value="">Chưa chọn</MenuItem>
                                 {units?.map((ut, idx) => (
                                     <MenuItem key={idx} value={ut.tenLop}>
                                         {ut.tenLop}
@@ -404,7 +404,7 @@ const Body = () => {
            bg-[#157572] focus:outline-none focus:shadow-outline "
                             onClick={handleExport}
                         >
-                            Download File
+                            Tải File
                         </button>
                     </div>
                   )} 

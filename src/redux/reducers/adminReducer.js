@@ -84,6 +84,7 @@ import {
   GET_ALL_GV_DOW,
   UPDATE_GV_DOW,
   GET_ALL_DAY_OF_WEEK,
+  ADD_CHECK_COURSE_DETAIL,
 } from "../actionTypes";
 
 const initialState = {
@@ -120,6 +121,8 @@ const initialState = {
   subjectAdded: false,
   roleAdded: false,
   userAdded: false,
+  addDetailCheckAdded: "",
+
 
   coursedetailAdded: false,
   //getll
@@ -235,6 +238,12 @@ const adminReducer = (state = initialState, action) => {
       return {
         ...state,
         menuAdded: action.payload,
+      };
+      case ADD_CHECK_COURSE_DETAIL:
+      return {
+        ...state,
+        
+        addDetailCheckAdded: action.payload,
       };
     case ADD_CMMNCD:
         return {

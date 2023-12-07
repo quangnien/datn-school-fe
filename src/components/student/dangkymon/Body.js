@@ -202,7 +202,7 @@ const Body = () => {
                 value={unit}
                 onChange={(e) => setUnit(e.target.value)}
               >
-                <MenuItem value="">None</MenuItem>
+                <MenuItem value="">Chưa chọn</MenuItem>
                 {units?.map((ut, idx) => (
                   <MenuItem key={idx} value={ut.tenLop}>
                     {ut.tenLop}
