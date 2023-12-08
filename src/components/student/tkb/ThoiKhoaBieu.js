@@ -1,4 +1,4 @@
-import { getAllKHN } from "../../../redux/actions/studentActions";
+import { getAllKHNStudent } from "../../../redux/actions/studentActions";
 import { useDispatch } from "react-redux";
 import Body from "./Body";
 import Header from "../Header";
@@ -8,7 +8,7 @@ import Sidebar from "../Sidebar";
 const ThoiKhoaBieu = () => {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getAllKHN());
+    dispatch(getAllKHNStudent());
   }, [dispatch]);
   return (
     <div className="bg-[#d6d9e0] h-screen flex items-center ">

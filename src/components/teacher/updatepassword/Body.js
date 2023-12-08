@@ -16,7 +16,7 @@ const Body = () => {
   const [loading, setLoading] = useState(false);
   const store = useSelector((state) => state);
   const dispatch = useDispatch();
-  const user = JSON.parse(localStorage.getItem("teacherUser"));
+  const user = JSON.parse(localStorage.getItem("user"));
 
   useEffect(() => {
     if (Object.keys(store.errors).length !== 0) {

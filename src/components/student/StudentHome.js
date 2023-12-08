@@ -7,7 +7,7 @@ import { getAllUnit, getStudentById } from "../../redux/actions/studentActions";
 
 const StudentHome = () => {
   const store = useSelector((state) => state);
-  const idLogin = store.auth.studentData.retObj.userDetails?.idLogin;
+  const idLogin = store.auth.userData.retObj.userDetails?.idLogin;
 
   const dispatch = useDispatch();
   useEffect(() => {

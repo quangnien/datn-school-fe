@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import Spinner from "../../../utils/Spinner";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
-import { studentUpw } from "../../../redux/actions/studentActions";
+import { studentUpwStudent } from "../../../redux/actions/studentActions";
 
 const Body = () => {
   const [oldPassword, setOldPassword] = useState("");
@@ -17,7 +17,7 @@ const Body = () => {
 
   const store = useSelector((state) => state);
   const dispatch = useDispatch();
-  const user = JSON.parse(localStorage.getItem("studentUser"));
+  const user = JSON.parse(localStorage.getItem("user"));
 
   useEffect(() => {
     if (Object.keys(store.errors).length !== 0) {
@@ -43,7 +43,7 @@ const Body = () => {
       // Gửi form đi
 
       dispatch(
-        studentUpw({
+        studentUpwStudent({
           userName: user?.retObj?.userDetails?.username,
           matKhauCu: oldPassword,
           matKhauMoi: newPassword,

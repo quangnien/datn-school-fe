@@ -5,18 +5,18 @@ import Header from "../Header";
 import React from "react";
 import Sidebar from "../Sidebar";
 import {
-  getAllUnit,
-  getStudentById,
+  getAllUnitStudent,
+  getStudentByIdStudent,
 } from "../../../redux/actions/studentActions";
 
 const StudentInFo = () => {
   const store = useSelector((state) => state);
-  const idLogin = store.auth.studentData.retObj.userDetails?.idLogin;
+  const idLogin = store.auth.userData.retObj.userDetails?.idLogin;
 
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getStudentById(idLogin));
-    dispatch(getAllUnit(idLogin));
+    dispatch(getStudentByIdStudent(idLogin));
+    dispatch(getAllUnitStudent(idLogin));
   }, [dispatch]);
 
   return (

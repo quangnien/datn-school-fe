@@ -11,9 +11,9 @@ import {
 } from "../../../redux/actionTypes";
 import { format } from "date-fns";
 import {
-  dangKymon,
-  deleteDkm,
-  getAllCoursebysomething,
+  dangKymonStudent,
+  deleteDkmStudent,
+  getAllCoursebysomethingStudent,
   getAllDsLtcSinhVien,
 } from "../../../redux/actions/studentActions";
 
@@ -32,7 +32,7 @@ const Body = () => {
 
   const store = useSelector((state) => state);
   const units = useSelector((state) => state.admin.allUnit);
-  const user = JSON.parse(localStorage.getItem("studentUser"));
+  const user = JSON.parse(localStorage.getItem("user"));
 
   const UnitObj = units?.find((dp) => dp.tenLop === unit);
   const UnitId = UnitObj?.maLop;
@@ -49,7 +49,7 @@ const Body = () => {
     const UnitObj = units?.find((dp) => dp.tenLop === unit);
     const UnitId = UnitObj?.maLop;
     dispatch(
-      getAllCoursebysomething({
+      getAllCoursebysomethingStudent({
         params: {
           ...value,
           maLop: UnitId,
@@ -100,7 +100,7 @@ const Body = () => {
 
   const dangkymon = (e) => {
     dispatch(
-      dangKymon({
+      dangKymonStudent({
         maSv: user?.retObj?.userDetails?.username,
         maLopTcList: checkedValue || checkedValueNew,
       })
@@ -112,7 +112,7 @@ const Body = () => {
       const UnitObj = units?.find((dp) => dp.tenLop === unit);
       const UnitId = UnitObj?.maLop;
       dispatch(
-        getAllCoursebysomething({
+        getAllCoursebysomethingStudent({
           params: {
             ...value,
             maLop: UnitId,
@@ -159,7 +159,7 @@ const Body = () => {
   const deletedangkymon = (e) => {
     if (!checkedValueDeleteDkm) return;
     dispatch(
-      deleteDkm({
+      deleteDkmStudent({
         maSv: user?.retObj?.userDetails?.username,
         maLopTcList: checkedValueDeleteDkm,
       })
@@ -171,7 +171,7 @@ const Body = () => {
       dispatch(getAllDsLtcSinhVien(user?.retObj?.userDetails?.username));
 
       dispatch(
-        getAllCoursebysomething({
+        getAllCoursebysomethingStudent({
           params: {
             ...value,
             maLop: UnitId,
@@ -266,7 +266,10 @@ const Body = () => {
                     className="justify-center item-center hover:bg-[#EEF5F5]"
                     key={idx}
                   >
-                    <td className="px-4 py-1 borde text-center" style={{ width: "15px" }}>
+                    <td
+                      className="px-4 py-1 text-center borde"
+                      style={{ width: "15px" }}
+                    >
                       <input
                         onChange={handleInputChange}
                         checked={
@@ -281,22 +284,38 @@ const Body = () => {
                       />
                     </td>
 
-                    <td className="px-4 py-1 border text-center">{idx + 1}</td>
-                    <td className="px-4 py-1 border text-left">{course.maMh}</td>
-                    <td className="px-4 py-1 border text-left" style={{ width: "300px" }}>
+                    <td className="px-4 py-1 text-center border">{idx + 1}</td>
+                    <td className="px-4 py-1 text-left border">
+                      {course.maMh}
+                    </td>
+                    <td
+                      className="px-4 py-1 text-left border"
+                      style={{ width: "300px" }}
+                    >
                       {course.tenMh}
                     </td>
-                    <td className="px-4 py-1 border text-center">{course.soTc}</td>
+                    <td className="px-4 py-1 text-center border">
+                      {course.soTc}
+                    </td>
                     <td
                       className="px-4 py-1 border "
                       style={{ width: "150px" }}
                     >
                       {course.maLop}
                     </td>
-                    <td className="px-4 py-1 border text-left">{course.maLopTc}</td>
-                    <td className="px-4 py-1 border text-center">{course.soLuong}</td>
-                    <td className="px-4 py-1 border text-center">{course.soLuongCon}</td>
-                    <td className="px-4 py-1 border text-left" style={{ width: "200px" }}>
+                    <td className="px-4 py-1 text-left border">
+                      {course.maLopTc}
+                    </td>
+                    <td className="px-4 py-1 text-center border">
+                      {course.soLuong}
+                    </td>
+                    <td className="px-4 py-1 text-center border">
+                      {course.soLuongCon}
+                    </td>
+                    <td
+                      className="px-4 py-1 text-left border"
+                      style={{ width: "200px" }}
+                    >
                       {course.tenGv}
                     </td>
                   </tr>
@@ -379,27 +398,35 @@ bg-[#157572] focus:outline-none focus:shadow-outline"
                       className="justify-center item-center hover:bg-[#EEF5F5] text-center"
                       key={idx}
                     >
-                      <td className="px-4 py-1 border text-center">{idx + 1}</td>
-                      <td className="px-4 py-1 border text-left">{coursesdkmed.maMh}</td>
+                      <td className="px-4 py-1 text-center border">
+                        {idx + 1}
+                      </td>
+                      <td className="px-4 py-1 text-left border">
+                        {coursesdkmed.maMh}
+                      </td>
                       <td
-                        className="px-4 py-1 border text-left"
+                        className="px-4 py-1 text-left border"
                         style={{ width: "300px" }}
                       >
                         {coursesdkmed.tenMh}
                       </td>
-                      <td className="px-4 py-1 border text-center">{coursesdkmed.soTc}</td>
+                      <td className="px-4 py-1 text-center border">
+                        {coursesdkmed.soTc}
+                      </td>
                       <td
-                        className="px-4 py-1 border text-left"
+                        className="px-4 py-1 text-left border"
                         style={{ width: "150px" }}
                       >
                         {coursesdkmed.maLop}
                       </td>
-                      <td className="px-4 py-1 border text-left">
+                      <td className="px-4 py-1 text-left border">
                         {coursesdkmed.maLopTc}
                       </td>
-                      <td className="px-4 py-1 border text-left">{coursesdkmed.tenGv}</td>
+                      <td className="px-4 py-1 text-left border">
+                        {coursesdkmed.tenGv}
+                      </td>
                       <td
-                        className="px-4 py-1 border text-center"
+                        className="px-4 py-1 text-center border"
                         style={{ width: "15px" }}
                       >
                         <input

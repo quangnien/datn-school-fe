@@ -4,9 +4,9 @@ import axios from "axios";
 const APIV2 = axios.create({ baseURL: "http://localhost:8080/" });
 
 APIV2.interceptors.request.use((req) => {
-  if (localStorage.getItem("teacherUser")) {
+  if (localStorage.getItem("user")) {
     req.headers.Authorization = `Bearer ${
-      JSON.parse(localStorage.getItem("teacherUser")).retObj.jwt
+      JSON.parse(localStorage.getItem("user")).retObj.jwt
     }`;
   }
   return req;
@@ -37,13 +37,12 @@ export const getCourseTeacherKHM = (maGv, maKeHoach) =>
 export const getThongkebysomething = (data) =>
   APIV2.get("api/admin/diem/thong-ke", data);
 
-
 // import diem by excel (maLopTc)
 export const importDiem = (data, maLopTc) =>
-APIV2.post(`/api/admin/diem/import/${maLopTc}`, data);
+  APIV2.post(`/api/admin/diem/import/${maLopTc}`, data);
 
 // export diem by excel (maLopTc)
 export const exportDiem = (maLopTc) =>
-APIV2.get(`/api/admin/diem/export/${maLopTc}`, {
-  responseType: "blob",
-}); 
+  APIV2.get(`/api/admin/diem/export/${maLopTc}`, {
+    responseType: "blob",
+  });

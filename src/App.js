@@ -50,7 +50,7 @@ const App = () => {
     <Routes>
       {/* admin */}
       {<Route exact path="/" element={<Login />} />}
-      <Route path="/admin/home" element={<AdminHome />} />
+      <Route path="/home" element={<AdminHome />} />
       <Route path="/admin/getdepartmentall" element={<GetDepartmentList />} />
       <Route path="/admin/adddepartment" element={<AddDepartment />} />
       <Route path="/admin/teacher" element={<GetTeacherList />} />
@@ -110,10 +110,8 @@ const App = () => {
       <Route path="/admin/getchuyennganhall" element={<GetChuyenNganhList />} />
       <Route path="/admin/addChuyenNganh" element={<AddChuyenNganh />} />
 
-
       {/* lịch dạy */}
       <Route path="/admin/getgvdow" element={<GetGvDowList />} />
-
     </Routes>
   );
 };

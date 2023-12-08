@@ -1,4 +1,4 @@
-import { getAllUnit } from "../../../redux/actions/studentActions";
+import { getAllUnitStudent } from "../../../redux/actions/studentActions";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import Body from "./Body";
@@ -9,7 +9,7 @@ import Sidebar from "../Sidebar";
 const DangKyMon = () => {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getAllUnit());
+    dispatch(getAllUnitStudent());
   }, [dispatch]);
 
   return (

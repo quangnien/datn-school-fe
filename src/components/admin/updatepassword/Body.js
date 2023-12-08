@@ -17,7 +17,7 @@ const Body = () => {
   const store = useSelector((state) => state);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const user = JSON.parse(localStorage.getItem("adminUser"));
+  const user = JSON.parse(localStorage.getItem("user"));
 
   useEffect(() => {
     if (Object.keys(store.errors).length !== 0) {

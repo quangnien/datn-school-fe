@@ -21,7 +21,7 @@ const Body = () => {
   const dispatch = useDispatch();
   const store = useSelector((state) => state);
   const khns = useSelector((state) => state.admin.allKHN);
-  const user = JSON.parse(localStorage.getItem("teacherUser"));
+  const user = JSON.parse(localStorage.getItem("user"));
 
   useEffect(() => {
     dispatch({ type: SET_ERRORS, payload: {} });

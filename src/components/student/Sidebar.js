@@ -27,22 +27,12 @@ const Sidebar = () => {
               isActive ? isActiveStyle : isNotActiveStyle
             }
           >
-            {/* <HomeIcon className="" /> */}
             <AssignmentIndIcon className="" />
             <h1 className="font-normal">Profile</h1>
           </NavLink>
         </div>
 
         <div className="mt-0" style={{ marginTop: 0 }}>
-          {/* <NavLink
-            to="/student/studentinfo"
-            className={({ isActive }) =>
-              isActive ? isActiveStyle : isNotActiveStyle
-            }
-          >
-            <AssignmentIndIcon className="" />
-            <h1 className="font-normal">Thông Tin cá nhân</h1>
-          </NavLink> */}
           <NavLink
             to="/student/score"
             className={({ isActive }) =>

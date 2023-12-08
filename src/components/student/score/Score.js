@@ -4,19 +4,19 @@ import Sidebar from "../../student/Sidebar";
 import Header from "../../student/Header";
 import { useDispatch } from "react-redux";
 import {
-  getAllKHN,
-  getScoreStudent0,
-  getScoreStudent1,
+  getAllKHNStudent,
+  getScoreStudent0Student,
+  getScoreStudent1Student,
 } from "../../../redux/actions/studentActions";
 
 const Score = () => {
   const dispatch = useDispatch();
-  const user = JSON.parse(localStorage.getItem("studentUser"));
+  const user = JSON.parse(localStorage.getItem("user"));
 
   useEffect(() => {
-    dispatch(getAllKHN());
-    dispatch(getScoreStudent1(user?.retObj?.userDetails?.username));
-    dispatch(getScoreStudent0(user?.retObj?.userDetails?.username));
+    dispatch(getAllKHNStudent());
+    dispatch(getScoreStudent1Student(user?.retObj?.userDetails?.username));
+    dispatch(getScoreStudent0Student(user?.retObj?.userDetails?.username));
   }, [dispatch]);
   return (
     <div className="bg-[#d6d9e0] h-screen flex items-center ">

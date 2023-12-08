@@ -11,7 +11,7 @@ import {
 
 const TeacherHome = () => {
   const store = useSelector((state) => state);
-  const idLogin = store.auth.teacherData.retObj.userDetails?.idLogin;
+  const idLogin = store.auth.userData.retObj.userDetails?.idLogin;
 
   const dispatch = useDispatch();
   useEffect(() => {

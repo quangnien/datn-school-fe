@@ -34,7 +34,7 @@ const Header = () => {
       </div>
       <div className="flex items-center mx-5 space-x-3">
         <Avatar />
-        <h1>{store.auth.adminData.role.split("_")[1]}</h1>
+        <h1>{store.auth.userData?.retObj?.userDetails?.userFullName}</h1>
         <LogoutIcon
           onClick={logout}
           className="transition-all cursor-pointer hover:scale-125 "

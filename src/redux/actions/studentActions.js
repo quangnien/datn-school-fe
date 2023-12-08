@@ -16,9 +16,9 @@ import {
 } from "../actionTypes";
 import * as api from "../api/apiStudent";
 
-export const studentUpw = (formData) => async (dispatch) => {
+export const studentUpwStudent = (formData) => async (dispatch) => {
   try {
-    const { data } = await api.studentUpw(formData);
+    const { data } = await api.studentUpwStudent(formData);
 
     if (data.status === "success") {
       toast.success("Đối mật khẩu thành công!");
@@ -31,9 +31,9 @@ export const studentUpw = (formData) => async (dispatch) => {
     dispatch({ type: SET_ERRORS, payload: error.response.data });
   }
 };
-export const getAllUnit = () => async (dispatch) => {
+export const getAllUnitStudent = () => async (dispatch) => {
   try {
-    const { data } = await api.getAllUnit();
+    const { data } = await api.getAllUnitStudent();
     console.log("data", data);
     // dispatch({ type: GET_ALL_UNIT, payload: data.retObj[0] });
     dispatch({ type: GET_ALL_UNIT, payload: data.retObj });
@@ -42,19 +42,20 @@ export const getAllUnit = () => async (dispatch) => {
   }
 };
 
-export const getAllCoursebysomething = (requestData) => async (dispatch) => {
-  try {
-    const { data } = await api.getAllCoursebysomething(requestData);
+export const getAllCoursebysomethingStudent =
+  (requestData) => async (dispatch) => {
+    try {
+      const { data } = await api.getAllCoursebysomethingStudent(requestData);
 
-    dispatch({ type: GET_COURSE_BY_SOMETHING, payload: data.retObj });
-  } catch (error) {
-    dispatch({ type: SET_ERRORS, payload: error.response.data });
-  }
-};
+      dispatch({ type: GET_COURSE_BY_SOMETHING, payload: data.retObj });
+    } catch (error) {
+      dispatch({ type: SET_ERRORS, payload: error.response.data });
+    }
+  };
 
-export const dangKymon = (formData) => async (dispatch) => {
+export const dangKymonStudent = (formData) => async (dispatch) => {
   try {
-    const { data } = await api.dangKymon(formData);
+    const { data } = await api.dangKymonStudent(formData);
     if (data.status === "success" && data.retObj.maSv !== null) {
       toast.success("Đăng ký môn thành công!");
       dispatch({ type: ADD_DANG_KY_MON, payload: true });
@@ -77,9 +78,9 @@ export const dangKymon = (formData) => async (dispatch) => {
     }
   }
 };
-export const deleteDkm = (formData) => async (dispatch) => {
+export const deleteDkmStudent = (formData) => async (dispatch) => {
   try {
-    const { data } = await api.deleteDkm(formData);
+    const { data } = await api.deleteDkmStudent(formData);
     if (data.status === "success") {
       toast.success("Huỷ đăng ký môn thành công!");
       dispatch({ type: DELETE_DKM, payload: true });
@@ -98,10 +99,10 @@ export const deleteDkm = (formData) => async (dispatch) => {
     }
   }
 };
-export const getStudentById = (id) => async (dispatch) => {
+export const getStudentByIdStudent = (id) => async (dispatch) => {
   try {
     console.log("runing...");
-    const { data } = await api.getStudentById(id);
+    const { data } = await api.getStudentByIdStudent(id);
     console.log("data", data);
 
     dispatch({ type: GET_STUDENT_BY_ID, payload: data });
@@ -138,9 +139,9 @@ export const getAllTKBStudent = (maSv, tuan, maKeHoach) => async (dispatch) => {
     dispatch({ type: SET_ERRORS, payload: error.response.data });
   }
 };
-export const getAllKHN = () => async (dispatch) => {
+export const getAllKHNStudent = () => async (dispatch) => {
   try {
-    const { data } = await api.getAllKHN();
+    const { data } = await api.getAllKHNStudent();
     // dispatch({ type: GET_ALL_KHN, payload: data.retObj[0] });
     dispatch({ type: GET_ALL_KHN, payload: data.retObj });
   } catch (error) {
@@ -148,18 +149,18 @@ export const getAllKHN = () => async (dispatch) => {
   }
 };
 
-export const getScoreStudent1 = (maSV) => async (dispatch) => {
+export const getScoreStudent1Student = (maSV) => async (dispatch) => {
   try {
-    const { data } = await api.getScoreStudent1(maSV);
+    const { data } = await api.getScoreStudent1Student(maSV);
     console.log("data", data);
     dispatch({ type: GET_ALL_SCORE_STUDENT1, payload: data });
   } catch (error) {
     dispatch({ type: SET_ERRORS, payload: error.response.data });
   }
 };
-export const getScoreStudent0 = (maSV) => async (dispatch) => {
+export const getScoreStudent0Student = (maSV) => async (dispatch) => {
   try {
-    const { data } = await api.getScoreStudent0(maSV);
+    const { data } = await api.getScoreStudent0Student(maSV);
     dispatch({ type: GET_ALL_SCORE_STUDENT0, payload: data });
   } catch (error) {
     dispatch({ type: SET_ERRORS, payload: error.response.data });

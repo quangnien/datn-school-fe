@@ -35,7 +35,7 @@ const Header = () => {
   //   navigate("/");
   // };
 
-  const idLogin = store.auth.studentData.retObj.userDetails?.idLogin;
+  const idLogin = store.auth.userData.retObj.userDetails?.idLogin;
 
   useEffect(() => {
     dispatch(getStudentById(idLogin));
@@ -53,7 +53,7 @@ const Header = () => {
       </div>
       <div className="flex items-center mx-5 space-x-3">
         <Avatar src={students?.hinhAnh} className="border-2 border-primary" />
-        <h1>{store.auth.studentData.retObj.userDetails.userFullName}</h1>
+        <h1>{store.auth.userData.retObj.userDetails.userFullName}</h1>
         <LogoutIcon
           onClick={logout}
           className="transition-all cursor-pointer hover:scale-125 "

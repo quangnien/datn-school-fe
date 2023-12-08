@@ -14,7 +14,7 @@ const Body = () => {
   const [valueMKH, setValueMKH] = useState({ maKeHoach: "" });
   const [value, setValue] = useState({ tuan: "1" });
 
-  const user = JSON.parse(localStorage.getItem("studentUser"));
+  const user = JSON.parse(localStorage.getItem("user"));
   const khns = useSelector((state) => state.student.khns);
   const khntiem = khns?.find((item) => item?.maKeHoach === valueMKH?.maKeHoach);
   const [numberOfWeeks, setNumberOfWeeks] = useState(0);

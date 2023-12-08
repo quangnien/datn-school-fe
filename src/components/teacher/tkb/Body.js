@@ -13,7 +13,7 @@ const Body = () => {
   const store = useSelector((state) => state);
   const khns = useSelector((state) => state.teacher.khns);
 
-  const user = JSON.parse(localStorage.getItem("teacherUser"));
+  const user = JSON.parse(localStorage.getItem("user"));
   const [valueMKH, setValueMKH] = useState({ maKeHoach: "" });
   const [value, setValue] = useState({ tuan: "1" });
   const khntiem = khns?.find((item) => item?.maKeHoach === valueMKH?.maKeHoach);
