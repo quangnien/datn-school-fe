@@ -1,6 +1,4 @@
 import axios from "axios";
-
-// const APIV2 = axios.create({ baseURL: "http://localhost:9090/" });
 const APIV2 = axios.create({ baseURL: "http://localhost:8080/" });
 
 APIV2.interceptors.request.use((req) => {
@@ -19,30 +17,27 @@ export const teacherUpw = (updatePassword) =>
 export const getTeacherById = (id) =>
   APIV2.get(`/api/admin/giangVien/${id}`, id);
 
-export const getAllDepartment = () => APIV2.get("/api/admin/khoa");
+export const getAllDepartmentTeacher = () => APIV2.get("/api/admin/khoa");
 
-export const getScoreCourse = (course) =>
+export const getScoreCourseTeacher = (course) =>
   APIV2.get(`api/admin/diem/lopTc/detail/${course}`, course);
-export const getAllKHN = () => APIV2.get("/api/admin/keHoachNam");
+export const getAllKHNTeacher = () => APIV2.get("/api/admin/keHoachNam");
 export const getAllTKBTeacher = (maGv, tuan, maKeHoach) =>
   APIV2.get(
     `/api/admin/tkb/giangVien/${maGv}?tuan=${tuan}&maKeHoach=${maKeHoach}`
   );
-export const updateScore = (updateScore) =>
+export const updateScoreTeacher = (updateScore) =>
   APIV2.put("/api/admin/diem", updateScore);
 
-export const getCourseTeacherKHM = (maGv, maKeHoach) =>
-  // APIV2.post(`api/admin/dsLopTc/giangVien/${maGv}?maKeHoach=${maKeHoach}`);
+export const getCourseTeacherKHMTeacher = (maGv, maKeHoach) =>
   APIV2.post(`api/admin/lopTc/giangVien/${maGv}?maKeHoach=${maKeHoach}`);
-export const getThongkebysomething = (data) =>
+export const getThongkebysomethingTeacher = (data) =>
   APIV2.get("api/admin/diem/thong-ke", data);
 
-// import diem by excel (maLopTc)
-export const importDiem = (data, maLopTc) =>
+export const importDiemTeacher = (data, maLopTc) =>
   APIV2.post(`/api/admin/diem/import/${maLopTc}`, data);
 
-// export diem by excel (maLopTc)
-export const exportDiem = (maLopTc) =>
+export const exportDiemTeacher = (maLopTc) =>
   APIV2.get(`/api/admin/diem/export/${maLopTc}`, {
     responseType: "blob",
   });

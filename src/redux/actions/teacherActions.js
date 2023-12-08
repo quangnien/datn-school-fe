@@ -13,14 +13,13 @@ import {
   SET_ERRORS,
   TEACHER_UPW,
   UPDATE_SCORE,
-
 } from "../actionTypes";
 import * as api from "../api/apiTeacher";
 
-export const getAllDepartment = () => async (dispatch) => {
+export const getAllDepartmentTeacher = () => async (dispatch) => {
   try {
     // debugger;
-    const { data } = await api.getAllDepartment();
+    const { data } = await api.getAllDepartmentTeacher();
     // dispatch({ type: GET_ALL_DEPARTMENT, payload: data.retObj[0] });
     dispatch({ type: GET_ALL_DEPARTMENT, payload: data.retObj });
   } catch (error) {
@@ -37,18 +36,18 @@ export const getTeacherById = (id) => async (dispatch) => {
   }
 };
 
-export const getScoreCourse = (course) => async (dispatch) => {
+export const getScoreCourseTeacher = (course) => async (dispatch) => {
   try {
-    const { data } = await api.getScoreCourse(course);
+    const { data } = await api.getScoreCourseTeacher(course);
     dispatch({ type: GET_SCORE_COURSE, payload: data });
   } catch (error) {
     dispatch({ type: SET_ERRORS, payload: error.response.data });
   }
 };
 
-export const getAllKHN = () => async (dispatch) => {
+export const getAllKHNTeacher = () => async (dispatch) => {
   try {
-    const { data } = await api.getAllKHN();
+    const { data } = await api.getAllKHNTeacher();
     // dispatch({ type: GET_ALL_KHN, payload: data.retObj[0] });
     dispatch({ type: GET_ALL_KHN, payload: data.retObj });
   } catch (error) {
@@ -56,14 +55,15 @@ export const getAllKHN = () => async (dispatch) => {
   }
 };
 
-export const getCourseTeacherKHM = (maGv, maKeHoach) => async (dispatch) => {
-  try {
-    const { data } = await api.getCourseTeacherKHM(maGv, maKeHoach);
-    dispatch({ type: GET_COURSE_TEACHER_KHM, payload: data });
-  } catch (error) {
-    dispatch({ type: SET_ERRORS, payload: error.response.data });
-  }
-};
+export const getCourseTeacherKHMTeacher =
+  (maGv, maKeHoach) => async (dispatch) => {
+    try {
+      const { data } = await api.getCourseTeacherKHMTeacher(maGv, maKeHoach);
+      dispatch({ type: GET_COURSE_TEACHER_KHM, payload: data });
+    } catch (error) {
+      dispatch({ type: SET_ERRORS, payload: error.response.data });
+    }
+  };
 export const getAllTKBTeacher = (maSv, tuan, maKeHoach) => async (dispatch) => {
   try {
     const { data } = await api.getAllTKBTeacher(maSv, tuan, maKeHoach);
@@ -73,9 +73,9 @@ export const getAllTKBTeacher = (maSv, tuan, maKeHoach) => async (dispatch) => {
   }
 };
 
-export const updateScore = (formData) => async (dispatch) => {
+export const updateScoreTeacher = (formData) => async (dispatch) => {
   try {
-    const { data } = await api.updateScore(formData);
+    const { data } = await api.updateScoreTeacher(formData);
     if (data.status === "success") {
       toast.success("Chỉnh sửa điểm thành công!");
       dispatch({ type: UPDATE_SCORE, payload: true });
@@ -88,15 +88,16 @@ export const updateScore = (formData) => async (dispatch) => {
   }
 };
 
-export const getThongkebysomething = (requestData) => async (dispatch) => {
-  try {
-    const { data } = await api.getThongkebysomething(requestData);
+export const getThongkebysomethingTeacher =
+  (requestData) => async (dispatch) => {
+    try {
+      const { data } = await api.getThongkebysomethingTeacher(requestData);
 
-    dispatch({ type: GET_THONGKE_BY_SOMETHING, payload: data.retObj });
-  } catch (error) {
-    dispatch({ type: SET_ERRORS, payload: error.response.data });
-  }
-};
+      dispatch({ type: GET_THONGKE_BY_SOMETHING, payload: data.retObj });
+    } catch (error) {
+      dispatch({ type: SET_ERRORS, payload: error.response.data });
+    }
+  };
 
 export const teacherUpw = (formData) => async (dispatch) => {
   try {
@@ -115,9 +116,9 @@ export const teacherUpw = (formData) => async (dispatch) => {
 };
 
 // import diem
-export const importDiem = (formData, maLopTc) => async (dispatch) => {
+export const importDiemTeacher = (formData, maLopTc) => async (dispatch) => {
   try {
-    const { data } = await api.importDiem(formData, maLopTc);
+    const { data } = await api.importDiemTeacher(formData, maLopTc);
 
     if (data.status === "success") {
       toast.success("import file diems thành công!");
@@ -131,9 +132,9 @@ export const importDiem = (formData, maLopTc) => async (dispatch) => {
   }
 };
 
-export const exportDiem = (maLopTc) => async (dispatch) => {
+export const exportDiemTeacher = (maLopTc) => async (dispatch) => {
   try {
-    const response = await api.exportDiem(maLopTc);
+    const response = await api.exportDiemTeacher(maLopTc);
     const fileData = new Blob([response.data], {
       type: "application/octet-stream",
     });

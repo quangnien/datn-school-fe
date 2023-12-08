@@ -44,6 +44,7 @@ import AddCmmnCd from "./components/admin/addCmmnCd/AddCmmnCd";
 import GetChuyenNganhList from "./components/admin/getChuyenNganhAll/GetChuyenNganhList";
 import AddChuyenNganh from "./components/admin/addChuyenNganh/AddChuyenNganh";
 import GetGvDowList from "./components/admin/getAllGvDow/GetGvDowList";
+import TeacherInfo from "./components/teacher/teacherInfo/TeacherInfo";
 
 const App = () => {
   return (
@@ -71,14 +72,13 @@ const App = () => {
       <Route path="*" element={<PageNotFound></PageNotFound>}></Route>
 
       {/* Teacher */}
-      <Route path="/admin/teacherHome" element={<TeacherHome />} />
       <Route path="/teacher/tkb" element={<GetTKB />} />
-
       <Route path="teacher/score" element={<ScoreTeacher />} />
+
+      <Route path="/teacher/profile" element={<TeacherInfo />} />
       <Route path="/teacher/updatepassword" element={<TeacherUpw />} />
       <Route path="/teacher/thongke" element={<TeacherThongke />} />
       {/* student */}
-      {/* <Route path="/admin/studentHome" element={<StudentHome />} /> */}
       <Route path="/student/dangkymon" element={<DangKyMon />} />
       <Route path="/student/studentinfo" element={<StudentInFo />} />
       <Route path="student/updatepassword" element={<StudentUpw />} />

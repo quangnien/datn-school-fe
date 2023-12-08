@@ -2,14 +2,14 @@ import { useDispatch, useSelector } from "react-redux";
 import Body from "./Body";
 import Header from "./Header";
 import React, { useEffect } from "react";
-import Sidebar from "./Sidebar";
 
 import {
   getTeacherById,
   getAllDepartment,
 } from "../../redux/actions/teacherActions";
+import Sidebar from "../../admin/Sidebar";
 
-const TeacherHome = () => {
+const TeacherInfo = () => {
   const store = useSelector((state) => state);
   const idLogin = store.auth.userData.retObj.userDetails?.idLogin;
 
@@ -33,4 +33,4 @@ const TeacherHome = () => {
   );
 };
 
-export default TeacherHome;
+export default TeacherInfo;

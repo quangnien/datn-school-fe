@@ -1,7 +1,7 @@
 import Body from "./Body";
 import Header from "../Header";
 import React from "react";
-import Sidebar from "../Sidebar";
+import Sidebar from "../../admin/Sidebar";
 
 const TeacherUpw = () => {
   return (

@@ -1,14 +1,14 @@
-import { getAllKHN } from "../../../redux/actions/teacherActions";
+import { getAllKHNTeacher } from "../../../redux/actions/teacherActions";
 import { useDispatch } from "react-redux";
 import Body from "./Body";
 import Header from "../Header";
 import React, { useEffect } from "react";
-import Sidebar from "../Sidebar";
+import Sidebar from "../../admin/Sidebar";
 
 const ScoreTeacher = () => {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getAllKHN());
+    dispatch(getAllKHNTeacher());
   }, [dispatch]);
   return (
     <div className="bg-[#d6d9e0] h-screen flex items-center ">

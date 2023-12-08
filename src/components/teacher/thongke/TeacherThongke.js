@@ -1,15 +1,15 @@
-import { getAllKHN } from "../../../redux/actions/teacherActions";
+import { getAllKHNTeacher } from "../../../redux/actions/teacherActions";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import Body from "./Body";
 import Header from "../Header";
 import React from "react";
-import Sidebar from "../Sidebar";
+import Sidebar from "../../admin/Sidebar";
 
 const TeacherThongke = () => {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getAllKHN());
+    dispatch(getAllKHNTeacher());
   }, [dispatch]);
 
   return (

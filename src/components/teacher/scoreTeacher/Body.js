@@ -10,11 +10,11 @@ import React, { useEffect, useState } from "react";
 import ReactModal from "react-modal";
 import Spinner from "../../../utils/Spinner";
 import {
-  exportDiem,
-  getCourseTeacherKHM,
-  getScoreCourse,
-  importDiem,
-  updateScore,
+  exportDiemTeacher,
+  getCourseTeacherKHMTeacher,
+  getScoreCourseTeacher,
+  importDiemTeacher,
+  updateScoreTeacher,
 } from "../../../redux/actions/teacherActions";
 import { useRef } from "react";
 
@@ -51,7 +51,10 @@ const Body = () => {
   useEffect(() => {
     if (valueMKH) {
       dispatch(
-        getCourseTeacherKHM(user?.retObj?.userDetails?.username, valueMKH)
+        getCourseTeacherKHMTeacher(
+          user?.retObj?.userDetails?.username,
+          valueMKH
+        )
       );
     }
   }, [valueMKH]);
@@ -95,7 +98,7 @@ const Body = () => {
     setLoading(true);
     const CourseObj = coursesbykhnmagv?.find((dp) => dp.maLopTc === course);
     const CourseId = CourseObj?.maLopTc;
-    dispatch(getScoreCourse(CourseId));
+    dispatch(getScoreCourseTeacher(CourseId));
   };
 
   useEffect(() => {
@@ -180,14 +183,14 @@ const Body = () => {
       updatedValue.ck = selectedScore.ck;
     }
 
-    dispatch(updateScore({ ...selectedScore, ...updatedValue }));
+    dispatch(updateScoreTeacher({ ...selectedScore, ...updatedValue }));
     dispatch({ type: UPDATE_SCORE, payload: false });
     closeModal();
   };
 
   useEffect(() => {
     if (store.teacher.updateScore) {
-      dispatch(getScoreCourse(selectedScore.maLopTc));
+      dispatch(getScoreCourseTeacher(selectedScore.maLopTc));
     }
   }, [dispatch, store.errors, store.teacher.updateScore]);
 
@@ -202,14 +205,14 @@ const Body = () => {
     event.preventDefault();
     const formData = new FormData();
     formData.append("file", file);
-    dispatch(importDiem(formData, course));
+    dispatch(importDiemTeacher(formData, course));
     dispatch({ type: IMPORT_DIEMS_GV, payload: false });
   };
 
   const handleExport = (e) => {
     e.preventDefault();
 
-    dispatch(exportDiem(course));
+    dispatch(exportDiemTeacher(course));
   };
 
   const inputRef = useRef(null);
@@ -219,12 +222,10 @@ const Body = () => {
       console.log("runing app....");
       const CourseObj = coursesbykhnmagv?.find((dp) => dp.maLopTc === course);
       const CourseId = CourseObj?.maLopTc;
-      dispatch(getScoreCourse(CourseId));
+      dispatch(getScoreCourseTeacher(CourseId));
       setFile(null);
       if (inputRef.current) {
         inputRef.current.value = "";
-        //inputRef.current.type = "text";//
-        // inputRef.current.type = "file"; //
       }
     }
   }, [dispatch, store.errors, store.teacher.importDiems]);
@@ -321,7 +322,7 @@ const Body = () => {
 
         {/* import export  */}
         {course && (
-          <div className="flex mx-5 mt-3 item-center gap-x-3 items-center ">
+          <div className="flex items-center mx-5 mt-3 item-center gap-x-3 ">
             <form onSubmit={handleImportFile}>
               <div className="flex gap-x-1">
                 <input
