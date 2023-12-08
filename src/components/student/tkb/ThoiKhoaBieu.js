@@ -3,7 +3,8 @@ import { useDispatch } from "react-redux";
 import Body from "./Body";
 import Header from "../Header";
 import React, { useEffect } from "react";
-import Sidebar from "../Sidebar";
+import Sidebar from "../../admin/Sidebar";
+// import Sidebar from "../Sidebar";
 
 const ThoiKhoaBieu = () => {
   const dispatch = useDispatch();

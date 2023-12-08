@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import Body from "./Body";
-import Sidebar from "../../student/Sidebar";
+// import Sidebar from "../../student/Sidebar";
 import Header from "../../student/Header";
 import { useDispatch } from "react-redux";
 import {
@@ -8,6 +8,7 @@ import {
   getScoreStudent0Student,
   getScoreStudent1Student,
 } from "../../../redux/actions/studentActions";
+import Sidebar from "../../admin/Sidebar";
 
 const Score = () => {
   const dispatch = useDispatch();

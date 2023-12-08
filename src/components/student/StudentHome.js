@@ -3,7 +3,7 @@ import Header from "./Header";
 import React, { useEffect } from "react";
 import Sidebar from "./Sidebar";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllUnit, getStudentById } from "../../redux/actions/studentActions";
+import { getAllUnitStudent, getStudentByIdStudent } from "../../redux/actions/studentActions";
 
 const StudentHome = () => {
   const store = useSelector((state) => state);
@@ -11,8 +11,8 @@ const StudentHome = () => {
 
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getStudentById(idLogin));
-    dispatch(getAllUnit(idLogin));
+    dispatch(getStudentByIdStudent(idLogin));
+    dispatch(getAllUnitStudent(idLogin));
   }, [dispatch]);
 
   return (

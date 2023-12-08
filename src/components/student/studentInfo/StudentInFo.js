@@ -3,11 +3,12 @@ import { useEffect } from "react";
 import Body from "./Body";
 import Header from "../Header";
 import React from "react";
-import Sidebar from "../Sidebar";
+// import Sidebar from "../Sidebar";
 import {
   getAllUnitStudent,
   getStudentByIdStudent,
 } from "../../../redux/actions/studentActions";
+import Sidebar from "../../admin/Sidebar";
 
 const StudentInFo = () => {
   const store = useSelector((state) => state);

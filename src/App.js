@@ -24,7 +24,7 @@ import PageNotFound from "./components/pagenotfound/PageNotFound";
 import React from "react";
 import Score from "./components/student/score/Score";
 import ScoreTeacher from "./components/teacher/scoreTeacher/ScoreTeacher";
-import StudentHome from "./components/student/StudentHome";
+// import StudentHome from "./components/student/StudentHome";
 import StudentInFo from "./components/student/studentInfo/StudentInFo";
 import StudentUpw from "./components/student/updatepassword/StudentUpw";
 import TeacherHome from "./components/teacher/TeacherHome";
@@ -78,7 +78,7 @@ const App = () => {
       <Route path="/teacher/updatepassword" element={<TeacherUpw />} />
       <Route path="/teacher/thongke" element={<TeacherThongke />} />
       {/* student */}
-      <Route path="/admin/studentHome" element={<StudentHome />} />
+      {/* <Route path="/admin/studentHome" element={<StudentHome />} /> */}
       <Route path="/student/dangkymon" element={<DangKyMon />} />
       <Route path="/student/studentinfo" element={<StudentInFo />} />
       <Route path="student/updatepassword" element={<StudentUpw />} />

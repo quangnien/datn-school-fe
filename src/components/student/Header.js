@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import LogoutIcon from "@mui/icons-material/Logout";
 import React from "react";
 import { useEffect } from "react";
-import { getStudentById } from "../../redux/actions/studentActions";
+import { getStudentByIdStudent } from "../../redux/actions/studentActions";
 import Swal from "sweetalert2";
 
 const Header = () => {
@@ -38,7 +38,7 @@ const Header = () => {
   const idLogin = store.auth.userData.retObj.userDetails?.idLogin;
 
   useEffect(() => {
-    dispatch(getStudentById(idLogin));
+    dispatch(getStudentByIdStudent(idLogin));
   }, [dispatch]);
 
   const students = useSelector((state) => state.student.students?.retObj);

@@ -22,7 +22,7 @@ const Sidebar = () => {
         </div>
         <div className="" style={{ marginTop: 0 }}>
           <NavLink
-            to="/admin/studentHome"
+            to="/home"
             className={({ isActive }) =>
               isActive ? isActiveStyle : isNotActiveStyle
             }

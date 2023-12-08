@@ -1,4 +1,4 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Body from "./Body";
 import Header from "./Header";
 import React, { useEffect } from "react";
@@ -12,10 +12,11 @@ import {
   getAllUnit,
   getCurrentUser,
 } from "../../redux/actions/adminActions";
-import { getAllUnitStudent } from "../../redux/actions/studentActions";
+import { getAllUnitStudent, getStudentByIdStudent } from "../../redux/actions/studentActions";
 
 const AdminHome = () => {
   const store = useSelector((state) => state);
+  const role = store.auth.userData.role;
   const idLogin = store.auth.userData.retObj.userDetails?.idLogin;
 
   var value = {
@@ -26,7 +27,7 @@ const AdminHome = () => {
   useEffect(() => {
     dispatch(getAllStudent());
     dispatch(getAllUnit());
-    dispatch(getStudentById(idLogin));
+    dispatch(getStudentByIdStudent(idLogin));
     dispatch(getAllUnitStudent(idLogin));
     dispatch(
       getAllTeacher({
@@ -47,8 +48,7 @@ const AdminHome = () => {
         <Sidebar />
         <div className="flex flex-col flex-1">
           <Header />
-          <Body />
-        </div>
+          {role === "ROLE_ADMIN" && <Body />}        </div>
       </div>
     </div>
   );

@@ -1,6 +1,5 @@
 import React from "react";
 import "react-calendar/dist/Calendar.css";
-import "./Calendar.css";
 import "react-clock/dist/Clock.css";
 
 import { Avatar } from "@mui/material";
