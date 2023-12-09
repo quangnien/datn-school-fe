@@ -248,12 +248,12 @@ const Body = () => {
                   </th>
                   <th className="px-4 py-1">STC</th>
                   <th className="px-4 py-1 " style={{ width: "150px" }}>
-                    Mã Lớp
+                    Mã lớp
                   </th>
                   <th className="px-4 py-1">Mã Lớp Tín Chỉ</th>
                   <th className="px-4 py-1">Sĩ Số</th>
                   <th className="px-4 py-1" style={{ width: "60px" }}>
-                    CL
+                    Số lượng còn
                   </th>
                   <th className="px-4 py-1" style={{ width: "200px" }}>
                     Giảng viên
@@ -344,11 +344,11 @@ bg-[#157572] focus:outline-none focus:shadow-outline"
         <div className="flex gap-x-3">
           {coursesdkmeds?.length > 0 && (
             <button
-              className="items-center  w-[88px] h-[26px] block font-bold text-[#7D1711] bg-[#FDD1D1] border border: 1.11647px solid #FD9999 rounded-lg px-4  hover:bg-[#FD9999] focus:#FD9999 focus:shadow-outline"
+              className="items-center  w-[168px] h-[26px] block font-bold text-[#7D1711] bg-[#FDD1D1] border border: 1.11647px solid #FD9999 rounded-lg px-4  hover:bg-[#FD9999] focus:#FD9999 focus:shadow-outline"
               onClick={deletedangkymon}
               disabled={!(checkedValueDeleteDkm?.length > 0)}
             >
-              Xóa
+              Hủy đăng ký
             </button>
           )}
         </div>

@@ -371,7 +371,7 @@ const Body = () => {
             </div>
 
             <div className="flex gap-2 ">
-                {scores && (
+                {/* {scores && (
                     <div className="flex gap-x-5 text-text2">
                         <h1>Sắp xếp khi xuất danh sách </h1>
                         <div>
@@ -383,7 +383,7 @@ const Body = () => {
                             Theo tên sinh viên
                         </div>
                     </div>
-                )}
+                )} */}
 
                 {scores && (
                     <div className="flex gap-y-6 mb-2">

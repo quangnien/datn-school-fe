@@ -370,7 +370,7 @@ const Body = () => {
       )}
 
       <div className="flex justify-between">
-        {scores && (
+        {/* {scores && (
           <div className="flex gap-x-5 text-text2">
             <h1>Sắp xếp khi xuất danh sách </h1>
             <div>
@@ -394,7 +394,7 @@ const Body = () => {
               Theo tên sinh viên
             </div>
           </div>
-        )}
+        )} */}
 
         {/* import export  */}
         {course && (

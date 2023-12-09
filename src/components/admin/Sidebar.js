@@ -64,10 +64,10 @@ const Sidebar = () => {
                         </NavLink>
                     )}
 
-                    {users1[users1.indexOf("MENU_LOPTINCHI")] && (
+                    {users1[users1.indexOf("MENU_LOP")] && (
                         <NavLink to="/admin/allUnit" className={({ isActive }) => (isActive ? isActiveStyle : isNotActiveStyle)}>
                             <SchoolIcon className="" />
-                            <h1 className="font-normal">{users2[users1.indexOf("MENU_LOPTINCHI")]}</h1>
+                            <h1 className="font-normal">{users2[users1.indexOf("MENU_LOP")]}</h1>
                         </NavLink>
                     )}
                     {users1[users1.indexOf("MENU_SINHVIEN")] && (

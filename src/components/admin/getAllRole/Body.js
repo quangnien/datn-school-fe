@@ -247,7 +247,7 @@ const Body = () => {
                       Tên Role
                     </th>
 
-                    <th className="px-4 py-1">Menu list</th>
+                    <th className="px-4 py-1">Menu</th>
                     <th className="px-4 py-1">Hành động</th>
                   </tr>
                 </thead>
