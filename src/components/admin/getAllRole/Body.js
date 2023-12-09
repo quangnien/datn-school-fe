@@ -313,7 +313,7 @@ const Body = () => {
         >
           <div className="flex flex-col bg-white rounded-xl">
             <form
-              className="w-full min-h-[400px] py-10 px-7 text-center bg-[#fff] border rounded-md  shadow-md mx-auto"
+              className="w-full min-h-[650px] py-10 px-7 text-center bg-[#fff] border rounded-md  shadow-md mx-auto"
               onSubmit={handleFormSubmit}
             >
               <div className="grid grid-cols-4 mt-4 gap-x-10">

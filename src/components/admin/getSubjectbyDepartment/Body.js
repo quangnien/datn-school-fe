@@ -51,7 +51,7 @@ const Body = () => {
   const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
   const [nextPage, setNextPage] = useState(0);
-  const itemsPerPage = 12;
+  const itemsPerPage = 1000;
 
   // phục vụ xóa
   const departmentObj = departments?.find((dp) => dp.tenKhoa === department);

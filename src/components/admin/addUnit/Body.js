@@ -74,6 +74,21 @@ const Body = () => {
             onSubmit={handleSubmit}
           >
             <div className="grid grid-cols-3 gap-x-10">
+
+            <div className={classes.WrapInputLabel}>
+                <h1 className={classes.LabelStyle}>Mã Lớp *:</h1>
+
+                <input
+                  placeholder="Mã lớp"
+                  required
+                  className={classes.InputStyle}
+                  type="text"
+                  value={value.maLop}
+                  onChange={(e) =>
+                    setValue({ ...value, maLop: e.target.value })
+                  }
+                />
+              </div>
               <div className={classes.WrapInputLabel}>
                 <h1 className={classes.LabelStyle}>Tên Lớp *:</h1>
 
@@ -85,20 +100,6 @@ const Body = () => {
                   value={value.tenLop}
                   onChange={(e) =>
                     setValue({ ...value, tenLop: e.target.value })
-                  }
-                />
-              </div>
-              <div className={classes.WrapInputLabel}>
-                <h1 className={classes.LabelStyle}>Mã Lớp *:</h1>
-
-                <input
-                  placeholder="Mã lớp"
-                  required
-                  className={classes.InputStyle}
-                  type="text"
-                  value={value.maLop}
-                  onChange={(e) =>
-                    setValue({ ...value, maLop: e.target.value })
                   }
                 />
               </div>

@@ -326,7 +326,7 @@ const Body = () => {
                 </form>
             </div>
 
-            <div className="flex  mt-1 justify-between" style={{    alignItems: "end"}}>
+            <div className="flex  mt-1 justify-between" style={{ alignItems: "end" }}>
                 {scores && (
                     <div className="flex mb-2 gap-x-2 justify-center">
                         <div className="text-base font-bold text-text1">
@@ -344,7 +344,6 @@ const Body = () => {
                     </div>
                 )}
 
-               
                 {/* import export  */}
                 {course && (
                     <div className="flex mx-2 mt-1  justify-center ">
@@ -386,7 +385,7 @@ const Body = () => {
                     </div>
                 )}
 
-{scores && (
+                {scores && (
                     <div className="flex gap-y-6 mb-2">
                         <div className="relative inline-block text-left">
                             <div>

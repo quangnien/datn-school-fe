@@ -42,7 +42,7 @@ const Body = () => {
     const [pageCount, setPageCount] = useState(0);
     const [itemOffset, setItemOffset] = useState(0);
     const [nextPage, setNextPage] = useState(0);
-    const itemsPerPage = 20;
+    const itemsPerPage = 1000;
     const store = useSelector((state) => state);
     // phục vụ xóa
     const UnitObj = units?.find((dp) => dp.tenLop === unit);

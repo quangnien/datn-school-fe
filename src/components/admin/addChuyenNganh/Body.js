@@ -76,19 +76,6 @@ const Body = () => {
           >
             <div className={classes.FormItem}>
               <div className={classes.WrapInputLabel}>
-                <h1 className={classes.LabelStyle}>Tên chuyên ngành *:</h1>
-                <input
-                  placeholder="Tên chuyên ngành"
-                  required
-                  className={classes.InputStyle}
-                  type="text"
-                  value={value.tenCn}
-                  onChange={(e) =>
-                    setValue({ ...value, tenCn: e.target.value })
-                  }
-                />
-              </div>
-              <div className={classes.WrapInputLabel}>
                 <h1 className={classes.LabelStyle}>Mã chuyên ngành *:</h1>
 
                 <input
@@ -99,6 +86,20 @@ const Body = () => {
                   value={value.maCn}
                   onChange={(e) =>
                     setValue({ ...value, maCn: e.target.value })
+                  }
+                />
+              </div>
+
+              <div className={classes.WrapInputLabel}>
+                <h1 className={classes.LabelStyle}>Tên chuyên ngành *:</h1>
+                <input
+                  placeholder="Tên chuyên ngành"
+                  required
+                  className={classes.InputStyle}
+                  type="text"
+                  value={value.tenCn}
+                  onChange={(e) =>
+                    setValue({ ...value, tenCn: e.target.value })
                   }
                 />
               </div>

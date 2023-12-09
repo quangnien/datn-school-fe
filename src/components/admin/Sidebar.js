@@ -53,35 +53,35 @@ const Sidebar = () => {
                     {users1[users1.indexOf("MENU_KHOA")] && (
                         <NavLink to="/admin/getdepartmentall" className={({ isActive }) => (isActive ? isActiveStyle : isNotActiveStyle)}>
                             <AssignmentIndIcon className="" />
-                            <h1 className="font-normal">Khoa</h1>
+                            <h1 className="font-normal">{users2[users1.indexOf("MENU_KHOA")]}</h1>
                         </NavLink>
                     )}
 
                     {users1[users1.indexOf("MENU_CHUYENNGANH")] && (
                         <NavLink to="/admin/getchuyennganhall" className={({ isActive }) => (isActive ? isActiveStyle : isNotActiveStyle)}>
                             <AssignmentIndIcon className="" />
-                            <h1 className="font-normal">Chuyên Ngành</h1>
+                            <h1 className="font-normal">{users2[users1.indexOf("MENU_CHUYENNGANH")]}</h1>
                         </NavLink>
                     )}
 
                     {users1[users1.indexOf("MENU_LOPTINCHI")] && (
                         <NavLink to="/admin/allUnit" className={({ isActive }) => (isActive ? isActiveStyle : isNotActiveStyle)}>
                             <SchoolIcon className="" />
-                            <h1 className="font-normal">Lớp</h1>
+                            <h1 className="font-normal">{users2[users1.indexOf("MENU_LOPTINCHI")]}</h1>
                         </NavLink>
                     )}
                     {users1[users1.indexOf("MENU_SINHVIEN")] && (
                         <NavLink to="/admin/student" className={({ isActive }) => (isActive ? isActiveStyle : isNotActiveStyle)}>
                             <GroupIcon className="" />
 
-                            <h1 className="font-normal">Sinh Viên</h1>
+                            <h1 className="font-normal">{users2[users1.indexOf("MENU_SINHVIEN")]}</h1>
                         </NavLink>
                     )}
 
                     {users1[users1.indexOf("MENU_GIANGVIEN")] && (
                         <NavLink to="/admin/teacher" className={({ isActive }) => (isActive ? isActiveStyle : isNotActiveStyle)}>
                             <GroupIcon className="" />
-                            <h1 className="font-normal">Giảng Viên</h1>
+                            <h1 className="font-normal">{users2[users1.indexOf("MENU_GIANGVIEN")]}</h1>
                         </NavLink>
                     )}
 
@@ -89,7 +89,7 @@ const Sidebar = () => {
                         <NavLink to="/admin/allcourse" className={({ isActive }) => (isActive ? isActiveStyle : isNotActiveStyle)}>
                             <SchoolIcon className="" />
 
-                            <h1 className="font-normal">Lớp Tín chỉ</h1>
+                            <h1 className="font-normal">{users2[users1.indexOf("MENU_LOPTINCHI")]}</h1>
                         </NavLink>
                     )}
 
@@ -97,7 +97,7 @@ const Sidebar = () => {
                         <NavLink to="/admin/coursedetail" className={({ isActive }) => (isActive ? isActiveStyle : isNotActiveStyle)}>
                             <SchoolIcon className="" />
 
-                            <h1 className="font-normal">Lịch học</h1>
+                            <h1 className="font-normal">{users2[users1.indexOf("MENU_LICHHOC")]}</h1>
                         </NavLink>
                     )}
                 </div>
@@ -106,7 +106,7 @@ const Sidebar = () => {
                     {users1[users1.indexOf("MENU_DIEM")] && (
                         <NavLink to="/admin/allscore" className={({ isActive }) => (isActive ? isActiveStyle : isNotActiveStyle)}>
                             <CreditScoreIcon className="" />
-                            <h1 className="font-normal">Điểm</h1>
+                            <h1 className="font-normal">{users2[users1.indexOf("MENU_DIEM")]}</h1>
                         </NavLink>
                     )}
                 </div>
@@ -114,7 +114,7 @@ const Sidebar = () => {
                     {users1[users1.indexOf("MENU_MONHOC")] && (
                         <NavLink to="/admin/allsubject" className={({ isActive }) => (isActive ? isActiveStyle : isNotActiveStyle)}>
                             <MenuBookIcon className="" />
-                            <h1 className="font-normal">Môn học</h1>
+                            <h1 className="font-normal">{users2[users1.indexOf("MENU_MONHOC")]}</h1>
                         </NavLink>
                     )}
                 </div>
@@ -122,7 +122,7 @@ const Sidebar = () => {
                     {users1[users1.indexOf("MENU_MENU")] && (
                         <NavLink to="/admin/getmenuall" className={({ isActive }) => (isActive ? isActiveStyle : isNotActiveStyle)}>
                             <MenuBookIcon className="" />
-                            <h1 className="font-normal">Menu</h1>
+                            <h1 className="font-normal">{users2[users1.indexOf("MENU_MENU")]}</h1>
                         </NavLink>
                     )}
                 </div>
@@ -130,7 +130,7 @@ const Sidebar = () => {
                     {users1[users1.indexOf("MENU_ROLE")] && (
                         <NavLink to="/admin/getroleall" className={({ isActive }) => (isActive ? isActiveStyle : isNotActiveStyle)}>
                             <MenuBookIcon className="" />
-                            <h1 className="font-normal">Role</h1>
+                            <h1 className="font-normal">{users2[users1.indexOf("MENU_ROLE")]}</h1>
                         </NavLink>
                     )}
                 </div>
@@ -138,7 +138,7 @@ const Sidebar = () => {
                     {users1[users1.indexOf("MENU_USERS")] && (
                         <NavLink to="/admin/getuserall" className={({ isActive }) => (isActive ? isActiveStyle : isNotActiveStyle)}>
                             <MenuBookIcon className="" />
-                            <h1 className="font-normal">Users</h1>
+                            <h1 className="font-normal">{users2[users1.indexOf("MENU_USERS")]}</h1>
                         </NavLink>
                     )}
                 </div>
@@ -146,7 +146,7 @@ const Sidebar = () => {
                     {users1[users1.indexOf("MENU_CMMNCD")] && (
                         <NavLink to="/admin/getcmmncdall" className={({ isActive }) => (isActive ? isActiveStyle : isNotActiveStyle)}>
                             <MenuBookIcon className="" />
-                            <h1 className="font-normal">Danh mục trạng thái</h1>
+                            <h1 className="font-normal">{users2[users1.indexOf("MENU_CMMNCD")]}</h1>
                         </NavLink>
                     )}
                 </div>
@@ -154,13 +154,13 @@ const Sidebar = () => {
                     {users1[users1.indexOf("MENU_THONGKEDIEM")] && (
                         <NavLink to="/admin/thongke" className={({ isActive }) => (isActive ? isActiveStyle : isNotActiveStyle)}>
                             <BarChartIcon className="" />
-                            <h1 className="font-normal">Thống kê điểm</h1>
+                            <h1 className="font-normal">{users2[users1.indexOf("MENU_THONGKEDIEM")]}</h1>
                         </NavLink>
                     )}
                     {users1[users1.indexOf("MENU_GV_DANGKYLICHDAY")] && (
                         <NavLink to="/admin/getgvdow" className={({ isActive }) => (isActive ? isActiveStyle : isNotActiveStyle)}>
                             <BarChartIcon className="" />
-                            <h1 className="font-normal">Lịch dạy</h1>
+                            <h1 className="font-normal">{users2[users1.indexOf("MENU_GV_DANGKYLICHDAY")]}</h1>
                         </NavLink>
                     )}
 
@@ -183,7 +183,7 @@ const Sidebar = () => {
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                 </svg>
                             </div>
-                            <h1 className="font-normal">Đổi mật khẩu</h1>
+                            <h1 className="font-normal">{users2[users1.indexOf("MENU_DOIMATKHAU")]}</h1>
                         </NavLink>
                     )}
 
@@ -191,14 +191,14 @@ const Sidebar = () => {
                     {users1[users1.indexOf("MENU_PROFILE_SV")] && (
                         <NavLink to="/student/studentinfo" className={({ isActive }) => (isActive ? isActiveStyle : isNotActiveStyle)}>
                             <BarChartIcon className="" />
-                            <h1 className="font-normal">Profile</h1>
+                            <h1 className="font-normal">{users2[users1.indexOf("MENU_PROFILE_SV")]}</h1>
                         </NavLink>
                     )}
 
                     {users1[users1.indexOf("MENU_STUDENT_SCORE")] && (
                         <NavLink to="/student/score" className={({ isActive }) => (isActive ? isActiveStyle : isNotActiveStyle)}>
                             <BarChartIcon className="" />
-                            <h1 className="font-normal">Điểm</h1>
+                            <h1 className="font-normal">{users2[users1.indexOf("MENU_STUDENT_SCORE")]}</h1>
                         </NavLink>
                     )}
                     {users1[users1.indexOf("MENU_STUDENT_TKB")] && (
@@ -219,7 +219,7 @@ const Sidebar = () => {
                                     />
                                 </svg>
                             </div>
-                            <h1 className="font-normal">Thời khóa biểu</h1>
+                            <h1 className="font-normal">{users2[users1.indexOf("MENU_STUDENT_TKB")]}</h1>
                         </NavLink>
                     )}
 
@@ -241,7 +241,7 @@ const Sidebar = () => {
                                     />
                                 </svg>
                             </div>
-                            <h1 className="font-normal">Đăng ký môn</h1>
+                            <h1 className="font-normal">{users2[users1.indexOf("MENU_STUDENT_DKM")]}</h1>
                         </NavLink>
                     )}
 
@@ -264,13 +264,13 @@ const Sidebar = () => {
                                     />
                                 </svg>
                             </div>
-                            <h1 className="font-normal">Profile</h1>
+                            <h1 className="font-normal">{users2[users1.indexOf("MENU_TEACHER_PROFILE")]}</h1>
                         </NavLink>
                     )}
                     {users1[users1.indexOf("MENU_TEACHER_DIEM")] && (
                         <NavLink to="/teacher/score" className={({ isActive }) => (isActive ? isActiveStyle : isNotActiveStyle)}>
                             <CreditScoreIcon className="" />
-                            <h1 className="font-normal">Điểm</h1>
+                            <h1 className="font-normal">{users2[users1.indexOf("MENU_TEACHER_DIEM")]}</h1>
                         </NavLink>
                     )}
 
@@ -292,14 +292,14 @@ const Sidebar = () => {
                                     />
                                 </svg>
                             </div>
-                            <h1 className="font-normal">Thời khóa biểu</h1>
+                            <h1 className="font-normal">{users2[users1.indexOf("MENU_TEACHER_TKB")]}</h1>
                         </NavLink>
                     )}
 
                     {users1[users1.indexOf("MENU_TEACHER_THONGKE")] && (
                         <NavLink to="/teacher/thongke" className={({ isActive }) => (isActive ? isActiveStyle : isNotActiveStyle)}>
                             <BarChartIcon className="" />
-                            <h1 className="font-normal">Thống kê</h1>
+                            <h1 className="font-normal">{users2[users1.indexOf("MENU_TEACHER_THONGKE")]}</h1>
                         </NavLink>
                     )}
                 </div>

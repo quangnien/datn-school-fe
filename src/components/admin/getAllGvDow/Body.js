@@ -162,7 +162,7 @@ const Body = () => {
                 <thead className="bg-[#E1EEEE] items-center top-0 sticky ">
                   <tr>
                     <th className="px-4 py-1">STT</th>
-                    <th className="px-4 py-1">Mã Gv</th>
+                    <th className="px-4 py-1">Mã Giảng Viên</th>
                     <th className="px-4 py-1">Lịch dạy</th>
                     <th className="px-4 py-1">Hành động</th>
                   </tr>
@@ -216,10 +216,10 @@ const Body = () => {
         >
           <div className="flex flex-col bg-white rounded-xl">
             <form
-              className="w-[1724px] min-h-[600px] py-10 px-7 text-center bg-[#fff] border rounded-md  shadow-md mx-auto"
+              className="w-[1440px] min-h-[500px] py-10 px-7 text-center bg-[#fff] border rounded-md  shadow-md mx-auto"
               onSubmit={handleFormSubmit}
             >
-              <div className="grid grid-cols-4 mt-4 gap-x-10">
+              <div className="grid grid-cols-2 mt-4 gap-x-10">
                 <div className={classes.WrapInputLabel}>
                   <h1 className={classes.LabelStyle}>Mã Giảng Viên:</h1>
                   <input

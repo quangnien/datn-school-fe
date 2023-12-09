@@ -51,26 +51,66 @@ const Body = () => {
     dispatch({ type: SET_ERRORS, payload: {} });
   }, []);
 
+  // cách tính điểm
+  const [isOpen, setIsOpen] = useState(false);
+
+  const items = [
+      "F - 0 (0 đến 3.9)",
+      "D - 1 (4 đến 4.9)",
+      "D+ - 1.5 (5 đến 5.4)",
+      "C - 2 (5.5 đến 6.4)",
+      "C+ - 2.5 (6.5 đến 6.9)",
+      "B - 3 (7 đến 7.9)",
+      "B+ - 3.5 (8 đến 8.4)",
+      "A - 3.7 (8.5 đến 8.9)",
+      "A+ - 4 (9 đến 10 )",
+  ];
+
+  const handleItemClick = (item) => {
+      setIsOpen(false);
+  };
   return (
     <div className="flex-[0.8] mt-3 mx-5 item-center">
       <div className="flex flex-col mt-1">
         <div>
           <div className="w-full">
-            <div className="col-span-3">
-              <h1 className="font-semibold">Cách tính điểm hệ 4:</h1>
-              <ul className="flex flex-wrap gap-x-6 text-base text-text1 pl-6 list-none">
-                <li>F  - 0   (0   đến 3.9)</li>
-                <li>D  - 1   (4   đến 4.9)</li>
-                <li>D+ - 1.5 (5   đến 5.4)</li>
-                <li>C  - 2   (5.5 đến 6.4)</li>
-                <li>C+ - 2.5 (6.5 đến 6.9)</li>
-                <li>B  - 3   (7   đến 7.9)</li>
-                <li>B+ - 3.5 (8   đến 8.4)</li>
-                <li>A  - 3.7 (8.5 đến 8.9)</li>
-                <li>A+ - 4   (9   đến 10 )</li>
-              </ul>
-              <br></br>
-            </div>
+            {scores1 && (
+              <div className="flex gap-y-6 mb-2">
+              <div className="relative inline-block text-left">
+                  <div>
+                      <button
+                          onClick={() => setIsOpen(!isOpen)}
+                          type="button"
+                          className="p-1 bg-[#c4c5cf] rounded-md cursor-pointe mt"
+                          id="dropdownMenuButton"
+                          aria-expanded="true"
+                          aria-haspopup="true"
+                      >
+                          Cách tính điểm
+                      </button>
+                  </div>
+                  {isOpen && (
+                      <div
+                          className="absolute z-50 w-48 py-1 mt-1 bg-white border border-gray-300 rounded-md"
+                          role="menu"
+                          aria-orientation="vertical"
+                          aria-labelledby="dropdownMenuButton"
+                      >
+                          {items.map((item, index) => (
+                              <p key={index} className="px-2 py-1 cursor-pointer hover:bg-gray-200" onClick={() => handleItemClick(item)}>
+                                  {item}
+                              </p>
+                          ))}
+                      </div>
+                  )}
+              </div>
+              {/* {selectedItem && (
+          <div className="mt-2">
+              <p>Thông tin: {selectedItem}</p>
+          </div>
+      )} */}
+          </div>
+            )}
             <div className="col-span-3">
               <h1 className="font-semibold">Học kỳ 2 Năm học 2022-2023</h1>
               {Object.keys(error).length === 0 && scores1?.length !== 0 && (

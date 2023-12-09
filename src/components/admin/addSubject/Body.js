@@ -117,6 +117,19 @@ const Body = () => {
           >
             <div className="grid grid-cols-4 gap-x-10">
               <div className={classes.WrapInputLabel}>
+                <h1 className={classes.LabelStyle}>Mã Môn Học *:</h1>
+
+                <input
+                  placeholder="Mã Môn Học"
+                  required
+                  className={classes.InputStyle}
+                  type="text"
+                  value={value.maMh}
+                  onChange={(e) => setValue({ ...value, maMh: e.target.value })}
+                />
+              </div>
+
+              <div className={classes.WrapInputLabel}>
                 <h1 className={classes.LabelStyle}>Tên Môn Học *:</h1>
 
                 <input
@@ -130,18 +143,7 @@ const Body = () => {
                   }
                 />
               </div>
-              <div className={classes.WrapInputLabel}>
-                <h1 className={classes.LabelStyle}>Mã Môn Học *:</h1>
-
-                <input
-                  placeholder="Mã Môn Học"
-                  required
-                  className={classes.InputStyle}
-                  type="text"
-                  value={value.maMh}
-                  onChange={(e) => setValue({ ...value, maMh: e.target.value })}
-                />
-              </div>
+              
               <div className={classes.WrapInputLabel}>
                 <h1 className={classes.LabelStyle}>Số Tín Chỉ *:</h1>
 

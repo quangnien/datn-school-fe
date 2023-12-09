@@ -230,6 +230,26 @@ const Body = () => {
     }
   }, [dispatch, store.errors, store.teacher.importDiems]);
 
+  // cách tính điểm
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedItem, setSelectedItem] = useState("");
+
+  const items = [
+      "F - 0 (0 đến 3.9)",
+      "D - 1 (4 đến 4.9)",
+      "D+ - 1.5 (5 đến 5.4)",
+      "C - 2 (5.5 đến 6.4)",
+      "C+ - 2.5 (6.5 đến 6.9)",
+      "B - 3 (7 đến 7.9)",
+      "B+ - 3.5 (8 đến 8.4)",
+      "A - 3.7 (8.5 đến 8.9)",
+      "A+ - 4 (9 đến 10 )",
+  ];
+
+  const handleItemClick = (item) => {
+      setSelectedItem(item);
+      setIsOpen(false);
+  };
   return (
     <div className="flex-[0.8] mt-3 mx-5 item-center">
       <div className="items-center my-8 mt-2 mb-2 rounded-lg">
@@ -293,7 +313,7 @@ const Body = () => {
         </form>
       </div>
 
-      <div className="flex mb-2 gap-x-2">
+      {/* <div className="flex mb-2 gap-x-2">
           <div className="text-base font-bold text-text1">
               Cách tính điểm hệ 4: 
           </div>
@@ -308,7 +328,46 @@ const Body = () => {
               <li>A  - 3.7 (8.5 đến 8.9)</li>
               <li>A+ - 4   (9   đến 10 )</li>
           </ul>
-      </div>
+      </div> */}
+
+      {scores &&(
+        <div className="flex gap-y-6 mb-2">
+        <div className="relative inline-block text-left">
+            <div>
+                <button
+                    onClick={() => setIsOpen(!isOpen)}
+                    type="button"
+                    className="p-1 bg-[#c4c5cf] rounded-md cursor-pointe mt"
+                    id="dropdownMenuButton"
+                    aria-expanded="true"
+                    aria-haspopup="true"
+                >
+                    Cách tính điểm
+                </button>
+            </div>
+            {isOpen && (
+                <div
+                    className="absolute z-50 w-48 py-1 mt-1 bg-white border border-gray-300 rounded-md"
+                    role="menu"
+                    aria-orientation="vertical"
+                    aria-labelledby="dropdownMenuButton"
+                >
+                    {items.map((item, index) => (
+                        <p key={index} className="px-2 py-1 cursor-pointer hover:bg-gray-200" onClick={() => handleItemClick(item)}>
+                            {item}
+                        </p>
+                    ))}
+                </div>
+            )}
+        </div>
+        {/* {selectedItem && (
+    <div className="mt-2">
+        <p>Thông tin: {selectedItem}</p>
+    </div>
+)} */}
+    </div>
+
+      )}
 
       <div className="flex justify-between">
         {scores && (
@@ -388,7 +447,9 @@ const Body = () => {
           </div>
 
           {!loading && scores?.length > 0 && (
-            <div className="overflow-auto max-h-[500px]">
+
+            <div className="overflow-auto max-h-[400px]">
+              
               <table className="w-full table-auto">
                 <thead className="bg-[#E1EEEE] items-center sticky top-0">
                   <tr>
@@ -449,6 +510,7 @@ const Body = () => {
                 </tbody>
               </table>
             </div>
+
           )}
         </div>
       </div>

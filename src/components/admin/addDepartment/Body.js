@@ -73,6 +73,21 @@ const Body = () => {
             onSubmit={handleSubmit}
           >
             <div className={classes.FormItem}>
+              
+              <div className={classes.WrapInputLabel}>
+                <h1 className={classes.LabelStyle}>Mã khoa *:</h1>
+                <input
+                  placeholder="Mã khoa"
+                  required
+                  className={classes.InputStyle}
+                  type="text"
+                  value={value.maKhoa}
+                  onChange={(e) =>
+                    setValue({ ...value, maKhoa: e.target.value })
+                  }
+                />
+              </div>
+
               <div className={classes.WrapInputLabel}>
                 <h1 className={classes.LabelStyle}>Tên khoa *:</h1>
                 <input
@@ -86,20 +101,7 @@ const Body = () => {
                   }
                 />
               </div>
-              <div className={classes.WrapInputLabel}>
-                <h1 className={classes.LabelStyle}>Mã khoa *:</h1>
 
-                <input
-                  placeholder="Mã khoa"
-                  required
-                  className={classes.InputStyle}
-                  type="text"
-                  value={value.maKhoa}
-                  onChange={(e) =>
-                    setValue({ ...value, maKhoa: e.target.value })
-                  }
-                />
-              </div>
               {/* <div className={classes.WrapInputLabel}>
                 <h1 className={classes.LabelStyle}>Số điện thoại :</h1>
 

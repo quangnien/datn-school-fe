@@ -175,6 +175,12 @@ const Body = () => {
           </button>
         )}
       </div>
+      <div className="flex mt-4">
+        <ul className="text-red-500">
+          <li>* GIANG_VIEN : Trạng thái của Giảng Viên</li>
+          <li>* SINH_VIEN  : Trạng thái của Sinh Viên</li>
+        </ul>
+      </div>
       <div className="w-full my-8 mt-6">
         {cmmnCds?.length !== 0 && (
           <table className="w-full table-auto ">
