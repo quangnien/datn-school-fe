@@ -192,7 +192,7 @@ const Body = () => {
 
     // handle import, export
     const [file, setFile] = useState(null);
-console.log("file",file)
+    console.log("file", file);
     const handleFileChange = (event) => {
         setFile(event.target.files[0]);
     };
@@ -209,7 +209,7 @@ console.log("file",file)
 
         dispatch(exportDiem(course));
     };
-    const inputRef = useRef(null)
+    const inputRef = useRef(null);
     useEffect(() => {
         if (store.admin.importDiems) {
             console.log("runing app....");
@@ -217,15 +217,35 @@ console.log("file",file)
             const CourseId = CourseObj?.maLopTc;
             dispatch(getScoreCourse(CourseId));
             setFile(null);
-            if (inputRef.current) { 
-                inputRef.current.value = ""; 
+            if (inputRef.current) {
+                inputRef.current.value = "";
             }
         }
     }, [dispatch, store.errors, store.admin.importDiems]);
 
+    // cách tính điểm
+    const [isOpen, setIsOpen] = useState(false);
+    const [selectedItem, setSelectedItem] = useState("");
+
+    const items = [
+        "F - 0 (0 đến 3.9)",
+        "D - 1 (4 đến 4.9)",
+        "D+ - 1.5 (5 đến 5.4)",
+        "C - 2 (5.5 đến 6.4)",
+        "C+ - 2.5 (6.5 đến 6.9)",
+        "B - 3 (7 đến 7.9)",
+        "B+ - 3.5 (8 đến 8.4)",
+        "A - 3.7 (8.5 đến 8.9)",
+        "A+ - 4 (9 đến 10 )",
+    ];
+
+    const handleItemClick = (item) => {
+        setSelectedItem(item);
+        setIsOpen(false);
+    };
     return (
         <div className="flex-[0.8] mt-1 mx-5 item-center">
-            <div className="items-center my-8 mt-2 mb-2 rounded-lg">
+            <div className="items-center my-2 mt-1 mb-1 rounded-lg">
                 <form className="flex flex-col col-span-1 space-y-2" onSubmit={handleSubmit}>
                     <div className="flex mt-2 gap-x-2">
                         <div className="flex flex-col">
@@ -305,24 +325,53 @@ console.log("file",file)
                     </div>
                 </form>
             </div>
-            {scores && (
-                <div className="flex mb-2 gap-x-2">
-                    <div className="text-base font-bold text-text1">
-                        Môn học: <span className="text-base font-normal text-text2">{scores[0]?.tenMh}</span>
-                    </div>
-                    <div className="text-base font-bold text-text1">
-                        Số tín chỉ: <span className="text-base font-normal text-text2">{scores[0]?.soTc}</span>
-                    </div>
-                    <div className="text-base font-bold text-text1">
-                        %CC-%GK-%CK:{" "}
-                        <span className="text-base font-normal text-text2">
-                            {scores[0]?.percentCc} {scores[0]?.percentGk} {scores[0]?.percentCk}
-                        </span>
-                    </div>
-                </div>
-            )}
 
-            <div className="flex justify-between">
+            <div className="flex  mt-1 justify-between" style={{    alignItems: "end"}}>
+                {scores && (
+                    <div className="flex mb-2 gap-x-2 justify-center">
+                        <div className="text-base font-bold text-text1">
+                            Môn học: <span className="text-base font-normal text-text2">{scores[0]?.tenMh}</span>
+                        </div>
+                        <div className="text-base font-bold text-text1">
+                            Số tín chỉ: <span className="text-base font-normal text-text2">{scores[0]?.soTc}</span>
+                        </div>
+                        <div className="text-base font-bold text-text1">
+                            %CC-%GK-%CK:{" "}
+                            <span className="text-base font-normal text-text2">
+                                {scores[0]?.percentCc} {scores[0]?.percentGk} {scores[0]?.percentCk}
+                            </span>
+                        </div>
+                    </div>
+                )}
+
+               
+                {/* import export  */}
+                {course && (
+                    <div className="flex mx-2 mt-1  justify-center ">
+                        <form onSubmit={handleImportFile}>
+                            <div className="flex gap-x-1">
+                                <input type="file" ref={inputRef} onChange={handleFileChange} className="w-[200px] m-auto" />
+                                <button
+                                    className="relative  items-center gap-1 mr-4 w-[118px] h-[38px] hover:bg-[#04605E] block py-2 font-bold text-white rounded-lg px-4 
+           bg-[#157572] focus:outline-none focus:shadow-outline "
+                                    type="submit"
+                                >
+                                    Upload File
+                                </button>
+                            </div>
+                        </form>
+                        <button
+                            className="relative  items-center gap-1  w-[112px] h-[38px] hover:bg-[#04605E] block py-2 font-bold text-white rounded-lg px-4 
+           bg-[#157572] focus:outline-none focus:shadow-outline "
+                            onClick={handleExport}
+                        >
+                            Tải File
+                        </button>
+                    </div>
+                )}
+            </div>
+
+            <div className="flex gap-2 ">
                 {scores && (
                     <div className="flex gap-x-5 text-text2">
                         <h1>Sắp xếp khi xuất danh sách </h1>
@@ -336,28 +385,42 @@ console.log("file",file)
                         </div>
                     </div>
                 )}
-                {/* import export  */}
-                {course && (
-                    <div className="flex mx-5 mt-3 item-center gap-x-3 items-center ">
-                        <form onSubmit={handleImportFile}>
-                            <div className="flex gap-x-1">
-                                <input type="file" ref={inputRef} onChange={handleFileChange} className="w-[200px] m-auto" />
+
+{scores && (
+                    <div className="flex gap-y-6 mb-2">
+                        <div className="relative inline-block text-left">
+                            <div>
                                 <button
-                                    className="relative mt-2 items-center gap-[9px] mr-4 w-[180px] h-[41px] hover:bg-[#04605E] block py-2 font-bold text-white rounded-lg px-4 
-           bg-[#157572] focus:outline-none focus:shadow-outline "
-                                    type="submit"
+                                    onClick={() => setIsOpen(!isOpen)}
+                                    type="button"
+                                    className="p-1 bg-[#c4c5cf] rounded-md cursor-pointe mt"
+                                    id="dropdownMenuButton"
+                                    aria-expanded="true"
+                                    aria-haspopup="true"
                                 >
-                                    Upload File
+                                    Cách tính điểm
                                 </button>
                             </div>
-                        </form>
-                        <button
-                            className="relative mt-2 items-center gap-[9px] mr-4 w-[200px] h-[41px] hover:bg-[#04605E] block py-2 font-bold text-white rounded-lg px-4 
-           bg-[#157572] focus:outline-none focus:shadow-outline "
-                            onClick={handleExport}
-                        >
-                            Tải File
-                        </button>
+                            {isOpen && (
+                                <div
+                                    className="absolute z-50 w-48 py-1 mt-1 bg-white border border-gray-300 rounded-md"
+                                    role="menu"
+                                    aria-orientation="vertical"
+                                    aria-labelledby="dropdownMenuButton"
+                                >
+                                    {items.map((item, index) => (
+                                        <p key={index} className="px-2 py-1 cursor-pointer hover:bg-gray-200" onClick={() => handleItemClick(item)}>
+                                            {item}
+                                        </p>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
+                        {/* {selectedItem && (
+                    <div className="mt-2">
+                        <p>Thông tin: {selectedItem}</p>
+                    </div>
+                )} */}
                     </div>
                 )}
             </div>
@@ -372,7 +435,7 @@ console.log("file",file)
                     </div>
 
                     {search && !loading && scores?.length > 0 && (
-                        <div className="overflow-auto max-h-[500px]">
+                        <div className="overflow-auto max-h-[350px]">
                             <table className="w-full table-auto">
                                 <thead className="sticky top-0 bg-[#E1EEEE] items-center">
                                     <tr>

@@ -1,13 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import Body from "./Body";
-import Header from "./Header";
 import React, { useEffect } from "react";
 
-import {
-  getTeacherById,
-  getAllDepartment,
-} from "../../redux/actions/teacherActions";
+
 import Sidebar from "../../admin/Sidebar";
+import Header from "../../admin/Header";
+import { getAllDepartmentTeacher, getTeacherById } from "../../../redux/actions/teacherActions";
 
 const TeacherInfo = () => {
   const store = useSelector((state) => state);
@@ -15,9 +13,9 @@ const TeacherInfo = () => {
 
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getAllDepartment());
+    dispatch(getAllDepartmentTeacher());
     dispatch(getTeacherById(idLogin));
-    dispatch(getAllDepartment(idLogin));
+    dispatch(getAllDepartmentTeacher(idLogin));
   }, [dispatch]);
 
   return (

@@ -7,8 +7,8 @@ import React, { useEffect, useState } from "react";
 import Spinner from "../../../utils/Spinner";
 
 import {
-  getCourseTeacherKHM,
-  getThongkebysomething,
+  getCourseTeacherKHMTeacher,
+  getThongkebysomethingTeacher,
 } from "../../../redux/actions/teacherActions";
 
 // http://localhost:9090/api/admin/dsLopTc/giangVien/GV004?maKeHoach=MKH1
@@ -30,7 +30,8 @@ const Body = () => {
   useEffect(() => {
     if (valueMKH) {
       dispatch(
-        getCourseTeacherKHM(user?.retObj?.userDetails?.username, valueMKH)
+        getCourseTeacherKHMTeacher
+        (user?.retObj?.userDetails?.username, valueMKH)
       );
     }
   }, [valueMKH]);
@@ -59,7 +60,7 @@ const Body = () => {
       const CourseObj = coursesbykhnmagv?.find((dp) => dp.maLopTc === course);
       const idLopTc = CourseObj?.id;
       dispatch(
-        getThongkebysomething({
+        getThongkebysomethingTeacher({
           params: {
             idLopTc,
             col,

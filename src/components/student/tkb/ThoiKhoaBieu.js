@@ -1,10 +1,10 @@
 import { getAllKHNStudent } from "../../../redux/actions/studentActions";
 import { useDispatch } from "react-redux";
 import Body from "./Body";
-import Header from "../Header";
 import React, { useEffect } from "react";
 import Sidebar from "../../admin/Sidebar";
-// import Sidebar from "../Sidebar";
+import Header from "../../admin/Header";
+
 
 const ThoiKhoaBieu = () => {
   const dispatch = useDispatch();

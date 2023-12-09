@@ -1,9 +1,9 @@
 import { getAllKHNTeacher } from "../../../redux/actions/teacherActions";
 import { useDispatch } from "react-redux";
 import Body from "./Body";
-import Header from "../Header";
 import React, { useEffect } from "react";
 import Sidebar from "../../admin/Sidebar";
+import Header from "../../admin/Header";
 
 const ScoreTeacher = () => {
   const dispatch = useDispatch();

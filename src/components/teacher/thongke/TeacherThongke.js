@@ -2,9 +2,9 @@ import { getAllKHNTeacher } from "../../../redux/actions/teacherActions";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import Body from "./Body";
-import Header from "../Header";
 import React from "react";
 import Sidebar from "../../admin/Sidebar";
+import Header from "../../admin/Header";
 
 const TeacherThongke = () => {
   const dispatch = useDispatch();

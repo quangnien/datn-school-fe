@@ -9,7 +9,7 @@ import ImageUpload from "../../util/img/ImageUpload";
 import MenuItem from "@mui/material/MenuItem";
 import React, { useEffect, useRef, useState } from "react";
 import ReactModal from "react-modal";
-import ReactPaginate from "react-paginate";
+// import ReactPaginate from "react-paginate";
 import Select from "@mui/material/Select";
 import Spinner from "../../../utils/Spinner";
 import Swal from "sweetalert2";
@@ -655,7 +655,7 @@ const Body = () => {
             )}
 
             {/* pagination */}
-            {students?.length > 0 && (
+            {/* {students?.length > 0 && (
                 <div className="flex items-center justify-center w-full mt-2 mb-1">
                     <ReactPaginate
                         breakLabel="..."
@@ -668,7 +668,7 @@ const Body = () => {
                         className="pagination"
                     />
                 </div>
-            )}
+            )} */}
         </div>
     );
 };

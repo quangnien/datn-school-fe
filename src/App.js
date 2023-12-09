@@ -27,7 +27,6 @@ import ScoreTeacher from "./components/teacher/scoreTeacher/ScoreTeacher";
 // import StudentHome from "./components/student/StudentHome";
 import StudentInFo from "./components/student/studentInfo/StudentInFo";
 import StudentUpw from "./components/student/updatepassword/StudentUpw";
-import TeacherHome from "./components/teacher/TeacherHome";
 import TeacherThongke from "./components/teacher/thongke/TeacherThongke";
 import TeacherUpw from "./components/teacher/updatepassword/TeacherUpw";
 import ThoiKhoaBieu from "./components/student/tkb/ThoiKhoaBieu";

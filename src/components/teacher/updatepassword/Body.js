@@ -50,7 +50,6 @@ const Body = () => {
       );
     }
   };
-  console.log("store", store);
   useEffect(() => {
     if (store.errors || store.teacher.teacherupwed) {
       setLoading(false);

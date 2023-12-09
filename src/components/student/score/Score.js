@@ -1,7 +1,5 @@
 import React, { useEffect } from "react";
 import Body from "./Body";
-// import Sidebar from "../../student/Sidebar";
-import Header from "../../student/Header";
 import { useDispatch } from "react-redux";
 import {
   getAllKHNStudent,
@@ -9,6 +7,7 @@ import {
   getScoreStudent1Student,
 } from "../../../redux/actions/studentActions";
 import Sidebar from "../../admin/Sidebar";
+import Header from "../../admin/Header";
 
 const Score = () => {
   const dispatch = useDispatch();

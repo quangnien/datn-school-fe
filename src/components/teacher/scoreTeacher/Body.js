@@ -293,6 +293,23 @@ const Body = () => {
         </form>
       </div>
 
+      <div className="flex mb-2 gap-x-2">
+          <div className="text-base font-bold text-text1">
+              Cách tính điểm hệ 4: 
+          </div>
+          <ul className="flex flex-wrap gap-x-6 text-base text-text1 pl-6 list-none">
+              <li>F  - 0   (0   đến 3.9)</li>
+              <li>D  - 1   (4   đến 4.9)</li>
+              <li>D+ - 1.5 (5   đến 5.4)</li>
+              <li>C  - 2   (5.5 đến 6.4)</li>
+              <li>C+ - 2.5 (6.5 đến 6.9)</li>
+              <li>B  - 3   (7   đến 7.9)</li>
+              <li>B+ - 3.5 (8   đến 8.4)</li>
+              <li>A  - 3.7 (8.5 đến 8.9)</li>
+              <li>A+ - 4   (9   đến 10 )</li>
+          </ul>
+      </div>
+
       <div className="flex justify-between">
         {scores && (
           <div className="flex gap-x-5 text-text2">

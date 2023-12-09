@@ -374,8 +374,10 @@ const Body = () => {
           </div>
 
           {search && !loading && coursedetails?.length > 0 && (
+          <div className="overflow-auto  max-h-[524px]">
+
             <table className="w-full table-auto">
-              <thead className="bg-[#E1EEEE] items-center">
+              <thead className="bg-[#E1EEEE] items-center sticky top-0">
                 <tr>
                   {valueMKH?.maKeHoach === "MKH1" && (
                     <th className="px-4 py-2">Chọn</th>
@@ -472,6 +474,7 @@ const Body = () => {
                 ))}
               </tbody>
             </table>
+          </div>
           )}
         </div>
       </div>
@@ -549,14 +552,12 @@ const Body = () => {
                     displayEmpty
                     sx={{ height: 36 }}
                     inputProps={{ "aria-label": "Without label" }}
-                    // value={value.phai}
                     value={value.soTiet || selectedCourseDetail.soTiet}
                     onChange={(e) =>
                       setValue({ ...value, soTiet: e.target.value })
                     }
                     className={classes.InputStyle}
                   >
-                    {/* <MenuItem value="2">2</MenuItem> */}
                     <MenuItem value="4">4</MenuItem>
                   </Select>
                 </div>

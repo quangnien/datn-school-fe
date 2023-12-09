@@ -1,14 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import Body from "./Body";
-import Header from "../Header";
 import React from "react";
-// import Sidebar from "../Sidebar";
 import {
   getAllUnitStudent,
   getStudentByIdStudent,
 } from "../../../redux/actions/studentActions";
 import Sidebar from "../../admin/Sidebar";
+import Header from "../../admin/Header";
 
 const StudentInFo = () => {
   const store = useSelector((state) => state);

@@ -170,8 +170,9 @@ const Body = () => {
       </div>
       <div className="w-full my-8 mt-6">
         {menus?.length !== 0 && (
-          <table className="w-full table-auto ">
-            <thead className="bg-[#E1EEEE] items-center">
+          <div className="overflow-auto max-h-[550px]">
+<table className="w-full table-auto ">
+            <thead className="sticky top-0 bg-[#E1EEEE] items-center">
               <tr>
                 <th className="px-4 py-1">Chọn</th>
                 <th className="px-4 py-1">STT</th>
@@ -218,6 +219,9 @@ const Body = () => {
               ))}
             </tbody>
           </table>
+
+            </div>
+          
         )}
       </div>
       {/* modal edit */}

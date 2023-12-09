@@ -185,7 +185,7 @@ const initialState = {
 const adminReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADMIN_LOGOUT:
-      localStorage.removeItem("adminUser");
+      localStorage.removeItem("user");
       return { ...state, authData: action?.data };
 
     case GET_ALL_DEPARTMENT:
