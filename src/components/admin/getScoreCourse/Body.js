@@ -397,7 +397,7 @@ const Body = () => {
                                     aria-expanded="true"
                                     aria-haspopup="true"
                                 >
-                                    Cách tính điểm
+                                    Cách tính điểm hệ 4
                                 </button>
                             </div>
                             {isOpen && (
@@ -430,7 +430,7 @@ const Body = () => {
                         {loading && scores?.length !== 0 && (
                             <Spinner message="Loading" height={50} width={150} color="#157572" messageColor="#157572" />
                         )}
-                        {scores?.length === 0 && <p className="text-2xl font-bold text-red-500">Lớp tín chỉ chưa nhập điểm</p>}
+                        {scores?.length === 0 && <p className="text-2xl font-bold text-red-500">Lớp tín chỉ chưa có sinh viên đăng ký</p>}
                     </div>
 
                     {search && !loading && scores?.length > 0 && (

@@ -368,7 +368,7 @@ const Body = () => {
             )}
             {coursedetails?.length === 0 && (
               <p className="text-2xl font-bold text-red-500">
-                Lớp tín chỉ chưa có chi tiết lớp tín chỉ
+                Lớp tín chỉ chưa có lịch học
               </p>
             )}
           </div>

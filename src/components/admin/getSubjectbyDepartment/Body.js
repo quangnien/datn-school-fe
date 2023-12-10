@@ -394,7 +394,7 @@ const Body = () => {
                   <tr>
                     <th className="px-4 py-1">Chọn</th>
                     <th className="px-4 py-1">STT</th>
-                    <th className="px-4 py-1">MMH</th>
+                    <th className="px-4 py-1">Mã môn học</th>
                     <th className="px-4 py-1" style={{ width: "300px" }}>
                       Tên môn học
                     </th>

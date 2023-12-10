@@ -242,7 +242,7 @@ const Body = () => {
                     Chọn
                   </th>
                   <th className="px-4 py-1">STT</th>
-                  <th className="px-4 py-1">Mã MH</th>
+                  <th className="px-4 py-1">Mã Môn Học</th>
                   <th className="px-4 py-1 " style={{ width: "300px" }}>
                     Tên môn học
                   </th>
@@ -377,7 +377,7 @@ bg-[#157572] focus:outline-none focus:shadow-outline"
                 <thead className="bg-[#E1EEEE] items-center">
                   <tr>
                     <th className="px-4 py-1">STT</th>
-                    <th className="px-4 py-1">Mã MH</th>
+                    <th className="px-4 py-1">Mã Môn Học</th>
                     <th className="px-4 py-1 " style={{ width: "300px" }}>
                       Tên môn học
                     </th>

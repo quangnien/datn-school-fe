@@ -86,7 +86,7 @@ const Body = () => {
                           aria-expanded="true"
                           aria-haspopup="true"
                       >
-                          Cách tính điểm
+                          Cách tính điểm hệ 4
                       </button>
                   </div>
                   {isOpen && (
@@ -112,23 +112,23 @@ const Body = () => {
           </div>
             )}
             <div className="col-span-3">
-              <h1 className="font-semibold">Học kỳ 2 Năm học 2022-2023</h1>
+              <h1 className="font-semibold">Học kỳ 2 Năm học 2023-2024</h1>
               {Object.keys(error).length === 0 && scores1?.length !== 0 && (
                 <div>
                   <table className="w-full table-auto">
                     <thead className="bg-[#E1EEEE] items-center">
                       <tr>
                         <th className="px-4 py-2">STT</th>
-                        <th className="px-4 py-2">Tên môn</th>
-                        <th className="px-4 py-2">TC</th>
+                        <th className="px-4 py-2">Tên môn học</th>
+                        <th className="px-4 py-2">Tín chỉ</th>
                         <th className="px-4 py-2">%CC</th>
                         <th className="px-4 py-2">%GK</th>
                         <th className="px-4 py-2">%CK</th>
                         <th className="px-4 py-2">Điểm CC</th>
                         <th className="px-4 py-2">Điểm GK</th>
                         <th className="px-4 py-2">Điểm CK</th>
-                        <th className="px-4 py-2">Điểm TK (10)</th>
-                        <th className="px-4 py-2"> Điểm TK (C)</th>
+                        <th className="px-4 py-2">Điểm trung bình (hệ 10)</th>
+                        <th className="px-4 py-2">Xếp loại</th>
                         <th className="px-4 py-2">Kết quả</th>
                       </tr>
                     </thead>
@@ -230,6 +230,22 @@ const Body = () => {
                 <div className="mt-5">
                   <h1 className="font-semibold">Học kỳ 1 Năm học 2022-2023</h1>
                   <table className="w-full table-auto">
+                    <thead className="bg-[#E1EEEE] items-center">
+                      <tr>
+                        <th className="px-4 py-2">STT</th>
+                        <th className="px-4 py-2">Tên môn học</th>
+                        <th className="px-4 py-2">Tín chỉ</th>
+                        <th className="px-4 py-2">%CC</th>
+                        <th className="px-4 py-2">%GK</th>
+                        <th className="px-4 py-2">%CK</th>
+                        <th className="px-4 py-2">Điểm CC</th>
+                        <th className="px-4 py-2">Điểm GK</th>
+                        <th className="px-4 py-2">Điểm CK</th>
+                        <th className="px-4 py-2">Điểm trung bình (hệ 10)</th>
+                        <th className="px-4 py-2">Xếp loại</th>
+                        <th className="px-4 py-2">Kết quả</th>
+                      </tr>
+                    </thead>
                     <tbody className="">
                       {scores0?.map((score, idx) => (
                         <tr
