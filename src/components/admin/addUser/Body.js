@@ -90,7 +90,7 @@ const Body = () => {
             trangThai: "1",
             sdt: "",
             email: "",
-            roleCodeList: ""
+            roleCodeList: []
         
         });
         setSelectedOptions([]);

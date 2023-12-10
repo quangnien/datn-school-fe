@@ -42,7 +42,9 @@ const Body = () => {
     (a, b) => a.tenCn.charCodeAt(0) - b.tenCn.charCodeAt(0)
   );
   // phục vụ xóa
+  console.log("chuyennganh",chuyennganh)
   const chuyenNganhObj = chuyennganhs?.find((dp) => dp.tenCn === chuyennganh);
+  console.log("chuyenNganhObj",chuyenNganhObj)
   const chuyenNganhId = chuyenNganhObj?.maCn;
 
 
@@ -172,7 +174,7 @@ const Body = () => {
     if (store.admin.unitDeleted) {
       setLoading(false);
       setCheckedValue([]);
-      const chuyenNganhObj = chuyennganhs.find((dp) => dp.tenCn === chuyennganhs);
+      const chuyenNganhObj = chuyennganhs.find((dp) => dp.tenCn === chuyennganh);
       const chuyenNganhId = chuyenNganhObj.maCn;
       dispatch(getUnitChuyenNganh(chuyenNganhId));
       dispatch({ type: DELETE_UNIT, payload: false });

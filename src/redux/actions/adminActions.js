@@ -771,7 +771,12 @@ export const deleteDepartment = (formData) => async (dispatch) => {
     if (data.status === "success" && data.retObj.length > 0) {
       toast.success("Xóa khoa thành công!");
       dispatch({ type: DELETE_DEPARTMENT, payload: true });
-    } else {
+    } 
+    else if (data.status === "error"){
+      toast.error(data.message);
+      dispatch({ type: SET_ERRORS, payload: data.message});
+    }
+    else {
       toast.error("Xóa Khoa này không thành không!");
       dispatch({ type: SET_ERRORS, payload: "Xóa Khoa không Thành công" });
     }
@@ -786,7 +791,12 @@ export const deleteChuyenNganh = (formData) => async (dispatch) => {
     if (data.status === "success" && data.retObj.length > 0) {
       toast.success("Xóa chuyên ngành thành công!");
       dispatch({ type: DELETE_CHUYENNGANH, payload: true });
-    } else {
+    } 
+    else if (data.status === "error"){
+      toast.error(data.message);
+      dispatch({ type: SET_ERRORS, payload: data.message});
+    }
+    else {
       toast.error("Xóa chuyên ngành này không thành không!");
       dispatch({ type: SET_ERRORS, payload: "Xóa chuyên ngành không Thành công" });
     }
@@ -801,7 +811,12 @@ export const deleteMenu = (formData) => async (dispatch) => {
     if (data.status === "success" && data.retObj.length > 0) {
       toast.success("Xóa menu thành công!");
       dispatch({ type: DELETE_MENU, payload: true });
-    } else {
+    } 
+    else if (data.status === "error"){
+      toast.error(data.message);
+      dispatch({ type: SET_ERRORS, payload: data.message});
+    }
+    else {
       toast.error("Xóa menu này không thành không!");
       dispatch({ type: SET_ERRORS, payload: "Xóa menu không Thành công" });
     }
@@ -817,7 +832,12 @@ export const deleteCmmnCd = (formData) => async (dispatch) => {
     if (data.status === "success" && data.retObj.length > 0) {
       toast.success("Xóa danh mục trạng thái thành công!");
       dispatch({ type: DELETE_CMMNCD, payload: true });
-    } else {
+    } 
+    else if (data.status === "error"){
+          toast.error(data.message);
+          dispatch({ type: SET_ERRORS, payload: data.message});
+        }
+    else {
       toast.error("Xóa danh mục trạng thái này không thành không!");
       dispatch({ type: SET_ERRORS, payload: "Xóa danh mục trạng thái không thành công" });
     }
@@ -832,7 +852,12 @@ export const deleteUser = (formData) => async (dispatch) => {
     if (data.status === "success" && data.retObj.length > 0) {
       toast.success("Xóa user thành công!");
       dispatch({ type: DELETE_USER, payload: true });
-    } else {
+    } 
+    else if (data.status === "error"){
+      toast.error(data.message);
+      dispatch({ type: SET_ERRORS, payload: data.message});
+    }
+    else {
       toast.error("Xóa user này không thành không!");
       dispatch({ type: SET_ERRORS, payload: "Xóa user không Thành công" });
     }
@@ -841,12 +866,18 @@ export const deleteUser = (formData) => async (dispatch) => {
   }
 };
 export const deleteUnit = (formData) => async (dispatch) => {
+  debugger;
   try {
     const { data } = await api.deleteUnit(formData);
     if (data.status === "success" && data.retObj.length > 0) {
       toast.success("Xóa lớp học thành công!");
       dispatch({ type: DELETE_UNIT, payload: true });
-    } else {
+    } 
+    else if (data.status === "error"){
+      toast.error(data.message);
+      dispatch({ type: SET_ERRORS, payload: data.message});
+    }
+    else {
       toast.error("Xóa Lớp này không thành không!");
       dispatch({ type: SET_ERRORS, payload: "Xóa lớp không thành công" });
     }
@@ -891,7 +922,12 @@ export const deleteCourse = (formData) => async (dispatch) => {
     if (data.status === "success" && data.retObj.length > 0) {
       toast.success("Xóa lớp tín chỉ thành công!");
       dispatch({ type: DELETE_COURSE, payload: true });
-    } else {
+    } 
+    else if (data.status === "error"){
+      toast.error(data.message);
+      dispatch({ type: SET_ERRORS, payload: data.message});
+    }
+    else {
       toast.error("Xóa lớp tín chỉ này không thành không!");
       dispatch({
         type: SET_ERRORS,
@@ -930,7 +966,12 @@ export const deleteSubject = (formData) => async (dispatch) => {
     if (data.status === "success" && data.retObj.length > 0) {
       toast.success("Xóa môn học thành công!");
       dispatch({ type: DELETE_SUBJECT, payload: true });
-    } else {
+    } 
+    else if (data.status === "error"){
+      toast.error(data.message);
+      dispatch({ type: SET_ERRORS, payload: data.message});
+    }
+    else {
       toast.error("Xóa môn học này không thành không!");
       dispatch({ type: SET_ERRORS, payload: "Xóa Môn học không thành công" });
     }
@@ -945,7 +986,12 @@ export const deleteRole = (formData) => async (dispatch) => {
     if (data.status === "success" && data.retObj.length > 0) {
       toast.success("Xóa role thành công!");
       dispatch({ type: DELETE_ROLE, payload: true });
-    } else {
+    } 
+    else if (data.status === "error"){
+      toast.error(data.message);
+      dispatch({ type: SET_ERRORS, payload: data.message});
+    }
+    else {
       toast.error("Xóa role này không thành không!");
       dispatch({ type: SET_ERRORS, payload: "Xóa role không thành công" });
     }

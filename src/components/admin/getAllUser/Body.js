@@ -6,18 +6,14 @@ import ReactModal from "react-modal";
 import Spinner from "../../../utils/Spinner";
 import Swal from "sweetalert2";
 import {
-  deleteRole,
   deleteUser,
   getAllRole,
   getAllUser,
-  updateRole,
   updateUser,
 } from "../../../redux/actions/adminActions";
 import {
-  DELETE_ROLE,
   DELETE_USER,
   SET_ERRORS,
-  UPDATE_ROLE,
   UPDATE_USER,
 } from "../../../redux/actionTypes";
 import ReactSelect from "react-select";
@@ -43,7 +39,6 @@ const modalStyles = {
 const Body = () => {
   const dispatch = useDispatch();
   const [error, setError] = useState({});
-  const [search, setSearch] = useState(false);
   const [loading, setLoading] = useState(false);
   const [inputType, setInputType] = useState("text");
 
@@ -99,12 +94,11 @@ const Body = () => {
     trangThai: "1",
     sdt: "",
     email: "",
-    roleCodeList: [], 
+    roleCodeList: "", 
     id: "",
     hinhAnh: ""
   });
 
-  // console.log("value",value)
   const handleEditClick = (user) => {
     setSelectedUser(user);
     setIsModalOpen(true);
@@ -150,7 +144,6 @@ const Body = () => {
     toast.error("load image error!");
   };
 
-  console.log("selectedUser",selectedUser?.roleCodeList)
   const handleFormSubmit = (e) => {
     e.preventDefault();
 
@@ -161,11 +154,7 @@ const Body = () => {
       updatedValue.username = selectedUser.username;
     }
     // TODO: non update pw
-    // if (value.password !== "") {
-    //   updatedValue.password = value.password;
-    // } else {
-    //   updatedValue.password = selectedUser.password;
-    // }
+   
     if (value.ho !== "") {
       updatedValue.ho = value.ho;
     } else {
@@ -217,7 +206,7 @@ const Body = () => {
       updatedValue.hinhAnh = selectedUser.hinhAnh;
     }
 
-    if (value.roleCodeList.length > 0) {
+    if (value.roleCodeList !== "") {
       updatedValue.roleCodeList = value.roleCodeList;
     } else {
       updatedValue.roleCodeList = selectedUser.roleCodeList;
@@ -268,9 +257,9 @@ const Body = () => {
 
   useEffect(() => {
     if (store.admin.userDeleted) {
+      console.log("runing app")
       setLoading(false);
       setCheckedValue([]);
-
       dispatch(getAllUser());
       dispatch({ type: DELETE_USER, payload: false });
     }

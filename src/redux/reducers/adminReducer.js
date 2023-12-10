@@ -85,6 +85,7 @@ import {
   UPDATE_GV_DOW,
   GET_ALL_DAY_OF_WEEK,
   ADD_CHECK_COURSE_DETAIL,
+  DELETE_USER,
 } from "../actionTypes";
 
 const initialState = {
@@ -264,6 +265,11 @@ const adminReducer = (state = initialState, action) => {
       return {
         ...state,
         menuDeleted: action.payload,
+      };
+      case DELETE_USER:
+      return {
+        ...state,
+        userDeleted: action.payload,
       };
     case DELETE_CMMNCD:
       return {
