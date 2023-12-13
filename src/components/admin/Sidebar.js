@@ -64,6 +64,15 @@ const Sidebar = () => {
                         </NavLink>
                     )}
 
+                    <div className="" style={{ marginTop: 0 }}>
+                        {users1[users1.indexOf("MENU_MONHOC")] && (
+                            <NavLink to="/admin/allsubject" className={({ isActive }) => (isActive ? isActiveStyle : isNotActiveStyle)}>
+                                <MenuBookIcon className="" />
+                                <h1 className="font-normal">{users2[users1.indexOf("MENU_MONHOC")]}</h1>
+                            </NavLink>
+                        )}
+                    </div>
+
                     {users1[users1.indexOf("MENU_LOP")] && (
                         <NavLink to="/admin/allUnit" className={({ isActive }) => (isActive ? isActiveStyle : isNotActiveStyle)}>
                             <SchoolIcon className="" />
@@ -110,14 +119,7 @@ const Sidebar = () => {
                         </NavLink>
                     )}
                 </div>
-                <div className="" style={{ marginTop: 0 }}>
-                    {users1[users1.indexOf("MENU_MONHOC")] && (
-                        <NavLink to="/admin/allsubject" className={({ isActive }) => (isActive ? isActiveStyle : isNotActiveStyle)}>
-                            <MenuBookIcon className="" />
-                            <h1 className="font-normal">{users2[users1.indexOf("MENU_MONHOC")]}</h1>
-                        </NavLink>
-                    )}
-                </div>
+
                 <div className="" style={{ marginTop: 0 }}>
                     {users1[users1.indexOf("MENU_MENU")] && (
                         <NavLink to="/admin/getmenuall" className={({ isActive }) => (isActive ? isActiveStyle : isNotActiveStyle)}>

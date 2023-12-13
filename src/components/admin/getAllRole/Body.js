@@ -236,7 +236,7 @@ const Body = () => {
           </div>
 
           { !loading && roles?.length !== 0 && (
-            <div className="overflow-auto max-h-[450px]">
+            <div className="overflow-auto max-h-[550px]">
               <table className="w-full table-auto">
                 <thead className="bg-[#E1EEEE] items-center top-0 sticky ">
                   <tr>

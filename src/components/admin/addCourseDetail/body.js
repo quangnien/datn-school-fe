@@ -254,13 +254,21 @@ const Body = () => {
                             <div className={classes.WrapInputLabel}>
                                 <h1 className={classes.LabelStyle}>Phòng *:</h1>
 
-                                <input
+                                {/* <input
                                     placeholder="Phòng"
                                     required
                                     className={classes.InputStyle}
                                     type="text"
                                     value={value.phong}
                                     onChange={(e) => setValue({ ...value, phong: e.target.value })}
+                                /> */}
+                                <input
+                                    placeholder="Phòng"
+                                    required
+                                    className={classes.InputStyle}
+                                    type="text"
+                                    value={value.phong}
+                                    onChange={(e) => setValue({ ...value, phong: e.target.value.toUpperCase() })}
                                 />
                             </div>
                             <div className={classes.WrapInputLabel}>

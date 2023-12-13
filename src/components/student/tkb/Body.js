@@ -1031,7 +1031,7 @@ const Body = () => {
                 object.tiet === 1 ? (
                   <div key={object.id}>
                     <h3> Mã môn học: {object.maMh}</h3>
-                    <div>Tên MH: {object.tenMh}</div>
+                    <div>Tên môn học: {object.tenMh}</div>
                     <div>phòng: {object.phong}</div>
                     <div>Thứ: {object.thu}</div>
                     <div>Tiết bắt đầu: {object.tiet}</div>
@@ -1068,7 +1068,7 @@ const Body = () => {
                 object.tiet === 1 ? (
                   <div key={object.id}>
                     <h3> Mã môn học: {object.maMh}</h3>
-                    <div>Tên MH: {object.tenMh}</div>
+                    <div>Tên môn học: {object.tenMh}</div>
                     <div>phòng: {object.phong}</div>
                     <div>Thứ: {object.thu}</div>
                     <div>Tiết bắt đầu: {object.tiet}</div>
@@ -1103,7 +1103,7 @@ const Body = () => {
                 object.tiet === 1 ? (
                   <div key={object.id}>
                     <h3> Mã môn học: {object.maMh}</h3>
-                    <div>Tên MH: {object.tenMh}</div>
+                    <div>Tên môn học: {object.tenMh}</div>
                     <div>phòng: {object.phong}</div>
                     <div>Thứ: {object.thu}</div>
                     <div>Tiết bắt đầu: {object.tiet}</div>
@@ -1138,7 +1138,7 @@ const Body = () => {
                 object.tiet === 1 ? (
                   <div key={object.id}>
                     <h3> Mã môn học: {object.maMh}</h3>
-                    <div>Tên MH: {object.tenMh}</div>
+                    <div>Tên môn học: {object.tenMh}</div>
                     <div>phòng: {object.phong}</div>
                     <div>Thứ: {object.thu}</div>
                     <div>Tiết bắt đầu: {object.tiet}</div>
@@ -1173,7 +1173,7 @@ const Body = () => {
                 object.tiet === 1 ? (
                   <div key={object.id}>
                     <h3> Mã môn học: {object.maMh}</h3>
-                    <div>Tên MH: {object.tenMh}</div>
+                    <div>Tên môn học: {object.tenMh}</div>
                     <div>phòng: {object.phong}</div>
                     <div>Thứ: {object.thu}</div>
                     <div>Tiết bắt đầu: {object.tiet}</div>
@@ -1208,7 +1208,7 @@ const Body = () => {
                 object.tiet === 1 ? (
                   <div key={object.id}>
                     <h3> Mã môn học: {object.maMh}</h3>
-                    <div>Tên MH: {object.tenMh}</div>
+                    <div>Tên môn học: {object.tenMh}</div>
                     <div>phòng: {object.phong}</div>
                     <div>Thứ: {object.thu}</div>
                     <div>Tiết bắt đầu: {object.tiet}</div>
@@ -1246,7 +1246,7 @@ const Body = () => {
                 object.tiet === 5 ? (
                   <div key={object.id}>
                     <h3> Mã môn học: {object.maMh}</h3>
-                    <div>Tên MH: {object.tenMh}</div>
+                    <div>Tên môn học: {object.tenMh}</div>
                     <div>phòng: {object.phong}</div>
                     <div>Thứ: {object.thu}</div>
                     <div>Tiết bắt đầu: {object.tiet}</div>
@@ -1283,7 +1283,7 @@ const Body = () => {
                 object.tiet === 5 ? (
                   <div key={object.id}>
                     <h3> Mã môn học: {object.maMh}</h3>
-                    <div>Tên MH: {object.tenMh}</div>
+                    <div>Tên môn học: {object.tenMh}</div>
                     <div>phòng: {object.phong}</div>
                     <div>Thứ: {object.thu}</div>
                     <div>Tiết bắt đầu: {object.tiet}</div>
@@ -1318,7 +1318,7 @@ const Body = () => {
                 object.tiet === 5 ? (
                   <div key={object.id}>
                     <h3> Mã môn học: {object.maMh}</h3>
-                    <div>Tên MH: {object.tenMh}</div>
+                    <div>Tên môn học: {object.tenMh}</div>
                     <div>phòng: {object.phong}</div>
                     <div>Thứ: {object.thu}</div>
                     <div>Tiết bắt đầu: {object.tiet}</div>
@@ -1353,7 +1353,7 @@ const Body = () => {
                 object.tiet === 5 ? (
                   <div key={object.id}>
                     <h3> Mã môn học: {object.maMh}</h3>
-                    <div>Tên MH: {object.tenMh}</div>
+                    <div>Tên môn học: {object.tenMh}</div>
                     <div>phòng: {object.phong}</div>
                     <div>Thứ: {object.thu}</div>
                     <div>Tiết bắt đầu: {object.tiet}</div>
@@ -1388,7 +1388,7 @@ const Body = () => {
                 object.tiet === 5 ? (
                   <div key={object.id}>
                     <h3> Mã môn học: {object.maMh}</h3>
-                    <div>Tên MH: {object.tenMh}</div>
+                    <div>Tên Môn học: {object.tenMh}</div>
                     <div>phòng: {object.phong}</div>
                     <div>Thứ: {object.thu}</div>
                     <div>Tiết bắt đầu: {object.tiet}</div>
@@ -1423,7 +1423,7 @@ const Body = () => {
                 object.tiet === 5 ? (
                   <div key={object.id}>
                     <h3> Mã môn học: {object.maMh}</h3>
-                    <div>Tên MH: {object.tenMh}</div>
+                    <div>Tên môn học: {object.tenMh}</div>
                     <div>phòng: {object.phong}</div>
                     <div>Thứ: {object.thu}</div>
                     <div>Tiết bắt đầu: {object.tiet}</div>

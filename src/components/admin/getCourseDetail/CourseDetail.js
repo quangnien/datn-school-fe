@@ -96,7 +96,7 @@ const CourseDetail = ({ course, isOpen, onClose }) => {
           </div>
         </div>
 
-        <p className="block mt-2 text-black">Danh sách chi tiết lớp tín chỉ:</p>
+        <p className="block mt-2 text-black">Danh sách lịch học:</p>
 
         <div className="w-full">
           <div className="col-span-3">
