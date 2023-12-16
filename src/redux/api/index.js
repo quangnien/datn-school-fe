@@ -105,7 +105,7 @@ export const getAllCoursebyUnitMKH = (data) =>
 
 // get sinh vien chưa đăng ký lớp tín chỉ
 export const getStudentChuaDangKy = (data) =>
-  API.get("api/admin/sinhVien/chuaDK", data);
+  API.get(`api/admin/sinhVien/chuaDK`, data);
 
 //Điểm
 export const getScoreCourse = (course) =>
