@@ -641,7 +641,20 @@ export const updateRole = (formData) => async (dispatch) => {
     dispatch({ type: SET_ERRORS, payload: error.response.data });
   }
 };
-
+export const updateDangKyMon = (formData) => async (dispatch) => {
+  try {
+    const { data } = await api.updateDangKyMon(formData);
+    if (data.status === "success") {
+      toast.success("Đăng ký môn cho sinh viên  thành công!");
+      dispatch({ type: UPDATE_DANG_KY_MON, payload: true });
+    } else {
+      toast.error("Đăng ký cho sinh viên không thành công!");
+      dispatch({ type: SET_ERRORS, payload: data });
+    }
+  } catch (error) {
+    dispatch({ type: SET_ERRORS, payload: error.response.data });
+  }
+};
 export const updateGvDow = (formData) => async (dispatch) => {
   try {
     const { data } = await api.updateGvDow(formData);

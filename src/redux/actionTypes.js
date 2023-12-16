@@ -112,6 +112,8 @@ export const UPDATE_STUDENT = "UPDATE_STUDENT";
 export const UPDATE_SUBJECT = "UPDATE_SUBJECT";
 export const UPDATE_TEACHER = "UPDATE_TEACHER";
 export const UPDATE_UNIT = "UPDATE_UNIT";
+export const UPDATE_DANG_KY_MON = "UPDATE_DANG_KY_MON";
+
 export const UPDATE_USER = "UPDATE_USER";
 export const UPDATE_CMMNCD = "UPDATE_CMMNCD";
 

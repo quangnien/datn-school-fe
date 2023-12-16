@@ -87,6 +87,7 @@ import {
   ADD_CHECK_COURSE_DETAIL,
   DELETE_USER,
   GET_SV_CHUADK,
+  UPDATE_DANG_KY_MON,
 } from "../actionTypes";
 
 const initialState = {
@@ -105,6 +106,8 @@ const initialState = {
   updatedUser: false,
 
   updatedStudent: false,
+  updatedDangKyMon: false,
+
   updatedTeacher: false,
   updatedCourse: false,
   updateScore: false,
@@ -358,6 +361,11 @@ const adminReducer = (state = initialState, action) => {
       return {
         ...state,
         updatedChuyenNganh: action.payload,
+      };
+    case UPDATE_DANG_KY_MON:
+      return {
+        ...state,
+        updatedDangKyMon: action.payload,
       };
     case UPDATE_MENU:
       return {

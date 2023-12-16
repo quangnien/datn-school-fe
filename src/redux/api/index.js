@@ -107,6 +107,8 @@ export const getAllCoursebyUnitMKH = (data) =>
 export const getStudentChuaDangKy = (data) =>
   API.get(`api/admin/sinhVien/chuaDK`, data);
 
+export const updateDangKyMon = (updateDangKyMon) =>
+  API.put("/api/admin/dang-ky-mon/adminDKM", updateDangKyMon);
 //Điểm
 export const getScoreCourse = (course) =>
   API.get(`/api/admin/diem/lopTc/detail/${course}`, course);

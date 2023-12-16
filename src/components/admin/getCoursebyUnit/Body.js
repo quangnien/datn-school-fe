@@ -274,13 +274,24 @@ export const Body = () => {
     maLop: "",
     maLopTc: "",
   });
+  const [selectedOptionDangKyMons, setSelectedOptionDangKyMons] = useState([]);
+  const [valueDangKyMon, setvalueDangKyMon] = useState({
+    maLopTc: "",
+    maSvList: "",
+  });
   const handleThemDangKyModal = (course) => {
-    console.log("course",course)
+    console.log("course", course);
     setIsModalOpen(true);
     setModalMode("DangKy");
+
     setvalueDangKySinhVien({
       ...valueDangKySinhVien,
       maLopTc: course.maLopTc,
+    });
+
+    setvalueDangKyMon({
+      maLopTc: role.roleCode,
+      maSvList: [],
     });
   };
 
@@ -300,31 +311,39 @@ export const Body = () => {
 
   useEffect(() => {
     if (valueDangKySinhVien?.maLopTc && valueDangKySinhVien?.maLop) {
-     
       setloadingDangKySinhVien(true);
       dispatch(
         getStudentChuaDangKy({
           params: {
             maLop: valueDangKySinhVien?.maLop,
-          maLopTc: valueDangKySinhVien?.maLopTc
+            maLopTc: valueDangKySinhVien?.maLopTc,
           },
         })
-        
       );
     }
-
   }, [valueDangKySinhVien?.maLopTc, valueDangKySinhVien?.maLop]);
 
   const sinhvienChuaDangKys = useSelector(
     (state) => state.admin.sinhvienChuaDangKys
   );
 
+  const initialsinhvienchuadangkys = sinhvienChuaDangKys;
+  const SinhVienOptions = initialsinhvienchuadangkys?.map((sub) => ({
+    value: sub.maSv,
+    label: sub.ten,
+  }));
   useEffect(() => {
     if (
       sinhvienChuaDangKys?.length !== 0 ||
       sinhvienChuaDangKys?.length === 0
     ) {
       setloadingDangKySinhVien(false);
+      setSelectedOptions(
+        (sinhvienChuaDangKys || []).map((value, index) => ({
+          value: value?.maSv,
+          label: value?.ten,
+        }))
+      );
     }
   }, [sinhvienChuaDangKys]);
 
@@ -334,10 +353,27 @@ export const Body = () => {
     setError({});
     setvalueDangKySinhVien("");
     dispatch({ type: "CLEAR_MODAL_DANGkY" });
-
-   
   };
 
+  // next
+
+  const handleDangKyMonSubmit = (e) => {
+    e.preventDefault();
+
+    dispatch(updateDangKyMon(valueDangKyMon));
+    dispatch({ type: UPDATE_DANG_KY_MON, payload: false });
+  };
+
+  useEffect(() => {
+    if (!store.admin.updatedDangKyMon) return;
+    setError({});
+    closeModal();
+  }, [dispatch, store.errors, store.admin.updatedDangKyMon]);
+
+  const handleModalError = () => {
+    setError({});
+    closeModal();
+  };
   return (
     <div className="flex-[0.8] mt-3 mx-5 item-center">
       <div className="flex mt-4">
@@ -688,10 +724,7 @@ export const Body = () => {
               </div>
 
               <div className={classes.WrapButton}>
-                <button
-                  className={classes.adminFormSubmitButton}
-                  type="submit"
-                >
+                <button className={classes.adminFormSubmitButton} type="submit">
                   Lưu
                 </button>
                 <button
@@ -768,7 +801,6 @@ export const Body = () => {
                       {units?.map((ut, idx) => (
                         <MenuItem key={idx} value={ut.maLop}>
                           {ut.tenLop}
-
                         </MenuItem>
                       ))}
                     </Select>
@@ -787,13 +819,59 @@ export const Body = () => {
                 />
               )}
             </div>
-            {!loadingDangKySinhVien &&
-              sinhvienChuaDangKys?.length > 0 &&
-              sinhvienChuaDangKys?.map((student) => student.ho)}
+            {!loadingDangKySinhVien && sinhvienChuaDangKys?.length > 0 && (
+              <div className="flex flex-col bg-white rounded-xl">
+                <form
+                  className="w-full min-h-[650px] py-10 px-7 text-center bg-[#fff] border rounded-md  shadow-md mx-auto"
+                  onSubmit={handleDangKyMonSubmit}
+                >
+                  <div className="grid grid-cols-1">
+                    <div className={classes.WrapInputLabel}>
+                      <h1 className={classes.LabelStyle}>Chọn Sinh Viên *:</h1>
+
+                      <ReactSelect
+                        isMulti
+                        displayEmpty
+                        name="values"
+                        options={SinhVienOptions}
+                        value={selectedOptionDangKyMons}
+                        onChange={(selectedOptionDangKyMons) => {
+                          setSelectedOptionDangKyMons(selectedOptionDangKyMons);
+                          const selectedValues = selectedOptionDangKyMons.map(
+                            (option) => option.value
+                          );
+                          setvalueDangKyMon((prevValue) => ({
+                            ...prevValue,
+                            maSvList: [...selectedValues],
+                          }));
+                        }}
+                        classNamePrefix="select"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="flex items-center justify-center mt-10 space-x-6">
+                    <button
+                      className={classes.adminFormSubmitButton}
+                      type="submit"
+                    >
+                      Lưu
+                    </button>
+                    <button
+                      className={classes.adminFormClearButton}
+                      type="button"
+                      onClick={() => handleModalError()}
+                    >
+                      Thoát
+                    </button>
+                  </div>
+                </form>
+              </div>
+            )}
           </div>
         </ReactModal>
       )}
     </div>
   );
-            }
+};
 export default Body;
