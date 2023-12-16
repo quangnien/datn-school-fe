@@ -1,5 +1,4 @@
 import { Bar, BarChart, CartesianGrid, Legend, XAxis, YAxis } from "recharts";
-import { SET_ERRORS } from "../../../redux/actionTypes";
 import { useDispatch, useSelector } from "react-redux";
 import * as classes from "../../../utils/styles";
 import MenuItem from "@mui/material/MenuItem";
@@ -9,7 +8,6 @@ import Select from "@mui/material/Select";
 import Spinner from "../../../utils/Spinner";
 import {
   getAllCoursebyMKH,
-  getCoursebyKeHoachNam,
   getThongkebysomething,
 } from "../../../redux/actions/adminActions";
 
@@ -34,73 +32,6 @@ const Body = () => {
   const units = useSelector((state) => state.admin.allUnit);
   const [course, setCourse] = useState("");
 
-  // bỏ cách code cũ
-  // const [value, setValue] = useState({
-  //   idKeHoachNam: "",
-  //   maLop: "",
-  //   keySearch: "",
-  // });
-
-  // const [initialKeySearch, setInitialKeySearch] = useState("");
-
-  // useEffect(() => {
-  //   if (Object.keys(store.errors).length !== 0) {
-  //     setError(store.errors);
-  //     setLoading(false);
-  //   }
-  // }, [store.errors]);
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   setLoading(true);
-  //   setError({});
-  //   setInitialKeySearch(value.keySearch);
-  //   const UnitObj = units?.find((dp) => dp.tenLop === unit);
-  //   if (!UnitObj) return;
-  //   const UnitId = UnitObj?.maLop;
-  //   dispatch(
-  //     getCoursebyKeHoachNam({
-  //       params: {
-  //         ...value,
-  //         maLop: UnitId,
-  //       },
-  //     })
-  //   );
-  // };
-
-  // useEffect(() => {
-  //   if (!value.idKeHoachNam || !value.keySearch) return;
-  //   dispatch(
-  //     getCoursebyKeHoachNam({
-  //       params: {
-  //         ...value,
-  //       },
-  //     })
-  //   );
-  // }, [dispatch, store.errors]);
-
-  // useEffect(() => {
-  //   dispatch({ type: SET_ERRORS, payload: {} });
-  // }, []);
-
-  // const courses = useSelector((state) => state.admin.courses);
-
-  // useEffect(() => {
-  //   if (courses?.length !== 0 || courses?.length === 0) {
-  //     setLoading(false);
-  //   }
-  // }, [courses]);
-
-  // useEffect(() => {
-  //   dispatch({ type: SET_ERRORS, payload: {} });
-  // }, []);
-
-  // useEffect(() => {
-  //   if (!initialKeySearch && !value?.idKeHoachNam)
-  //     dispatch({ type: "RESET_COURSES" });
-  // }, [initialKeySearch, value?.idKeHoachNam]);
-
-  // cách code mới
   const [valueMKH, setValueMKH] = useState({ maKeHoach: "" });
 
   const handleSubmit = (e) => {
@@ -151,7 +82,6 @@ const Body = () => {
     idLopTc: "",
     col: "CC",
   });
-  console.log("valuethongke", valuethongke);
   const handleOpenViewModal = (course) => {
     setSelectedThongke(course);
     setIsModalOpen(true);
@@ -176,18 +106,6 @@ const Body = () => {
       col: "CC",
     });
   }, [valuethongke?.idLopTc]);
-
-  // const handleSubmitThongke = (e) => {
-  //   e.preventDefault();
-  //   setLoadingthongke(true);
-  //   dispatch(
-  //     getThongkebysomething({
-  //       params: {
-  //         ...valuethongke,
-  //       },
-  //     })
-  //   );
-  // };
 
   useEffect(() => {
     if (valuethongke?.idLopTc && valuethongke?.col) {
@@ -217,14 +135,6 @@ const Body = () => {
     setValuethongke("");
     dispatch({ type: "CLEAR_THONGKES" });
   };
-  // useEffect(() => {
-  //   getCoursebyKeHoachNam({
-  //     params: {
-  //       idKeHoachNam: value.idKeHoachNam,
-  //       keySearch: initialKeySearch,
-  //     },
-  //   });
-  // }, [dispatch, store.errors, store.admin.thongkes]);
 
   return (
     <div className="flex-[0.8] mt-3 mx-5 item-center">
@@ -276,19 +186,6 @@ const Body = () => {
               </Select>
             </div>
 
-            {/* <div className="flex flex-col">
-              <h1 className="mb-1 text-text2">Tìm môn học:</h1>
-              <input
-                placeholder="Tên môn học"
-                className="w-[284px] h-10 py-2 px-3 bg-[#DDDEEE] bg-opacity-50 rounded-md outline-none text-sm"
-                type="text"
-                value={value.keySearch}
-                onChange={(e) =>
-                  setValue({ ...value, keySearch: e.target.value })
-                }
-              />
-            </div> */}
-
             <button
               className="w-56 mt-auto text-white transition-all duration-200 bg-red-500 rounded-md h-9 hover:scale-105 hover:bg-red-700"
               type="submit"
@@ -339,12 +236,24 @@ const Body = () => {
                       className="justify-center item-center hover:bg-[#EEF5F5]"
                       key={idx}
                     >
-                      <td className="px-4 py-1 border text-center">{idx + 1}</td>
-                      <td className="px-4 py-1 border text-left">{course.maLopTc}</td>
-                      <td className="px-4 py-1 border text-center">{course.soLuong}</td>
-                      <td className="px-4 py-1 border text-center">{course.soLuongCon}</td>
-                      <td className="px-4 py-1 border text-left">{course.tenMh}</td>
-                      <td className="px-4 py-1 border text-left">{course.tenGv}</td>
+                      <td className="px-4 py-1 text-center border">
+                        {idx + 1}
+                      </td>
+                      <td className="px-4 py-1 text-left border">
+                        {course.maLopTc}
+                      </td>
+                      <td className="px-4 py-1 text-center border">
+                        {course.soLuong}
+                      </td>
+                      <td className="px-4 py-1 text-center border">
+                        {course.soLuongCon}
+                      </td>
+                      <td className="px-4 py-1 text-left border">
+                        {course.tenMh}
+                      </td>
+                      <td className="px-4 py-1 text-left border">
+                        {course.tenGv}
+                      </td>
 
                       <td className="items-center justify-center px-4 py-1 mr-0 border">
                         <button
@@ -419,10 +328,7 @@ const Body = () => {
               </div>
             </div>
             <div className="items-center my-8 mt-2 mb-2 rounded-lg">
-              <form
-                className="flex flex-col col-span-1 space-y-2"
-                // onSubmit={handleSubmitThongke}
-              >
+              <form className="flex flex-col col-span-1 space-y-2">
                 <label htmlFor="department">Biểu đồ Thống kê theo: </label>
 
                 <div className="flex">

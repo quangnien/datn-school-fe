@@ -14,7 +14,6 @@ export const ADD_ROLE = "ADD_ROLE";
 export const ADD_USER = "ADD_USER";
 export const ADD_CMMNCD = "ADD_CMMNCD";
 
-
 export const ADMIN_LOGOUT = "ADMIN_LOGOUT";
 export const CLEAR_THONGKES = "CLEAR_THONGKES";
 export const DELETE_COURSE = "DELETE_COURSE";
@@ -32,7 +31,6 @@ export const DELETE_ROLE = "DELETE_ROLE";
 export const DELETE_USER = "DELETE_USER";
 export const DELETE_CMMNCD = "DELETE_CMMNCD";
 
-
 export const GET_ALL_ADMIN = "GET_ALL_ADMIN";
 export const GET_ALL_COURSE = "GET_ALL_COURSE";
 export const GET_ALL_COURSE_BY_MKH = "GET_ALL_COURSE_BY_MKH";
@@ -49,7 +47,6 @@ export const GET_ALL_USER = "GET_ALL_USER";
 export const GET_ALL_CMMNCD = "GET_ALL_CMMNCD";
 export const GET_ALL_CMMNCDSV = "GET_ALL_CMMNCDSV";
 export const GET_ALL_CMMNCDGV = "GET_ALL_CMMNCDGV";
-
 
 export const GET_ALL_MHTQ = "GET_ALL_MHTQ";
 export const GET_ALL_DAY_OF_WEEK = "GET_ALL_DAY_OF_WEEK";
@@ -73,6 +70,8 @@ export const GET_STUDENT_UNIT = "GET_STUDENT_UNIT";
 export const GET_SUBJECT = "GET_SUBJECT";
 export const GET_SUBJECT_DEPARTMENT = "GET_SUBJECT_DEPARTMENT";
 export const GET_TEACHER = "GET_TEACHER";
+export const GET_SV_CHUADK = "GET_SV_CHUADK";
+
 export const GET_TEACHER_BY_ID = "GET_TEACHER_BY_ID";
 export const GET_TEACHER_DEPARTMENT = "GET_TEACHER_DEPARTMENT";
 export const GET_THONGKE_BY_SOMETHING = "GET_THONGKE_BY_SOMETHING";

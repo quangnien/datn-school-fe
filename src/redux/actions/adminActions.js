@@ -27,7 +27,6 @@ import {
   GET_STUDENT_BY_ID,
   GET_STUDENT_UNIT,
   GET_TEACHER_DEPARTMENT,
-  GET_UNIT_DEPARTMENT,
   SET_ERRORS,
   UPDATE_COURSE,
   UPDATE_DEPARTMENT,
@@ -81,6 +80,7 @@ import {
   GET_ALL_GV_DOW,
   GET_ALL_DAY_OF_WEEK,
   ADD_CHECK_COURSE_DETAIL,
+  GET_SV_CHUADK,
 } from "../actionTypes";
 import * as api from "../api";
 
@@ -151,7 +151,6 @@ export const getAllGvDow = () => async (dispatch) => {
   }
 };
 
-
 export const getAllUser = () => async (dispatch) => {
   try {
     const { data } = await api.getAllUser();
@@ -218,12 +217,10 @@ export const getAllDayOfDow = () => async (dispatch) => {
   }
 };
 
-
-
 export const getAllCmmnCd = () => async (dispatch) => {
   try {
     const { data } = await api.getAllCmmnCd();
-    console.log("runing")
+    console.log("runing");
     dispatch({ type: GET_ALL_CMMNCD, payload: data.retObj });
   } catch (error) {
     console.log("Redux Error", error);
@@ -242,7 +239,7 @@ export const getAllCmmnCdSv = () => async (dispatch) => {
 export const getAllCmmnCdGv = () => async (dispatch) => {
   try {
     const { data } = await api.getAllCmmnCdGv();
-    console.log("data",data)
+    console.log("data", data);
     dispatch({ type: GET_ALL_CMMNCDGV, payload: data.retObj });
   } catch (error) {
     console.log("Redux Error", error);
@@ -528,7 +525,6 @@ export const addCheckCourseDetail = (formData) => async (dispatch) => {
     } else {
       dispatch({ type: SET_ERRORS, payload: data });
     }
-
   } catch (error) {
     if (
       error.response &&
@@ -601,7 +597,6 @@ export const updateCmmnCd = (formData) => async (dispatch) => {
     dispatch({ type: SET_ERRORS, payload: error.response.data });
   }
 };
-
 
 export const updateUnit = (formData) => async (dispatch) => {
   try {
@@ -771,12 +766,10 @@ export const deleteDepartment = (formData) => async (dispatch) => {
     if (data.status === "success" && data.retObj.length > 0) {
       toast.success("Xóa khoa thành công!");
       dispatch({ type: DELETE_DEPARTMENT, payload: true });
-    } 
-    else if (data.status === "error"){
+    } else if (data.status === "error") {
       toast.error(data.message);
-      dispatch({ type: SET_ERRORS, payload: data.message});
-    }
-    else {
+      dispatch({ type: SET_ERRORS, payload: data.message });
+    } else {
       toast.error("Xóa Khoa này không thành không!");
       dispatch({ type: SET_ERRORS, payload: "Xóa Khoa không Thành công" });
     }
@@ -791,17 +784,21 @@ export const deleteChuyenNganh = (formData) => async (dispatch) => {
     if (data.status === "success" && data.retObj.length > 0) {
       toast.success("Xóa chuyên ngành thành công!");
       dispatch({ type: DELETE_CHUYENNGANH, payload: true });
-    } 
-    else if (data.status === "error"){
+    } else if (data.status === "error") {
       toast.error(data.message);
-      dispatch({ type: SET_ERRORS, payload: data.message});
-    }
-    else {
+      dispatch({ type: SET_ERRORS, payload: data.message });
+    } else {
       toast.error("Xóa chuyên ngành này không thành không!");
-      dispatch({ type: SET_ERRORS, payload: "Xóa chuyên ngành không Thành công" });
+      dispatch({
+        type: SET_ERRORS,
+        payload: "Xóa chuyên ngành không Thành công",
+      });
     }
   } catch (error) {
-    dispatch({ type: SET_ERRORS, payload: "Xóa chuyên ngành không Thành công" });
+    dispatch({
+      type: SET_ERRORS,
+      payload: "Xóa chuyên ngành không Thành công",
+    });
   }
 };
 
@@ -811,12 +808,10 @@ export const deleteMenu = (formData) => async (dispatch) => {
     if (data.status === "success" && data.retObj.length > 0) {
       toast.success("Xóa menu thành công!");
       dispatch({ type: DELETE_MENU, payload: true });
-    } 
-    else if (data.status === "error"){
+    } else if (data.status === "error") {
       toast.error(data.message);
-      dispatch({ type: SET_ERRORS, payload: data.message});
-    }
-    else {
+      dispatch({ type: SET_ERRORS, payload: data.message });
+    } else {
       toast.error("Xóa menu này không thành không!");
       dispatch({ type: SET_ERRORS, payload: "Xóa menu không Thành công" });
     }
@@ -825,24 +820,27 @@ export const deleteMenu = (formData) => async (dispatch) => {
   }
 };
 
-
 export const deleteCmmnCd = (formData) => async (dispatch) => {
   try {
     const { data } = await api.deleteCmmnCd(formData);
     if (data.status === "success" && data.retObj.length > 0) {
       toast.success("Xóa danh mục trạng thái thành công!");
       dispatch({ type: DELETE_CMMNCD, payload: true });
-    } 
-    else if (data.status === "error"){
-          toast.error(data.message);
-          dispatch({ type: SET_ERRORS, payload: data.message});
-        }
-    else {
+    } else if (data.status === "error") {
+      toast.error(data.message);
+      dispatch({ type: SET_ERRORS, payload: data.message });
+    } else {
       toast.error("Xóa danh mục trạng thái này không thành không!");
-      dispatch({ type: SET_ERRORS, payload: "Xóa danh mục trạng thái không thành công" });
+      dispatch({
+        type: SET_ERRORS,
+        payload: "Xóa danh mục trạng thái không thành công",
+      });
     }
   } catch (error) {
-    dispatch({ type: SET_ERRORS, payload: "Xóa danh mục trạng thái không Thành công" });
+    dispatch({
+      type: SET_ERRORS,
+      payload: "Xóa danh mục trạng thái không Thành công",
+    });
   }
 };
 
@@ -852,12 +850,10 @@ export const deleteUser = (formData) => async (dispatch) => {
     if (data.status === "success" && data.retObj.length > 0) {
       toast.success("Xóa user thành công!");
       dispatch({ type: DELETE_USER, payload: true });
-    } 
-    else if (data.status === "error"){
+    } else if (data.status === "error") {
       toast.error(data.message);
-      dispatch({ type: SET_ERRORS, payload: data.message});
-    }
-    else {
+      dispatch({ type: SET_ERRORS, payload: data.message });
+    } else {
       toast.error("Xóa user này không thành không!");
       dispatch({ type: SET_ERRORS, payload: "Xóa user không Thành công" });
     }
@@ -872,12 +868,10 @@ export const deleteUnit = (formData) => async (dispatch) => {
     if (data.status === "success" && data.retObj.length > 0) {
       toast.success("Xóa lớp học thành công!");
       dispatch({ type: DELETE_UNIT, payload: true });
-    } 
-    else if (data.status === "error"){
+    } else if (data.status === "error") {
       toast.error(data.message);
-      dispatch({ type: SET_ERRORS, payload: data.message});
-    }
-    else {
+      dispatch({ type: SET_ERRORS, payload: data.message });
+    } else {
       toast.error("Xóa Lớp này không thành không!");
       dispatch({ type: SET_ERRORS, payload: "Xóa lớp không thành công" });
     }
@@ -922,12 +916,10 @@ export const deleteCourse = (formData) => async (dispatch) => {
     if (data.status === "success" && data.retObj.length > 0) {
       toast.success("Xóa lớp tín chỉ thành công!");
       dispatch({ type: DELETE_COURSE, payload: true });
-    } 
-    else if (data.status === "error"){
+    } else if (data.status === "error") {
       toast.error(data.message);
-      dispatch({ type: SET_ERRORS, payload: data.message});
-    }
-    else {
+      dispatch({ type: SET_ERRORS, payload: data.message });
+    } else {
       toast.error("Xóa lớp tín chỉ này không thành không!");
       dispatch({
         type: SET_ERRORS,
@@ -966,12 +958,10 @@ export const deleteSubject = (formData) => async (dispatch) => {
     if (data.status === "success" && data.retObj.length > 0) {
       toast.success("Xóa môn học thành công!");
       dispatch({ type: DELETE_SUBJECT, payload: true });
-    } 
-    else if (data.status === "error"){
+    } else if (data.status === "error") {
       toast.error(data.message);
-      dispatch({ type: SET_ERRORS, payload: data.message});
-    }
-    else {
+      dispatch({ type: SET_ERRORS, payload: data.message });
+    } else {
       toast.error("Xóa môn học này không thành không!");
       dispatch({ type: SET_ERRORS, payload: "Xóa Môn học không thành công" });
     }
@@ -986,12 +976,10 @@ export const deleteRole = (formData) => async (dispatch) => {
     if (data.status === "success" && data.retObj.length > 0) {
       toast.success("Xóa role thành công!");
       dispatch({ type: DELETE_ROLE, payload: true });
-    } 
-    else if (data.status === "error"){
+    } else if (data.status === "error") {
       toast.error(data.message);
-      dispatch({ type: SET_ERRORS, payload: data.message});
-    }
-    else {
+      dispatch({ type: SET_ERRORS, payload: data.message });
+    } else {
       toast.error("Xóa role này không thành không!");
       dispatch({ type: SET_ERRORS, payload: "Xóa role không thành công" });
     }
@@ -1044,7 +1032,6 @@ export const getUnitChuyenNganh = (chuyennganh) => async (dispatch) => {
     dispatch({ type: SET_ERRORS, payload: error.response.data });
   }
 };
-
 
 export const getCourseUnit = (unit) => async (dispatch) => {
   try {
@@ -1121,6 +1108,16 @@ export const getThongkebysomething = (requestData) => async (dispatch) => {
   }
 };
 
+export const getStudentChuaDangKy = (requestData) => async (dispatch) => {
+  try {
+    const { data } = await api.getStudentChuaDangKy(requestData);
+
+    dispatch({ type: GET_SV_CHUADK, payload: data.retObj });
+  } catch (error) {
+    dispatch({ type: SET_ERRORS, payload: error.response.data });
+  }
+};
+
 export const getAllCoursebysomething = (requestData) => async (dispatch) => {
   try {
     const { data } = await api.getAllCoursebysomething(requestData);
@@ -1169,7 +1166,6 @@ export const importStudent = (formData, unit) => async (dispatch) => {
   }
 };
 
-
 export const exportStudent = (unit) => async (dispatch) => {
   try {
     const response = await api.exportStudent(unit);
@@ -1193,7 +1189,6 @@ export const getCurrentUser = () => async (dispatch) => {
     console.log("Redux Error", error);
   }
 };
-
 
 // import diem
 export const importDiem = (formData, maLopTc) => async (dispatch) => {

@@ -11,8 +11,7 @@ export const updateDepartment = (updateDepartment) =>
 export const deleteDepartment = (data) =>
   API.delete("/api/admin/khoa", { data });
 
-
-  // chuyen nganh
+// chuyen nganh
 export const getAllChuyenNganh = () => API.get("/api/admin/chuyenNganh");
 export const addChuyenNganh = (chuyennganh) =>
   API.post("/api/admin/chuyenNganh", chuyennganh);
@@ -69,7 +68,6 @@ export const getStudentById = (id) => API.get(`/api/admin/sinhVien/${id}`, id);
 export const deleteStudent = (data) =>
   API.delete("api/admin/sinhVien", { data });
 
-
 // import by excel
 export const importStudent = (data, unit) =>
   API.post(`api/admin/sinhVien/import/${unit}`, data);
@@ -78,8 +76,8 @@ export const importStudent = (data, unit) =>
 export const exportStudent = (unit) =>
   API.get(`/api/admin/sinhVien/export/${unit}`, {
     responseType: "blob",
-  }); 
-  
+  });
+
 //lớp tín chỉ
 // export const addCourse = (course) => API.post("/api/admin/dsLopTc", course);
 export const addCourse = (course) => API.post("/api/admin/lopTc", course);
@@ -105,6 +103,10 @@ export const getAllCoursebyUnitMKH = (data) =>
   // API.get("api/admin/dsLopTc", data);
   API.get("api/admin/lopTc", data);
 
+// get sinh vien chưa đăng ký lớp tín chỉ
+export const getStudentChuaDangKy = (data) =>
+  API.get("api/admin/sinhVien/chuaDK", data);
+
 //Điểm
 export const getScoreCourse = (course) =>
   API.get(`/api/admin/diem/lopTc/detail/${course}`, course);
@@ -121,11 +123,9 @@ export const updateCourseDetail = (updateCourseDetail) =>
 export const deleteCourseDetail = (data) =>
   API.delete("api/admin/chiTietLopTc", { data });
 
-//   
+//
 export const addCheckCourseDetail = (coursedetail) =>
   API.post("/api/admin/chiTietLopTc/validate", coursedetail);
-
-
 
 export const getAllCourseDetailCourse = (course) =>
   API.get(`api/admin/chiTietLopTc/lopTc/${course}`, course);
@@ -161,7 +161,8 @@ export const getAllRole = () => API.get("/api/admin/role");
 
 export const addRole = (tole) => API.post("/api/admin/role", tole);
 // gvdow
-export const updateGvDow = (gvDow) => API.put("/api/admin/giangVien/dow", gvDow);
+export const updateGvDow = (gvDow) =>
+  API.put("/api/admin/giangVien/dow", gvDow);
 export const getAllGvDow = () => API.get("/api/admin/giangVien/dow");
 
 export const updateRole = (updateRole) =>
@@ -176,7 +177,6 @@ export const updateUser = (updateUser) =>
 export const deleteUser = (data) => API.delete("api/admin/user", { data });
 export const getCurrentUser = () => API.get("api/admin/user/current");
 
-
 export const getAllCmmnCd = () => API.get("/api/admin/cmmnCd");
 export const getAllCmmnCdSv = () => API.get("/api/admin/cmmnCd/sv");
 export const getAllCmmnCdGv = () => API.get("/api/admin/cmmnCd/gv");
@@ -184,7 +184,6 @@ export const addCmmnCd = (cmmnCd) => API.post("/api/admin/cmmnCd", cmmnCd);
 export const updateCmmnCd = (updateCmmnCd) =>
   API.put("/api/admin/cmmnCd", updateCmmnCd);
 export const deleteCmmnCd = (data) => API.delete("/api/admin/cmmnCd", { data });
-
 
 // import diem by excel (maLopTc)
 export const importDiem = (data, maLopTc) =>
@@ -194,7 +193,4 @@ export const importDiem = (data, maLopTc) =>
 export const exportDiem = (maLopTc) =>
   API.get(`/api/admin/diem/export/${maLopTc}`, {
     responseType: "blob",
-  }); 
-
-
-
+  });

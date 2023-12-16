@@ -86,6 +86,7 @@ import {
   GET_ALL_DAY_OF_WEEK,
   ADD_CHECK_COURSE_DETAIL,
   DELETE_USER,
+  GET_SV_CHUADK,
 } from "../actionTypes";
 
 const initialState = {
@@ -124,7 +125,6 @@ const initialState = {
   userAdded: false,
   addDetailCheckAdded: "",
 
-
   coursedetailAdded: false,
   //getll
   allTeacher: [],
@@ -144,9 +144,6 @@ const initialState = {
   allCmmnCdSv: [],
   allCmmnCdGv: [],
 
-
-
-
   //getbyidby~
   students: [],
   teachers: [],
@@ -156,11 +153,10 @@ const initialState = {
   courses: [],
   scores: [],
   thongkes: [],
+  sinhvienChuaDangKys: [],
   coursedetails: [],
   allMhtq: [],
   currentUser: [],
-
-
 
   //delete
   departmentDeleted: false,
@@ -180,7 +176,6 @@ const initialState = {
   exportStudents: false,
   importDiems: false,
   exportDiems: false,
-
 };
 
 const adminReducer = (state = initialState, action) => {
@@ -204,11 +199,11 @@ const adminReducer = (state = initialState, action) => {
         ...state,
         allMenu: action.payload,
       };
-      case GET_ALL_GV_DOW:
-        return {
-          ...state,
-          allGvDow: action.payload,
-        };
+    case GET_ALL_GV_DOW:
+      return {
+        ...state,
+        allGvDow: action.payload,
+      };
     case GET_ALL_CMMNCD:
       return {
         ...state,
@@ -224,7 +219,7 @@ const adminReducer = (state = initialState, action) => {
         ...state,
         allCmmnCdGv: action.payload,
       };
-      
+
     case ADD_DEPARTMENT:
       return {
         ...state,
@@ -240,17 +235,17 @@ const adminReducer = (state = initialState, action) => {
         ...state,
         menuAdded: action.payload,
       };
-      case ADD_CHECK_COURSE_DETAIL:
+    case ADD_CHECK_COURSE_DETAIL:
       return {
         ...state,
-        
+
         addDetailCheckAdded: action.payload,
       };
     case ADD_CMMNCD:
-        return {
-          ...state,
-          cmmnCdAdded: action.payload,
-        };
+      return {
+        ...state,
+        cmmnCdAdded: action.payload,
+      };
     case DELETE_DEPARTMENT:
       return {
         ...state,
@@ -266,7 +261,7 @@ const adminReducer = (state = initialState, action) => {
         ...state,
         menuDeleted: action.payload,
       };
-      case DELETE_USER:
+    case DELETE_USER:
       return {
         ...state,
         userDeleted: action.payload,
@@ -286,11 +281,11 @@ const adminReducer = (state = initialState, action) => {
         ...state,
         allTeacher: action.payload,
       };
-      case GET_ALL_DAY_OF_WEEK:
-        return {
-          ...state,
-          allDayOfWeek: action.payload,
-        };  
+    case GET_ALL_DAY_OF_WEEK:
+      return {
+        ...state,
+        allDayOfWeek: action.payload,
+      };
     case ADD_TEACHER:
       return {
         ...state,
@@ -323,7 +318,7 @@ const adminReducer = (state = initialState, action) => {
         ...state,
         allRole: action.payload,
       };
-      case GET_ALL_USER:
+    case GET_ALL_USER:
       return {
         ...state,
         allUser: action.payload,
@@ -344,7 +339,7 @@ const adminReducer = (state = initialState, action) => {
         ...state,
         roleAdded: action.payload,
       };
-      case ADD_USER:
+    case ADD_USER:
       return {
         ...state,
         userAdded: action.payload,
@@ -363,22 +358,22 @@ const adminReducer = (state = initialState, action) => {
       return {
         ...state,
         updatedChuyenNganh: action.payload,
-    };
+      };
     case UPDATE_MENU:
       return {
         ...state,
         updatedMenu: action.payload,
       };
-      case UPDATE_GV_DOW:
-        return {
-          ...state,
-          updatedGvDow: action.payload,
-        };  
+    case UPDATE_GV_DOW:
+      return {
+        ...state,
+        updatedGvDow: action.payload,
+      };
     case UPDATE_CMMNCD:
-        return {
-          ...state,
-          updatedCmmnCd: action.payload,
-        };
+      return {
+        ...state,
+        updatedCmmnCd: action.payload,
+      };
     case GET_UNIT_CHUYENNGANH:
       return {
         ...state,
@@ -409,7 +404,7 @@ const adminReducer = (state = initialState, action) => {
         ...state,
         updatedUnit: action.payload,
       };
-      case UPDATE_USER:
+    case UPDATE_USER:
       return {
         ...state,
         updatedUser: action.payload,
@@ -523,6 +518,11 @@ const adminReducer = (state = initialState, action) => {
         ...state,
         thongkes: action.payload,
       };
+    case GET_SV_CHUADK:
+      return {
+        ...state,
+        sinhvienChuaDangKys: action.payload,
+      };
     //  mã lớp với mã kế hoạch á
     case GET_COURSE_BY_SOMETHING:
       return {
@@ -606,31 +606,31 @@ const adminReducer = (state = initialState, action) => {
         allMhtq: action.payload,
       };
 
-      case IMPORT_STUDENTS:
-        return {
-          ...state,
-          importStudents: action.payload,
-        };
-      case EXPORT_STUDENTS:
-        return {
-          ...state,
-          exportStudents: action.payload,
-        }; 
-      case GET_CURRENT_USER:
-        return {
-          ...state,
-          currentUser: action.payload,
-        };
-      case IMPORT_DIEMS:
-        return {
-          ...state,
-          importDiems: action.payload,
-        };
-        case EXPORT_DIEMS:
-          return {
-            ...state,
-            exportDiems: action.payload,
-          };  
+    case IMPORT_STUDENTS:
+      return {
+        ...state,
+        importStudents: action.payload,
+      };
+    case EXPORT_STUDENTS:
+      return {
+        ...state,
+        exportStudents: action.payload,
+      };
+    case GET_CURRENT_USER:
+      return {
+        ...state,
+        currentUser: action.payload,
+      };
+    case IMPORT_DIEMS:
+      return {
+        ...state,
+        importDiems: action.payload,
+      };
+    case EXPORT_DIEMS:
+      return {
+        ...state,
+        exportDiems: action.payload,
+      };
     default:
       return state;
   }

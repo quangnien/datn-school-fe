@@ -273,365 +273,523 @@ const Body = () => {
 
   // set trạng thái kỳ học để quyết định sửa hay không sửa
 
-  return (
-    <div className="flex-[0.8] mt-3 mx-5 item-center">
-      <div className="flex mt-4">
-        <Link to="/admin/addcourse" className="btn btn-primary">
-          <button
-            className="items-center gap-[9px] mr-4 w-[88px] h-[53px] hover:bg-[#04605E] block py-2 font-bold text-white rounded-lg px-4 
+  // begin thêm đăng ký cho sinh viên yêu cầu
+  const [valueDangKySinhVien, setvalueDangKySinhVien] = useState({
+    MaLop: "",
+    MaLopTc: "",
+  });
+  const handleThemDangKyModalModal = (course) => {
+    setIsModalOpen(true);
+    setModalMode("DangKy");
+    // setValuethongke({
+    //   ...valuethongke,
+    //   idLopTc: course.id,
+    // });
+  };
+
+  const [loadingDangKySinhVien, setloadingDangKySinhVien] = useState(false);
+  useEffect(() => {
+    if (Object.keys(store.errors).length !== 0) {
+      setloadingDangKySinhVien(false);
+    }
+  }, [store.errors]);
+
+  // useEffect(() => {
+  //   setValuethongke({
+  //     ...valueDangKySinhVien,
+  //     MaLop: "",
+  //   });
+  // }, [valueDangKySinhVien?.MaLop]);
+
+  useEffect(() => {
+    if (valueDangKySinhVien?.idLopTc && valueDangKySinhVien?.MaLop) {
+      setloadingDangKySinhVien(true);
+      dispatch(
+        getStudentChuaDangKy({
+          params: {
+            ...valueDangKySinhVien,
+          },
+        })
+      );
+    }
+  }, [valueDangKySinhVien?.idLopTc, valueDangKySinhVien?.MaLop]);
+
+  const sinhvienChuaDangKys = useSelector(
+    (state) => state.admin.sinhvienChuaDangKys
+  );
+
+  useEffect(() => {
+    if (
+      sinhvienChuaDangKys?.length !== 0 ||
+      sinhvienChuaDangKys?.length === 0
+    ) {
+      setLoadingthongke(false);
+    }
+  }, [sinhvienChuaDangKys]);
+
+  const handelReset = () => {
+    setIsModalOpen(false);
+    setLoading(false);
+    setError({});
+    setvalueDangKySinhVien("");
+    dispatch({ type: "CLEAR_MODAL_DANGkY" });
+
+    return (
+      <div className="flex-[0.8] mt-3 mx-5 item-center">
+        <div className="flex mt-4">
+          <Link to="/admin/addcourse" className="btn btn-primary">
+            <button
+              className="items-center gap-[9px] mr-4 w-[88px] h-[53px] hover:bg-[#04605E] block py-2 font-bold text-white rounded-lg px-4 
            bg-[#157572] focus:outline-none focus:shadow-outline "
-          >
-            Thêm
-          </button>
-        </Link>
-
-        {valueUnitMKH?.maKeHoach === "MKH1" &&
-          courses &&
-          courses.length > 0 && (
-            <button
-              onClick={dltSubject}
-              className={
-                "items-center gap-[9px] mr-4 w-[88px] h-[53px] block py-2 font-bold text-[#7D1711] bg-[#FDD1D1] border border: 1.11647px solid #FD9999 rounded-lg px-4" +
-                (checkedValue && checkedValue.length
-                  ? " hover:bg-[#FD9999] focus:#FD9999 focus:shadow-outline"
-                  : "")
-              }
-              disabled={!(courses && checkedValue?.length > 0)}
             >
-              Xóa
+              Thêm
             </button>
-          )}
-      </div>
+          </Link>
 
-      <div className="items-center my-8 mt-2 mb-2 rounded-lg">
-        <form
-          className="flex flex-col col-span-1 space-y-2"
-          onSubmit={handleSubmit}
-        >
-          <div className="flex gap-x-2">
-            <div className="flex flex-col">
-              <span className="mb-1 text-text2">
-                Chọn học kỳ xem lớp tín chỉ:
-              </span>
-
-              <Select
-                required
-                displayEmpty
-                sx={{ height: 36, width: 284 }}
-                inputProps={{ "aria-label": "Without label" }}
-                value={valueUnitMKH.maKeHoach}
-                onChange={(e) =>
-                  setValueUnitMKH({
-                    ...valueUnitMKH,
-                    maKeHoach: e.target.value,
-                  })
+          {valueUnitMKH?.maKeHoach === "MKH1" &&
+            courses &&
+            courses.length > 0 && (
+              <button
+                onClick={dltSubject}
+                className={
+                  "items-center gap-[9px] mr-4 w-[88px] h-[53px] block py-2 font-bold text-[#7D1711] bg-[#FDD1D1] border border: 1.11647px solid #FD9999 rounded-lg px-4" +
+                  (checkedValue && checkedValue.length
+                    ? " hover:bg-[#FD9999] focus:#FD9999 focus:shadow-outline"
+                    : "")
                 }
-                className=" h-10  bg-[#DDDEEE] bg-opacity-50 rounded-md outline-none text-sm hover:focus:border-none"
+                disabled={!(courses && checkedValue?.length > 0)}
               >
-                <MenuItem value="">Chưa chọn</MenuItem>
-                {khns?.map((khn, idx) => (
-                  <MenuItem key={idx} value={khn.maKeHoach}>
-                    {`Học kỳ ${khn.ky} - Năm học ${khn.nam}-2024`}
-                  </MenuItem>
-                ))}
-              </Select>
-            </div>
-
-            <div className="flex flex-col">
-              <span className="mb-1 text-text2">Lớp</span>
-
-              <Select
-                required
-                displayEmpty
-                sx={{ height: 36, width: 296 }}
-                inputProps={{ "aria-label": "Without label" }}
-                value={unit}
-                onChange={(e) => setUnit(e.target.value)}
-                className=" h-10  bg-[#DDDEEE] bg-opacity-50 rounded-md outline-none text-sm hover:focus:border-none"
-              >
-                <MenuItem value="">Chưa chọn</MenuItem>
-                {units?.map((ut, idx) => (
-                  <MenuItem key={idx} value={ut.tenLop}>
-                    {ut.tenLop}
-                  </MenuItem>
-                ))}
-              </Select>
-            </div>
-
-            <button
-              className="w-56 mt-auto text-white transition-all duration-200 bg-red-500 rounded-md h-9 hover:scale-105 hover:bg-red-700"
-              type="submit"
-            >
-              Lọc
-            </button>
-          </div>
-        </form>
-      </div>
-
-      <div className="w-full">
-        <div className="col-span-3">
-          <div className={classes.loadingAndError}>
-            {loading && (
-              <Spinner
-                message="Loading"
-                height={50}
-                width={150}
-                color="#157572"
-                messageColor="#157572"
-              />
+                Xóa
+              </button>
             )}
-            {!loading && courses?.length === 0 && (
-              <p className="text-2xl font-bold text-red-500">
-                Lớp chưa có Lớp tín chỉ
-              </p>
-            )}
-          </div>
-
-          {search && !loading && courses?.length > 0 && (
-            <table className="w-full table-auto">
-              <thead className="bg-[#E1EEEE] items-center">
-                <tr>
-                  {valueUnitMKH?.maKeHoach == "MKH1" && (
-                    <th className="px-4 py-2">Chọn</th>
-                  )}
-
-                  <th className="px-4 py-2">STT</th>
-                  <th className="px-4 py-2">Mã Lớp Tín Chỉ</th>
-                  <th className="px-4 py-2">Môn học</th>
-                  <th className="px-4 py-2">Giảng viên</th>
-                  <th className="px-4 py-2">Số lượng</th>
-                  <th className="px-4 py-2">Số lượng còn</th>
-                  <th className="px-4 py-2">Hành Động</th>
-                </tr>
-              </thead>
-              <tbody className="">
-                {courses &&
-                  courses.length > 0 &&
-                  courses?.map((course, idx) => (
-                    <tr
-                      className="justify-center item-center hover:bg-[#EEF5F5]"
-                      key={idx}
-                    >
-                      {valueUnitMKH?.maKeHoach === "MKH1" && (
-                        <td className="px-4 py-2 border text-center">
-                          <input
-                            onChange={handleInputChange}
-                            checked={checkedValue.includes(course.id)}
-                            value={course.id}
-                            type="checkbox"
-                            className="accent-[#157572]"
-                          />
-                        </td>
-                      )}
-                      <td className="px-4 py-2 border text-center">{idx + 1}</td>
-                      <td className="px-4 py-2 border text-left">{course.maLopTc}</td>
-                      <td className="px-4 py-2 border text-left">{course.tenMh}</td>
-                      <td className="px-4 py-2 border text-left">{course.tenGv}</td>
-
-                      <td className="px-4 py-2 border text-center">{course.soLuong}</td>
-                      <td className="px-4 py-2 border text-center">{course.soLuongCon}</td>
-
-                      <td className="px-4 py-2 border">
-                        <div className="flex items-center justify-center h-full gap-x-1">
-                          <button
-                            className="whitespace-nowrap   focus:shadow-outline w-full h-full px-3 py-1 font-bold text-white rounded hover:bg-[#04605E] bg-[#157572] focus:outline-none focus:shadow-outline"
-                            onClick={() => handleOpenViewModal(course)}
-                          >
-                            Chi tiết
-                          </button>
-                          {valueUnitMKH?.maKeHoach === "MKH1" && (
-                            <button
-                              className="w-full h-full px-3 py-1 font-bold text-white rounded hover:bg-[#04605E] bg-[#157572] focus:outline-none focus:shadow-outline"
-                              onClick={() => handleEditClick(course)}
-                            >
-                              Sửa
-                            </button>
-                          )}
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
-              </tbody>
-            </table>
-          )}
         </div>
-      </div>
-      {selectedCourse && modalMode === "view" && (
-        <CourseDetail
-          isOpen={isModalOpen}
-          onClose={closeModal}
-          course={selectedCourse}
-        />
-      )}
 
-      {modalMode === "edit" && (
-        <ReactModal
-          isOpen={isModalOpen}
-          onRequestClose={openModal}
-          style={modalStyles}
-          ariaHideApp={false}
-        >
-          <div className={classes.Form1}>
-            <form
-              className="w-[1226px] min-h-[300px] py-7 px-7 text-center bg-[#fff] border rounded-md  shadow-md mx-auto"
-              onSubmit={handleFormSubmit}
-            >
-              <div className={classes.FormItem}>
-                <div className={classes.WrapInputLabel}>
-                  <h1 className={classes.LabelStyle}>Mã lớp tín chỉ *:</h1>
-                  <input
-                    placeholder={selectedCourse.maLopTc}
-                    disabled
-                    className={classes.InputStyle}
-                    type="text"
-                  />
-                </div>
-                <div className={classes.WrapInputLabel}>
-                  <h1 className={classes.LabelStyle}>Số lượng *:</h1>
-                  <Select
-                    displayEmpty
-                    sx={{ height: 36 }}
-                    inputProps={{ "aria-label": "Without label" }}
-                    value={value.soLuong || selectedCourse.soLuong}
-                    onChange={(e) =>
-                      setValue({ ...value, soLuong: e.target.value })
-                    }
-                    className={classes.InputStyle}
-                    MenuProps={{
-                      style: {
-                        maxHeight: "400px",
-                      },
-                    }}
-                  >
-                    {numbers.map((item) => (
-                      <MenuItem key={item} value={item}>
-                        {item}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </div>
+        <div className="items-center my-8 mt-2 mb-2 rounded-lg">
+          <form
+            className="flex flex-col col-span-1 space-y-2"
+            onSubmit={handleSubmit}
+          >
+            <div className="flex gap-x-2">
+              <div className="flex flex-col">
+                <span className="mb-1 text-text2">
+                  Chọn học kỳ xem lớp tín chỉ:
+                </span>
 
-                <div className={classes.WrapInputLabel}>
-                  <h1 className={classes.LabelStyle}>Môn học *:</h1>
-                  <Select
-                    required
-                    displayEmpty
-                    sx={{
-                      height: 36,
-                      outline: "none",
-                    }}
-                    inputProps={{ "aria-label": "Without label" }}
-                    value={value.maMh || selectedCourse.maMh}
-                    onChange={(e) =>
-                      setValue({ ...value, maMh: e.target.value })
-                    }
-                    className={`${classes.InputStyle} hover:focus:border-none `}
-                    MenuProps={{
-                      PaperProps: {
-                        style: {
-                          maxHeight: 284,
-                        },
-                      },
-                    }}
-                  >
-                    {subjects?.map((dp, idx) => (
-                      <MenuItem key={idx} value={dp.maMh}>
-                        {dp.tenMh}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </div>
-                <div className={classes.WrapInputLabel}>
-                  <h1 className={classes.LabelStyle}>Lớp học *:</h1>
-                  <Select
-                    required
-                    displayEmpty
-                    sx={{
-                      height: 36,
-                      outline: "none",
-                    }}
-                    inputProps={{ "aria-label": "Without label" }}
-                    value={value.maLop || selectedCourse.maLop}
-                    onChange={(e) =>
-                      setValue({ ...value, maLop: e.target.value })
-                    }
-                    className={`${classes.InputStyle} hover:focus:border-none `}
-                    MenuProps={{
-                      PaperProps: {
-                        style: {
-                          maxHeight: 322,
-                        },
-                      },
-                    }}
-                  >
-                    {units?.map((dp, idx) => (
-                      <MenuItem key={idx} value={dp.maLop}>
-                        {dp.tenLop}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </div>
-                <div className={classes.WrapInputLabel}>
-                  <h1 className={classes.LabelStyle}>Giảng viên *:</h1>
-                  <Select
-                    required
-                    displayEmpty
-                    sx={{
-                      height: 36,
-                      outline: "none",
-                    }}
-                    inputProps={{ "aria-label": "Without label" }}
-                    value={value.maGv || selectedCourse.maGv}
-                    onChange={(e) =>
-                      setValue({ ...value, maGv: e.target.value })
-                    }
-                    className={`${classes.InputStyle} hover:focus:border-none `}
-                    MenuProps={{
-                      PaperProps: {
-                        style: {
-                          maxHeight: 284,
-                        },
-                      },
-                    }}
-                  >
-                    {teachers?.map((dp, idx) => (
-                      <MenuItem key={idx} value={dp.maGv}>
-                        {dp.ho} {dp.ten}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </div>
+                <Select
+                  required
+                  displayEmpty
+                  sx={{ height: 36, width: 284 }}
+                  inputProps={{ "aria-label": "Without label" }}
+                  value={valueUnitMKH.maKeHoach}
+                  onChange={(e) =>
+                    setValueUnitMKH({
+                      ...valueUnitMKH,
+                      maKeHoach: e.target.value,
+                    })
+                  }
+                  className=" h-10  bg-[#DDDEEE] bg-opacity-50 rounded-md outline-none text-sm hover:focus:border-none"
+                >
+                  <MenuItem value="">Chưa chọn</MenuItem>
+                  {khns?.map((khn, idx) => (
+                    <MenuItem key={idx} value={khn.maKeHoach}>
+                      {`Học kỳ ${khn.ky} - Năm học ${khn.nam}-2024`}
+                    </MenuItem>
+                  ))}
+                </Select>
               </div>
 
-              <div className={classes.WrapButton}>
-                <button className={classes.adminFormSubmitButton} type="submit">
-                  Lưu
-                </button>
-                <button
-                  className={classes.adminFormClearButton}
-                  type="button"
-                  onClick={closeModal}
+              <div className="flex flex-col">
+                <span className="mb-1 text-text2">Lớp</span>
+
+                <Select
+                  required
+                  displayEmpty
+                  sx={{ height: 36, width: 296 }}
+                  inputProps={{ "aria-label": "Without label" }}
+                  value={unit}
+                  onChange={(e) => setUnit(e.target.value)}
+                  className=" h-10  bg-[#DDDEEE] bg-opacity-50 rounded-md outline-none text-sm hover:focus:border-none"
                 >
-                  Hủy
-                </button>
+                  <MenuItem value="">Chưa chọn</MenuItem>
+                  {units?.map((ut, idx) => (
+                    <MenuItem key={idx} value={ut.tenLop}>
+                      {ut.tenLop}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </div>
+
+              <button
+                className="w-56 mt-auto text-white transition-all duration-200 bg-red-500 rounded-md h-9 hover:scale-105 hover:bg-red-700"
+                type="submit"
+              >
+                Lọc
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <div className="w-full">
+          <div className="col-span-3">
+            <div className={classes.loadingAndError}>
+              {loading && (
+                <Spinner
+                  message="Loading"
+                  height={50}
+                  width={150}
+                  color="#157572"
+                  messageColor="#157572"
+                />
+              )}
+              {!loading && courses?.length === 0 && (
+                <p className="text-2xl font-bold text-red-500">
+                  Lớp chưa có Lớp tín chỉ
+                </p>
+              )}
+            </div>
+
+            {search && !loading && courses?.length > 0 && (
+              <table className="w-full table-auto">
+                <thead className="bg-[#E1EEEE] items-center">
+                  <tr>
+                    {valueUnitMKH?.maKeHoach == "MKH1" && (
+                      <th className="px-4 py-2">Chọn</th>
+                    )}
+
+                    <th className="px-4 py-2">STT</th>
+                    <th className="px-4 py-2">Mã Lớp Tín Chỉ</th>
+                    <th className="px-4 py-2">Môn học</th>
+                    <th className="px-4 py-2">Giảng viên</th>
+                    <th className="px-4 py-2">Số lượng</th>
+                    <th className="px-4 py-2">Số lượng còn</th>
+                    <th className="px-4 py-2">Hành Động</th>
+                  </tr>
+                </thead>
+                <tbody className="">
+                  {courses &&
+                    courses.length > 0 &&
+                    courses?.map((course, idx) => (
+                      <tr
+                        className="justify-center item-center hover:bg-[#EEF5F5]"
+                        key={idx}
+                      >
+                        {valueUnitMKH?.maKeHoach === "MKH1" && (
+                          <td className="px-4 py-2 text-center border">
+                            <input
+                              onChange={handleInputChange}
+                              checked={checkedValue.includes(course.id)}
+                              value={course.id}
+                              type="checkbox"
+                              className="accent-[#157572]"
+                            />
+                          </td>
+                        )}
+                        <td className="px-4 py-2 text-center border">
+                          {idx + 1}
+                        </td>
+                        <td className="px-4 py-2 text-left border">
+                          {course.maLopTc}
+                        </td>
+                        <td className="px-4 py-2 text-left border">
+                          {course.tenMh}
+                        </td>
+                        <td className="px-4 py-2 text-left border">
+                          {course.tenGv}
+                        </td>
+
+                        <td className="px-4 py-2 text-center border">
+                          {course.soLuong}
+                        </td>
+                        <td className="px-4 py-2 text-center border">
+                          {course.soLuongCon}
+                        </td>
+
+                        <td className="px-4 py-2 border">
+                          <div className="flex items-center justify-center h-full gap-x-1">
+                            <button
+                              className="whitespace-nowrap   focus:shadow-outline w-full h-full px-3 py-1 font-bold text-white rounded hover:bg-[#04605E] bg-[#157572] focus:outline-none focus:shadow-outline"
+                              onClick={() => handleOpenViewModal(course)}
+                            >
+                              Chi tiết
+                            </button>
+                            {valueUnitMKH?.maKeHoach === "MKH1" && (
+                              <button
+                                className="w-full h-full px-3 py-1 font-bold text-white rounded hover:bg-[#04605E] bg-[#157572] focus:outline-none focus:shadow-outline"
+                                onClick={() => handleEditClick(course)}
+                              >
+                                Sửa
+                              </button>
+                            )}
+
+                            <button
+                              className="whitespace-nowrap   focus:shadow-outline w-full h-full px-3 py-1 font-bold text-white rounded hover:bg-[#04605E] bg-[#157572] focus:outline-none focus:shadow-outline"
+                              onClick={() => handleThemDangKyModal(course)}
+                            >
+                              Thêm
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+                </tbody>
+              </table>
+            )}
+          </div>
+        </div>
+        {selectedCourse && modalMode === "view" && (
+          <CourseDetail
+            isOpen={isModalOpen}
+            onClose={closeModal}
+            course={selectedCourse}
+          />
+        )}
+
+        {modalMode === "edit" && (
+          <ReactModal
+            isOpen={isModalOpen}
+            onRequestClose={openModal}
+            style={modalStyles}
+            ariaHideApp={false}
+          >
+            <div className={classes.Form1}>
+              <form
+                className="w-[1226px] min-h-[300px] py-7 px-7 text-center bg-[#fff] border rounded-md  shadow-md mx-auto"
+                onSubmit={handleFormSubmit}
+              >
+                <div className={classes.FormItem}>
+                  <div className={classes.WrapInputLabel}>
+                    <h1 className={classes.LabelStyle}>Mã lớp tín chỉ *:</h1>
+                    <input
+                      placeholder={selectedCourse.maLopTc}
+                      disabled
+                      className={classes.InputStyle}
+                      type="text"
+                    />
+                  </div>
+                  <div className={classes.WrapInputLabel}>
+                    <h1 className={classes.LabelStyle}>Số lượng *:</h1>
+                    <Select
+                      displayEmpty
+                      sx={{ height: 36 }}
+                      inputProps={{ "aria-label": "Without label" }}
+                      value={value.soLuong || selectedCourse.soLuong}
+                      onChange={(e) =>
+                        setValue({ ...value, soLuong: e.target.value })
+                      }
+                      className={classes.InputStyle}
+                      MenuProps={{
+                        style: {
+                          maxHeight: "400px",
+                        },
+                      }}
+                    >
+                      {numbers.map((item) => (
+                        <MenuItem key={item} value={item}>
+                          {item}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </div>
+
+                  <div className={classes.WrapInputLabel}>
+                    <h1 className={classes.LabelStyle}>Môn học *:</h1>
+                    <Select
+                      required
+                      displayEmpty
+                      sx={{
+                        height: 36,
+                        outline: "none",
+                      }}
+                      inputProps={{ "aria-label": "Without label" }}
+                      value={value.maMh || selectedCourse.maMh}
+                      onChange={(e) =>
+                        setValue({ ...value, maMh: e.target.value })
+                      }
+                      className={`${classes.InputStyle} hover:focus:border-none `}
+                      MenuProps={{
+                        PaperProps: {
+                          style: {
+                            maxHeight: 284,
+                          },
+                        },
+                      }}
+                    >
+                      {subjects?.map((dp, idx) => (
+                        <MenuItem key={idx} value={dp.maMh}>
+                          {dp.tenMh}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </div>
+                  <div className={classes.WrapInputLabel}>
+                    <h1 className={classes.LabelStyle}>Lớp học *:</h1>
+                    <Select
+                      required
+                      displayEmpty
+                      sx={{
+                        height: 36,
+                        outline: "none",
+                      }}
+                      inputProps={{ "aria-label": "Without label" }}
+                      value={value.maLop || selectedCourse.maLop}
+                      onChange={(e) =>
+                        setValue({ ...value, maLop: e.target.value })
+                      }
+                      className={`${classes.InputStyle} hover:focus:border-none `}
+                      MenuProps={{
+                        PaperProps: {
+                          style: {
+                            maxHeight: 322,
+                          },
+                        },
+                      }}
+                    >
+                      {units?.map((dp, idx) => (
+                        <MenuItem key={idx} value={dp.maLop}>
+                          {dp.tenLop}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </div>
+                  <div className={classes.WrapInputLabel}>
+                    <h1 className={classes.LabelStyle}>Giảng viên *:</h1>
+                    <Select
+                      required
+                      displayEmpty
+                      sx={{
+                        height: 36,
+                        outline: "none",
+                      }}
+                      inputProps={{ "aria-label": "Without label" }}
+                      value={value.maGv || selectedCourse.maGv}
+                      onChange={(e) =>
+                        setValue({ ...value, maGv: e.target.value })
+                      }
+                      className={`${classes.InputStyle} hover:focus:border-none `}
+                      MenuProps={{
+                        PaperProps: {
+                          style: {
+                            maxHeight: 284,
+                          },
+                        },
+                      }}
+                    >
+                      {teachers?.map((dp, idx) => (
+                        <MenuItem key={idx} value={dp.maGv}>
+                          {dp.ho} {dp.ten}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </div>
+                </div>
+
+                <div className={classes.WrapButton}>
+                  <button
+                    className={classes.adminFormSubmitButton}
+                    type="submit"
+                  >
+                    Lưu
+                  </button>
+                  <button
+                    className={classes.adminFormClearButton}
+                    type="button"
+                    onClick={closeModal}
+                  >
+                    Hủy
+                  </button>
+                </div>
+                <div className={classes.loadingAndError}>
+                  {loading && (
+                    <Spinner
+                      message="Updating"
+                      height={30}
+                      width={150}
+                      color="#157572"
+                      messageColor="#157572"
+                    />
+                  )}
+                </div>
+              </form>
+            </div>
+          </ReactModal>
+        )}
+
+        {modalMode === "DangKy" && (
+          <ReactModal
+            isOpen={isModalOpen}
+            onRequestClose={openModal}
+            style={modalStyles}
+            ariaHideApp={false}
+          >
+            <div className="flex-[0.8] mt-3 mx-5 item-center w-[1000px] h-[650px] ">
+              <div className="flex items-center justify-end gap-5">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth="1.5"
+                  stroke="currentColor"
+                  className="w-6 h-6 cursor-pointer"
+                  onClick={() => handelReset()}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </div>
+
+              <div className="items-center my-8 mt-2 mb-2 rounded-lg">
+                <form className="flex flex-col col-span-1 space-y-2">
+                  <label htmlFor="department">Chọn lớp học: </label>
+
+                  <div className="flex">
+                    <div>
+                      <Select
+                        required
+                        displayEmpty
+                        sx={{ height: 36, width: 274 }}
+                        inputProps={{ "aria-label": "Without label" }}
+                        value={valueDangKySinhVien.MaLop}
+                        onChange={(e) =>
+                          setvalueDangKySinhVien({
+                            ...valueDangKySinhVien,
+                            MaLop: e.target.value,
+                          })
+                        }
+                        className={`${classes.InputStyle} hover:focus:border-none w-[166px] text-center `}
+                      >
+                        <MenuItem value="">Chưa chọn</MenuItem>
+                        {units?.map((ut, idx) => (
+                          <MenuItem key={idx} value={ut.MaLop}>
+                            {ut.tenLop}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                    </div>
+                  </div>
+                </form>
               </div>
               <div className={classes.loadingAndError}>
-                {loading && (
+                {loadingDangKySinhVien && sinhvienChuaDangKys?.length !== 0 && (
                   <Spinner
-                    message="Updating"
-                    height={30}
+                    message="Loading"
+                    height={50}
                     width={150}
                     color="#157572"
                     messageColor="#157572"
                   />
                 )}
               </div>
-            </form>
-          </div>
-        </ReactModal>
-      )}
-    </div>
-  );
+              {!loadingDangKySinhVien &&
+                sinhvienChuaDangKys.length > 0 &&
+                sinhvienChuaDangKys.map((student) => student)}
+            </div>
+          </ReactModal>
+        )}
+      </div>
+    );
+  };
 };
-
 export default Body;
