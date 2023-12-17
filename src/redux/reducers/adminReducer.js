@@ -90,6 +90,7 @@ import {
   UPDATE_DANG_KY_MON,
   CLEAR_MODAL_DANGKY,
   GET_SV_DADK_BY_ADMIN,
+  CLEAR_MODAL_DADANGKY,
 } from "../actionTypes";
 
 const initialState = {
@@ -582,6 +583,11 @@ const adminReducer = (state = initialState, action) => {
       return {
         ...state,
         sinhvienChuaDangKys: [],
+      };
+      case CLEAR_MODAL_DADANGKY:
+      return {
+        ...state,
+        sinhvienDaDangKys: [],
       };
     case RESET_STUDENTS:
       return {

@@ -305,12 +305,12 @@ export const Body = () => {
     }
   }, [store.errors]);
 
-  useEffect(() => {
-    setvalueDangKySinhVien({
-      ...valueDangKySinhVien,
-      maLop: "",
-    });
-  }, [valueDangKySinhVien?.maLop]);
+  // useEffect(() => {
+  //   setvalueDangKySinhVien({
+  //     ...valueDangKySinhVien,
+  //     maLop: "",
+  //   });
+  // }, [valueDangKySinhVien?.maLop]);
 
   useEffect(() => {
     if (valueDangKySinhVien?.maLopTc && valueDangKySinhVien?.maLop) {
@@ -369,6 +369,8 @@ export const Body = () => {
     setSelectedOptionDangKyMons([]);
     setvalueDangKySinhVien("");
     dispatch({ type: "CLEAR_MODAL_DANGKY" });
+    dispatch({ type: "CLEAR_MODAL_DADANGKY" });
+
   };
 
   // next
@@ -392,6 +394,7 @@ export const Body = () => {
         },
       })
     );
+    setSelectedOptionDangKyMons([]);
 
     dispatch(
       getStudentDaDangKyBoiAdmin({
@@ -401,7 +404,7 @@ export const Body = () => {
         },
       })
     );
-    setSelectedOptionDangKyMons([]);
+
   }, [dispatch, store.errors, store.admin.updatedDangKyMon]);
 
   const handleModalError = () => {
@@ -599,7 +602,7 @@ export const Body = () => {
                             className="whitespace-nowrap   focus:shadow-outline w-full h-full px-3 py-1 font-bold text-white rounded hover:bg-[#04605E] bg-[#157572] focus:outline-none focus:shadow-outline"
                             onClick={() => handleThemDangKyModal(course)}
                           >
-                            Thêm
+                            Đăng ký cho sinh viên
                           </button>
                         </div>
                       </td>
