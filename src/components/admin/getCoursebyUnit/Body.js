@@ -13,12 +13,15 @@ import {
   getAllCoursebyUnitMKH,
   getStudentChuaDangKy,
   updateCourse,
+  updateDangKyMon,
 } from "../../../redux/actions/adminActions";
 import {
   DELETE_COURSE,
   SET_ERRORS,
   UPDATE_COURSE,
+  UPDATE_DANG_KY_MON,
 } from "../../../redux/actionTypes";
+import ReactSelect from "react-select";
 
 // http://localhost:9090/api/admin/dsLopTc?maKeHoach=MKH1&maLop=D19CQCNPM01-N
 
@@ -279,18 +282,16 @@ export const Body = () => {
     maLopTc: "",
     maSvList: "",
   });
+  
   const handleThemDangKyModal = (course) => {
-    console.log("course", course);
     setIsModalOpen(true);
     setModalMode("DangKy");
-
     setvalueDangKySinhVien({
       ...valueDangKySinhVien,
       maLopTc: course.maLopTc,
     });
-
     setvalueDangKyMon({
-      maLopTc: role.roleCode,
+      maLopTc: course.maLopTc,
       maSvList: [],
     });
   };
@@ -302,12 +303,12 @@ export const Body = () => {
     }
   }, [store.errors]);
 
-  // useEffect(() => {
-  //   setValuethongke({
-  //     ...valueDangKySinhVien,
-  //     MaLop: "",
-  //   });
-  // }, [valueDangKySinhVien?.MaLop]);
+  useEffect(() => {
+    setvalueDangKySinhVien({
+      ...valueDangKySinhVien,
+      MaLop: "",
+    });
+  }, [valueDangKySinhVien?.MaLop]);
 
   useEffect(() => {
     if (valueDangKySinhVien?.maLopTc && valueDangKySinhVien?.maLop) {
@@ -321,7 +322,7 @@ export const Body = () => {
         })
       );
     }
-  }, [valueDangKySinhVien?.maLopTc, valueDangKySinhVien?.maLop]);
+  }, [valueDangKySinhVien?.maLopTc, valueDangKySinhVien?.maLop,]);
 
   const sinhvienChuaDangKys = useSelector(
     (state) => state.admin.sinhvienChuaDangKys
@@ -330,7 +331,7 @@ export const Body = () => {
   const initialsinhvienchuadangkys = sinhvienChuaDangKys;
   const SinhVienOptions = initialsinhvienchuadangkys?.map((sub) => ({
     value: sub.maSv,
-    label: sub.ten,
+    label: sub.maSv + ' - ' + sub.ho + ' ' + sub.ten,
   }));
   useEffect(() => {
     if (
@@ -338,12 +339,7 @@ export const Body = () => {
       sinhvienChuaDangKys?.length === 0
     ) {
       setloadingDangKySinhVien(false);
-      setSelectedOptions(
-        (sinhvienChuaDangKys || []).map((value, index) => ({
-          value: value?.maSv,
-          label: value?.ten,
-        }))
-      );
+      
     }
   }, [sinhvienChuaDangKys]);
 
@@ -351,8 +347,9 @@ export const Body = () => {
     setIsModalOpen(false);
     setLoading(false);
     setError({});
+    setSelectedOptionDangKyMons([]);
     setvalueDangKySinhVien("");
-    dispatch({ type: "CLEAR_MODAL_DANGkY" });
+    dispatch({ type: "CLEAR_MODAL_DANGKY" });
   };
 
   // next
@@ -368,6 +365,15 @@ export const Body = () => {
     if (!store.admin.updatedDangKyMon) return;
     setError({});
     closeModal();
+    dispatch(
+      getStudentChuaDangKy({
+        params: {
+          maLop: valueDangKySinhVien?.maLop,
+          maLopTc: valueDangKySinhVien?.maLopTc,
+        },
+      })
+    );
+    setSelectedOptionDangKyMons([])
   }, [dispatch, store.errors, store.admin.updatedDangKyMon]);
 
   const handleModalError = () => {
@@ -822,7 +828,7 @@ export const Body = () => {
             {!loadingDangKySinhVien && sinhvienChuaDangKys?.length > 0 && (
               <div className="flex flex-col bg-white rounded-xl">
                 <form
-                  className="w-full min-h-[650px] py-10 px-7 text-center bg-[#fff] border rounded-md  shadow-md mx-auto"
+                  className="w-full min-h-[650px] py-10 px-7 text-left bg-[#fff] border rounded-md  shadow-md mx-auto"
                   onSubmit={handleDangKyMonSubmit}
                 >
                   <div className="grid grid-cols-1">

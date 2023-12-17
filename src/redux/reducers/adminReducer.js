@@ -88,6 +88,7 @@ import {
   DELETE_USER,
   GET_SV_CHUADK,
   UPDATE_DANG_KY_MON,
+  CLEAR_MODAL_DANGKY,
 } from "../actionTypes";
 
 const initialState = {
@@ -566,6 +567,12 @@ const adminReducer = (state = initialState, action) => {
       return {
         ...state,
         thongkes: [],
+      };
+
+      case CLEAR_MODAL_DANGKY:
+      return {
+        ...state,
+        sinhvienChuaDangKys: [],
       };
     case RESET_STUDENTS:
       return {
