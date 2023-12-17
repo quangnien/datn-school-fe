@@ -107,6 +107,10 @@ export const getAllCoursebyUnitMKH = (data) =>
 export const getStudentChuaDangKy = (data) =>
   API.get(`api/admin/sinhVien/chuaDK`, data);
 
+// get sinh viên đã đăng ký lớp tính chỉ bởi quản trị viên
+export const getStudentDaDangKyBoiAdmin = (data) =>
+  API.get(`api/admin/sinhVien/daDKByAdmin`, data);
+
 export const updateDangKyMon = (updateDangKyMon) =>
   API.put("/api/admin/dang-ky-mon/adminDKM", updateDangKyMon);
 //Điểm

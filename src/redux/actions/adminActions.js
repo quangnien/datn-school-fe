@@ -82,6 +82,7 @@ import {
   ADD_CHECK_COURSE_DETAIL,
   GET_SV_CHUADK,
   UPDATE_DANG_KY_MON,
+  GET_SV_DADK_BY_ADMIN,
 } from "../actionTypes";
 import * as api from "../api";
 
@@ -1127,6 +1128,16 @@ export const getStudentChuaDangKy = (requestData) => async (dispatch) => {
     const { data } = await api.getStudentChuaDangKy(requestData);
 
     dispatch({ type: GET_SV_CHUADK, payload: data.retObj });
+  } catch (error) {
+    dispatch({ type: SET_ERRORS, payload: error.response.data });
+  }
+};
+
+export const getStudentDaDangKyBoiAdmin = (requestData) => async (dispatch) => {
+  try {
+    const { data } = await api.getStudentDaDangKyBoiAdmin(requestData);
+
+    dispatch({ type: GET_SV_DADK_BY_ADMIN, payload: data.retObj });
   } catch (error) {
     dispatch({ type: SET_ERRORS, payload: error.response.data });
   }

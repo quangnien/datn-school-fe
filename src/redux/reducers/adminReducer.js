@@ -89,6 +89,7 @@ import {
   GET_SV_CHUADK,
   UPDATE_DANG_KY_MON,
   CLEAR_MODAL_DANGKY,
+  GET_SV_DADK_BY_ADMIN,
 } from "../actionTypes";
 
 const initialState = {
@@ -158,6 +159,7 @@ const initialState = {
   scores: [],
   thongkes: [],
   sinhvienChuaDangKys: [],
+  sinhvienDaDangKyBoiAdmins: [],
   coursedetails: [],
   allMhtq: [],
   currentUser: [],
@@ -532,6 +534,13 @@ const adminReducer = (state = initialState, action) => {
         ...state,
         sinhvienChuaDangKys: action.payload,
       };
+
+    case GET_SV_DADK_BY_ADMIN:
+      return {
+        ...state,
+        sinhvienDaDangKyBoiAdmins: action.payload,
+      };
+
     //  mã lớp với mã kế hoạch á
     case GET_COURSE_BY_SOMETHING:
       return {
@@ -569,7 +578,7 @@ const adminReducer = (state = initialState, action) => {
         thongkes: [],
       };
 
-      case CLEAR_MODAL_DANGKY:
+    case CLEAR_MODAL_DANGKY:
       return {
         ...state,
         sinhvienChuaDangKys: [],

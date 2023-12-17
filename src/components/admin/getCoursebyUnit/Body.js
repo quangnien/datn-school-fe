@@ -12,6 +12,7 @@ import {
   deleteCourse,
   getAllCoursebyUnitMKH,
   getStudentChuaDangKy,
+  getStudentDaDangKyBoiAdmin,
   updateCourse,
   updateDangKyMon,
 } from "../../../redux/actions/adminActions";
@@ -277,12 +278,13 @@ export const Body = () => {
     maLop: "",
     maLopTc: "",
   });
+
   const [selectedOptionDangKyMons, setSelectedOptionDangKyMons] = useState([]);
   const [valueDangKyMon, setvalueDangKyMon] = useState({
     maLopTc: "",
     maSvList: "",
   });
-  
+
   const handleThemDangKyModal = (course) => {
     setIsModalOpen(true);
     setModalMode("DangKy");
@@ -306,9 +308,9 @@ export const Body = () => {
   useEffect(() => {
     setvalueDangKySinhVien({
       ...valueDangKySinhVien,
-      MaLop: "",
+      maLop: "",
     });
-  }, [valueDangKySinhVien?.MaLop]);
+  }, [valueDangKySinhVien?.maLop]);
 
   useEffect(() => {
     if (valueDangKySinhVien?.maLopTc && valueDangKySinhVien?.maLop) {
@@ -321,17 +323,29 @@ export const Body = () => {
           },
         })
       );
+
+      dispatch(
+        getStudentDaDangKyBoiAdmin({
+          params: {
+            maLop: valueDangKySinhVien?.maLop,
+            maLopTc: valueDangKySinhVien?.maLopTc,
+          },
+        })
+      );
     }
-  }, [valueDangKySinhVien?.maLopTc, valueDangKySinhVien?.maLop,]);
+  }, [valueDangKySinhVien?.maLopTc, valueDangKySinhVien?.maLop]);
 
   const sinhvienChuaDangKys = useSelector(
     (state) => state.admin.sinhvienChuaDangKys
   );
 
+  const sinhvienDaDangKys = useSelector(
+    (state) => state.admin.sinhvienDaDangKyBoiAdmins
+  );
   const initialsinhvienchuadangkys = sinhvienChuaDangKys;
   const SinhVienOptions = initialsinhvienchuadangkys?.map((sub) => ({
     value: sub.maSv,
-    label: sub.maSv + ' - ' + sub.ho + ' ' + sub.ten,
+    label: sub.maSv + " - " + sub.ho + " " + sub.ten,
   }));
   useEffect(() => {
     if (
@@ -339,7 +353,12 @@ export const Body = () => {
       sinhvienChuaDangKys?.length === 0
     ) {
       setloadingDangKySinhVien(false);
-      
+      setSelectedOptionDangKyMons(
+        (sinhvienDaDangKys || []).map((sub, index) => ({
+          value: sub.maSv,
+          label: sub.maSv + " - " + sub.ho + " " + sub.ten,
+        }))
+      );
     }
   }, [sinhvienChuaDangKys]);
 
@@ -373,7 +392,16 @@ export const Body = () => {
         },
       })
     );
-    setSelectedOptionDangKyMons([])
+
+    dispatch(
+      getStudentDaDangKyBoiAdmin({
+        params: {
+          maLop: valueDangKySinhVien?.maLop,
+          maLopTc: valueDangKySinhVien?.maLopTc,
+        },
+      })
+    );
+    setSelectedOptionDangKyMons([]);
   }, [dispatch, store.errors, store.admin.updatedDangKyMon]);
 
   const handleModalError = () => {
