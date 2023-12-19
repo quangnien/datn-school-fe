@@ -55,6 +55,7 @@ const DetailTeacher = ({ teacher, isOpen, onClose }) => {
                 <span className="font-sans">Mã Khoa</span>
                 <span className="font-sans">Tên Khoa</span>
                 <span className="font-sans">Danh sách môn dạy</span>
+                <span className="font-sans">Lịch dạy đã đăng ký</span>
               </div>
               <div
                 className="flex flex-col gap-y-5"
@@ -73,6 +74,7 @@ const DetailTeacher = ({ teacher, isOpen, onClose }) => {
                 <span>{teacher?.maKhoa}</span>
                 <span>{teacher?.tenKhoa}</span>
                 <span>{teacher?.tenMhList}</span>
+                <span>{teacher?.tenDowList}</span>
               </div>
             </div>
           </div>

@@ -36,6 +36,8 @@ const Body = () => {
               <span className="font-sans">Mã Khoa</span>
               <span className="font-sans">Tên Khoa</span>
               <span className="font-sans">Danh sách môn dạy</span>
+              <span className="font-sans"></span>
+              <span className="font-sans">Lịch dạy đã đăng ký</span>
             </div>
             <div
               className="flex flex-col gap-y-5"
@@ -53,6 +55,7 @@ const Body = () => {
               <span>{teachers?.maKhoa}</span>
               <span>{teachers?.tenKhoa}</span>
               <span>{teachers?.tenMhList}</span>
+              <span>{teachers?.tenDowList}</span>
             </div>
           </div>
         </div>
